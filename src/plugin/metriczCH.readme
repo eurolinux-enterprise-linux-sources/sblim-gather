@@ -1,0 +1,132 @@
+/*
+ * $Id: metriczCH.readme,v 1.2 2009/05/20 19:39:56 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2006, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://opensource.org/licenses/cpl1.0.php
+ *
+ * Author:       Viktor Mihajlovski
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for System z Channel Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+
+- _CUE_CMC
+- PartitionUtilizationPercentage
+- TotalUtilizationPercentage
+- BusUtilizationPercentage
+- PartitionReadThroughput
+- PartitionWriteThroughput
+- TotalReadThroughput
+- TotalWriteThroughput
+
+/* ---------------------------------------------------------------------------*/
+
+_CUE_CMC
+--------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : n/a
+
+Value Source    : /sys/devices/css0/<deviceid>
+
+Syntax          : cuiv:\
+                  timestamp:\
+                  block2.cpc_bus_cycles:\
+                  block2.cpc_channel_work_units:\
+                  block2.cpc_data_units_read:\
+                  block2.cpc_data_units_written:\
+                  block2.lpar_channel_work_units:\
+                  block2.lpar_data_units_read:\
+ 		  block2.lpar_data_units_written!\
+                  block2.data_unit_size:\
+		  block2.maximum_bus_cycles:\
+		  block2.maximum_channel_work_units:\
+		  block2.maximum_write_data_units:\
+		  block2.maximum_read_data_units
+
+PartitionUtilizationPercentage
+------------------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : float32
+Units           : Percentage
+
+Value Source    : 2nd, 7th, 12th field of _CUE_CMC
+
+TotalUtilizationPercentage
+--------------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : float32
+Units           : Percentage
+
+Value Source    : 2nd, 4th, 12th field of _CUE_CMC
+
+BusUtilizationPercentage
+------------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : float32
+Units           : Percentage
+
+Value Source    : 2nd, 3rd, 11th field of _CUE_CMC
+
+PartitionReadThroughput
+-----------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : uint64
+Units           : Bytes per Second
+
+Value Source    : 2nd, 8th field of _CUE_CMC
+
+PartitionWriteThroughput
+-------------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : uint64
+Units           : Bytes per Second
+
+Value Source    : 2nd, 9th field of _CUE_CMC
+
+TotalReadThroughput
+-------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : uint64
+Units           : Bytes per Second
+
+Value Source    : 2nd, 5th field of _CUE_CMC
+
+TotalWriteThroughput
+--------------------
+
+Metric Type     : Interval
+Based on Metric : _CUE_CMC
+CIM Data Type   : uint64
+Units           : Bytes per Second
+
+Value Source    : 2nd, 6th field of _CUE_CMC
+
+/* ---------------------------------------------------------------------------*/

@@ -1,3 +1,141 @@
+2011-05-16  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* Makefile.am, NEWS, plugin/metricVirt.c:
+
+	Fixed 3302712: log libvirt connection failures.
+
+2011-05-15  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricVirt.c:
+
+	Fixed 3302709: leak libvir connections when no domains
+
+2011-05-11  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricKvm.c, plugin/metricVirt.c,
+	plugin/metricVirt.h, plugin/metricXenV2.c:
+
+	Fixed 3005596: virt plugin only connects to libvirtd at load
+
+2011-05-10  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricKvm.c, plugin/metricKvm.readme,
+	plugin/metricVirt.c, plugin/metricVirt.h, plugin/repositoryKvm.c:
+
+	Fixed 3300216: new KVM scheduler counter metrics
+
+2011-05-10  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, provider/OSBase_MetricServiceCapabilitiesProvider.c:
+
+	Fixed 3181085: Mandatory Properties not instantiated
+	CIM_MetricServiceCapa
+
+2011-04-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricIPProtocolEndpoint.readme:
+
+	Updated metricIPProtocolEndpoint.readme to include ByteReceiveRate
+	and ByteTransmitRate
+
+2011-04-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricVirt.c:
+
+	Fixed 3289931: long vm names cause buffer overflow
+
+2011-04-14  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, provider/test/test-gather.sh:
+
+	Fixed 3275169: bash error reported in provider bootstrap scripts
+
+2011-01-04  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac:
+
+	Updated release info for 2.2.2
+
+2010-12-14  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* repos.c:
+
+	Fixed 3109852: TimeStamp property should be end of interval
+
+2010-12-14  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* util/mlog.c:
+
+	Updated fix 3109840: mlog with arguments segfaults on M_SHOW
+
+2010-11-15  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, util/mlog.c:
+
+	Fixed 3109840: mlog with arguments segfaults on M_SHOW
+
+2010-11-05  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricUnixProcess.c:
+
+	Fixed 3098510: add process name to UnixProcessMetric
+
+2010-10-07  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricVirt.c, plugin/repositoryKvm.c:
+
+	Fixed 3078358: no metrics collected for inactive virtual servers
+
+2010-09-23  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, reposdump.c:
+
+	Fixed 1845491: gather reposdump facility segfaults
+
+2010-09-23  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/repositoryKvm.c:
+
+	Fixed 3074452: change ActiveVirtualProcessors to point metric
+
+2010-09-23  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/repositoryKvm.c:
+
+	Fixed 3074431: change VSState to a Point metric (missed 2nd part of
+	patch)
+
+2010-09-23  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/repositoryKvm.c:
+
+	Fixed 3074431: change VSState to a Point metric
+
+2010-08-20  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, repos.c:
+
+	Fixed 3049802: plugin load generates error if already loaded
+
+2010-08-04  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricKvm.c, plugin/metricKvm.readme,
+	plugin/metricXen.c, plugin/metricXen.readme, plugin/metricXenV2.c:
+
+	Fixed 3039719: normalize virtual server metric sample interval
+
+2010-08-04  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, configure.ac:
+
+	Prep for 2.2.2 development cycle
+
+2010-06-01  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog:
+
+	Updated Changelog
+
 2010-06-01  Tyrel Datwyler <tyreld@us.ibm.com>
 
 	* ChangeLog, NEWS, configure.ac, gatherer.init-redhat.in:

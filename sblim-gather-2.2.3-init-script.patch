@@ -1,0 +1,35 @@
+diff -up sblim-gather-2.2.3/gatherer.init-redhat.in.orig sblim-gather-2.2.3/gatherer.init-redhat.in
+--- sblim-gather-2.2.3/gatherer.init-redhat.in.orig	2011-06-14 14:52:55.249093300 +0200
++++ sblim-gather-2.2.3/gatherer.init-redhat.in	2011-06-14 15:06:26.583093272 +0200
+@@ -12,6 +12,10 @@ echo $PATH | grep -q @sbindir@ ||PATH=@s
+ RETVAL=0
+ 
+ start() {
++	if [[ $EUID -ne 0 ]]; then
++		echo "gatherer init script executed under nonprivileged user"
++		exit 4
++	fi
+ 	echo -n "Starting gatherd: "
+ 	daemon gatherd
+ 	RETVAL=$?
+@@ -28,6 +32,10 @@ start() {
+ }
+ 
+ stop() {
++	if [[ $EUID -ne 0 ]]; then
++		echo "gatherer init script executed under nonprivileged user"
++		exit 4
++	fi
+ 	echo -n "Stopping reposd: "
+ 	killproc reposd
+ 	RETVAL=$?
+@@ -80,7 +88,8 @@ case "$1" in
+ 		;;
+ 	*)
+ 		echo "Usage gatherd {start|stop|status|restart|condrestart|reload}"
+-		exit 1
++		[ "$1" = "usage" ] && exit 0
++		exit 2
+ 		;;
+ esac
+ exit $RETVAL

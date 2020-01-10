@@ -1,5 +1,5 @@
 /*
- * $Id: reposdump.c,v 1.3 2009/05/20 19:39:55 tyreld Exp $
+ * $Id: reposdump.c,v 1.4 2010/09/24 00:38:33 tyreld Exp $
  *
  * (C) Copyright IBM Corp. 2007, 2009
  *
@@ -86,8 +86,8 @@ int main(int argc, char * argv[])
     }
     if (reposcfg_getitem("ExpirationInterval",expiration_str,sizeof(expiration_str)-1) != 0) {
       strcpy(expiration_str,"1200");
-      expiration = atoi(expiration_str) * 2;
     }
+    expiration = atoi(expiration_str) * 2;
   } else {
     fprintf(stderr, "Could not read configuration file (reposd.conf)\n");
     return REPOSDUMP_NOTFOUND;
@@ -123,15 +123,14 @@ int main(int argc, char * argv[])
 
   /* construct output filename and open for writing */
   if (argc > 3) {
-    dumpdir = "/tmp";
-  } else {
     dumpdir = argv[3];
+  } else {
+    dumpdir = "/tmp";
   }
   sprintf(fname,"%s/reposd-dump-%s.out",dumpdir,timestr);
   fhdl = fopen(fname,"w");
   if (fhdl == NULL) {
     fprintf(stderr, "Could not open %s for writing\n", fname);
-    releasefilelist(plugins);
     return REPOSDUMP_FILEWRITE;
   }
 

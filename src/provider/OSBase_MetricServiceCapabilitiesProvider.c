@@ -1,5 +1,5 @@
 /*
- * $Id: OSBase_MetricServiceCapabilitiesProvider.c,v 1.1 2009/06/27 04:19:21 tyreld Exp $
+ * $Id: OSBase_MetricServiceCapabilitiesProvider.c,v 1.2 2011/05/11 01:23:53 tyreld Exp $
  *
  * © Copyright IBM Corp. 2009
  *
@@ -72,6 +72,8 @@ static CMPIInstance * make_inst(const CMPIObjectPath * op)
 {
 	CMPIObjectPath * cop;
 	CMPIInstance * ci = NULL;
+    CMPIArray * array_uint = NULL;
+    CMPIArray * array_string = NULL;
 	
 	cop = CMNewObjectPath(_broker,
 						  CMGetCharPtr(CMGetNameSpace(op, NULL)),
@@ -85,6 +87,19 @@ static CMPIInstance * make_inst(const CMPIObjectPath * op)
 	if (ci) {
         CMSetProperty(ci, "InstanceID", _INSTANCEID, CMPI_chars);
 		CMSetProperty(ci, "ElementName", _CLASSNAME, CMPI_chars);
+
+        array_string = CMNewArray(_broker, 0, CMPI_string, NULL);
+        CMSetProperty(ci, "ControllableManagedElements", (CMPIValue *)
+                &array_string, CMPI_stringA);
+        CMSetProperty(ci, "ControllableMetrics", (CMPIValue *) &array_string,
+                CMPI_stringA);
+
+        array_uint = CMNewArray(_broker, 0, CMPI_uint16, NULL);
+        CMSetProperty(ci, "ManagedElementControlTypes", (CMPIValue *)
+                &array_uint, CMPI_uint16A);
+        CMSetProperty(ci, "MetricsControlTypes", (CMPIValue *) &array_uint,
+                CMPI_uint16A);
+        CMSetProperty(ci, "SupportedMethods", (CMPIValue *) &array_uint, CMPI_uint16A);
 		return ci;
 	}
 	

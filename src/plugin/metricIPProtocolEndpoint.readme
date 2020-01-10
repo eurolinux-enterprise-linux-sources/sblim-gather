@@ -1,5 +1,5 @@
 /*
- * $Id: metricIPProtocolEndpoint.readme,v 1.3 2009/06/24 21:24:22 tyreld Exp $
+ * $Id: metricIPProtocolEndpoint.readme,v 1.4 2011/04/19 23:37:38 tyreld Exp $
  *
  * (C) Copyright IBM Corp. 2004, 2009
  *
@@ -31,6 +31,8 @@ The Plugin offers the following metrics :
 - PacketsReceived
 - PacketTransmitRate
 - PacketReceiveRate
+- ByteTransmitRate
+- ByteReceiveRate
 
 
 /* ---------------------------------------------------------------------------*/
@@ -120,7 +122,7 @@ Value Source	: fifth entry of BytesSubmitted / sample time
 
 
 PacketReceiveRate
-------------------
+-----------------
 
 Metric Type		: Rate
 Based on Metric	: BytesSubmitted
@@ -128,5 +130,27 @@ CIM Data Type	: unint32
 Units			: Packets per second
 
 Value Source	: last entry of BytesSubmitted / sample time
+
+
+ByteTransmitRate
+----------------
+
+Metric Type     : Rate
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint32
+Units           : Bytes per second
+
+Value Source    : second entry of BytesSubmitted / sample time
+
+
+ByteReceiveRate
+---------------
+
+Metric Type     : Rate
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint32
+Units           : Bytes per second
+
+Value Source    : first entry of BytesSubmitted / sample time
 
 /* ---------------------------------------------------------------------------*/

@@ -101,7 +101,7 @@ echo "need to wait 60 seconds for gatherd and sampling initialization ... please
 sleep 60
 echo "... back ...";
 
-declare -a CLASSNAMES[];
+declare -a CLASSNAMES;
 CLASSNAMES=([0]=Linux_MetricGatherer \
     [1]=Linux_MetricRepositoryService \
     [2]=Linux_NetworkPortMetric \

@@ -1,3 +1,33 @@
+Changes in Version 2.2.3
+========================
+
+Bugs fixed:
+- 3275169 bash error reported in provider bootstrap scripts
+- 3289931 long vm names cause buffer overflow
+- 3181085 Mandatory Properties not instantiated: CIM_MetricServiceCapa
+- 3005596 virt plugin only connects to libvirtd at load
+- 3302709 leak libvir connections when no domains
+
+Features added:
+- 3300216 new KVM scheduler counter metrics
+- 3302712 log libvirt connection failures
+
+Changes in Version 2.2.2
+========================
+
+Bugs fixed:
+- 3039719 normalize virtual server metric sample interval
+- 3049802 plugin load generates error if already loaded
+- 3074431 change VSState to a Point metric
+- 3074452 change ActiveVirtualProcessors to point metric
+- 1845491 gather reposdump facility segfaults
+- 3078358 no metrics collected for inactive virtual servers
+- 3109840 mlog with arguments segfaults on M_SHOW
+- 3109852 TimeStamp property should be end of interval
+
+Features added:
+- 3098510 add process name to UnixProcessMetric
+
 Changes in Version 2.2.1
 ========================
 

@@ -1,5 +1,5 @@
 /*
- * $Id: metricUnixProcess.c,v 1.13 2009/05/20 19:39:56 tyreld Exp $
+ * $Id: metricUnixProcess.c,v 1.14 2010/11/06 01:38:54 tyreld Exp $
  *
  * (C) Copyright IBM Corp. 2003, 2009
  *
@@ -170,6 +170,8 @@ int metricRetrCPUTime( int mid,
   char        * ptr         = NULL;
   char        * end         = NULL;
   char        * hlp         = NULL;
+  char        * procname    = NULL;
+  char        * resname     = NULL;
   char          buf[4096];
   char          os_buf[4096];
   int           _enum_size  = 0;
@@ -219,8 +221,18 @@ int metricRetrCPUTime( int mid,
 	strcat(buf,_enum_pid + (i*64));
 	strcat(buf,"/stat");
 	if( (fhd = fopen(buf,"r")) != NULL ) {
-	  fscanf(fhd,"%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %lld %lld", 
+	  fscanf(fhd,"%as %as %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %lld %lld",
+         &resname,
+         &procname,
 		 &u_time,&k_time );
+
+      /* remove parens from procname and concatenate as "pid.procname" */
+      procname[0] = '.';
+      procname[strlen(procname) - 1] = 0;
+      resname = realloc(resname, strlen(resname) + strlen(procname) + 1);
+      strcat(resname, procname);
+      free(procname);
+
 	  fclose(fhd);
 	}
 
@@ -230,7 +242,7 @@ int metricRetrCPUTime( int mid,
 
 	mv = calloc( 1, sizeof(MetricValue) + 
 		     (strlen(buf)+1) +
-		     (strlen(_enum_pid+(i*64))+1) );
+		     (strlen(resname)+1) );
 	if (mv) {
 	  mv->mvId = mid;
 	  mv->mvTimeStamp = time(NULL);
@@ -239,7 +251,8 @@ int metricRetrCPUTime( int mid,
 	  mv->mvData = (char*)mv + sizeof(MetricValue);
 	  strncpy( mv->mvData, buf, strlen(buf) );	
 	  mv->mvResource = (char*)mv + sizeof(MetricValue) + (strlen(buf)+1);
-	  strcpy(mv->mvResource,_enum_pid+(i*64));
+	  strcpy(mv->mvResource,resname);
+      free(resname);
 	  mret(mv);
 	}
       }
@@ -260,6 +273,8 @@ int metricRetrResSetSize( int mid,
   MetricValue   * mv         = NULL;
   FILE          * fhd        = NULL;
   char          * _enum_pid  = NULL;
+  char          * resname    = NULL;
+  char          * procname   = NULL;
   char            buf[254];
   int             _enum_size = 0;
   int             i          = 0;
@@ -288,16 +303,26 @@ int metricRetrResSetSize( int mid,
 	strcat(buf,_enum_pid + (i*64));
 	strcat(buf,"/stat");
 	if( (fhd = fopen(buf,"r")) != NULL ) {
-	  fscanf(fhd,"%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
+	  fscanf(fhd,"%as %as %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
 		 "%*s %*s %*s %*s %*s %*s %*s %*s %*s %lld %*s",
+         &resname,
+         &procname,
 		 &rss);
+
+      /* remove parens from procname and concatenate as "pid.procname" */
+      procname[0] = '.';
+      procname[strlen(procname) - 1] = 0;
+      resname = realloc(resname, strlen(resname) + strlen(procname) + 1);
+      strcat(resname, procname);
+      free(procname);
+
 	  fclose(fhd);
 	  size = rss * sysconf(_SC_PAGESIZE);
 	}
 	
 	mv = calloc( 1, sizeof(MetricValue) + 
 		     sizeof(unsigned long long) +
-		     (strlen(_enum_pid + (i*64))+1) );
+		     (strlen(resname)+1) );
 	if (mv) {
 	  mv->mvId = mid;
 	  mv->mvTimeStamp = time(NULL);
@@ -306,7 +331,8 @@ int metricRetrResSetSize( int mid,
 	  mv->mvData = (char*)mv + sizeof(MetricValue);
 	  *(unsigned long long *)mv->mvData = htonll(size);	
 	  mv->mvResource = (char*)mv + sizeof(MetricValue) + sizeof(unsigned long long);
-	  strcpy(mv->mvResource,_enum_pid + (i*64));
+	  strcpy(mv->mvResource,resname);
+      free(resname);
 	  mret(mv);
 	}
       }
@@ -327,6 +353,8 @@ int metricRetrPageInCounter( int mid,
   MetricValue      * mv         = NULL; 
   FILE             * fhd        = NULL;
   char             * _enum_pid  = NULL;
+  char             * resname    = NULL;
+  char             * procname   = NULL;
   char               buf[254];
   int                _enum_size = 0;
   int                i          = 0;
@@ -355,14 +383,24 @@ int metricRetrPageInCounter( int mid,
 	strcat(buf,"/stat");
 	if( (fhd = fopen(buf,"r")) != NULL ) {
 	  fscanf(fhd,
-		 "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %lld",
+		 "%as %as %*s %*s %*s %*s %*s %*s %*s %*s %*s %lld",
+         &resname,
+         &procname,
 		 &page);
+
+      /* remove parens from procname and concatenate as "pid.procname" */
+      procname[0] = '.';
+      procname[strlen(procname) - 1] = 0;
+      resname = realloc(resname, strlen(resname) + strlen(procname) + 1);
+      strcat(resname, procname);
+      free(procname);
+
 	  fclose(fhd);
 	}
 
 	mv = calloc( 1, sizeof(MetricValue) + 
 		     sizeof(unsigned long long) +
-		     (strlen(_enum_pid + (i*64))+1) );
+		     (strlen(resname)+1) );
 	if (mv) {
 	  mv->mvId = mid;
 	  mv->mvTimeStamp = time(NULL);
@@ -371,7 +409,8 @@ int metricRetrPageInCounter( int mid,
 	  mv->mvData = (char*)mv + sizeof(MetricValue);
 	  *(unsigned long long*)mv->mvData = htonll(page);	 
 	  mv->mvResource = (char*)mv + sizeof(MetricValue) + sizeof(unsigned long long);
-	  strcpy(mv->mvResource,_enum_pid + (i*64));
+	  strcpy(mv->mvResource,resname);
+      free(resname);
 	  mret(mv);
 	}	
       }
@@ -392,6 +431,8 @@ int metricRetrPageOutCounter( int mid,
   MetricValue      * mv         = NULL; 
   FILE             * fhd        = NULL;
   char             * _enum_pid  = NULL;
+  char             * resname    = NULL;
+  char             * procname   = NULL;
   char               buf[254];
   int                _enum_size = 0;
   int                i          = 0;
@@ -420,16 +461,26 @@ int metricRetrPageOutCounter( int mid,
 	strcat(buf,"/stat");
 	if( (fhd = fopen(buf,"r")) != NULL ) {
 	  fscanf(fhd,
-		 "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
+		 "%as %as %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
 		 "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
 		 "%*s %*s %*s %*s %lld",
+         &resname,
+         &procname,
 		 &page);
+
+      /* remove parens from procname and concatenate as "pid.procname" */
+      procname[0] = '.';
+      procname[strlen(procname) - 1] = 0;
+      resname = realloc(resname, strlen(resname) + strlen(procname) + 1);
+      strcat(resname, procname);
+      free(procname);
+
 	  fclose(fhd);
 	}
 
 	mv = calloc( 1, sizeof(MetricValue) + 
 		     sizeof(unsigned long long) +
-		     (strlen(_enum_pid + (i*64))+1) );
+		     (strlen(resname)+1) );
 	if (mv) {
 	  mv->mvId = mid;
 	  mv->mvTimeStamp = time(NULL);
@@ -438,7 +489,8 @@ int metricRetrPageOutCounter( int mid,
 	  mv->mvData = (char*)mv + sizeof(MetricValue);
 	  *(unsigned long long*)mv->mvData = htonll(page);	 
 	  mv->mvResource = (char*)mv + sizeof(MetricValue) + sizeof(unsigned long long);
-	  strcpy(mv->mvResource,_enum_pid + (i*64));
+	  strcpy(mv->mvResource,resname);
+      free(resname);
 	  mret(mv);
 	}	
       }
@@ -459,6 +511,8 @@ int metricRetrVirtualSize( int mid,
   MetricValue   * mv         = NULL;
   FILE          * fhd        = NULL;
   char          * _enum_pid  = NULL;
+  char          * resname    = NULL;
+  char          * procname   = NULL;
   char            buf[254];
   int             _enum_size = 0;
   int             i          = 0;
@@ -485,15 +539,25 @@ int metricRetrVirtualSize( int mid,
 	strcat(buf,_enum_pid + (i*64));
 	strcat(buf,"/stat");
 	if( (fhd = fopen(buf,"r")) != NULL ) {
-	  fscanf(fhd,"%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
+	  fscanf(fhd,"%as %as %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s "
 		 "%*s %*s %*s %*s %*s %*s %*s %*s %lld",
+         &resname,
+         &procname,
 		 &size);
+
+      /* remove parens from procname and concatenate as "pid.procname" */
+      procname[0] = '.';
+      procname[strlen(procname) - 1] = 0;
+      resname = realloc(resname, strlen(resname) + strlen(procname) + 1);
+      strcat(resname, procname);
+      free(procname);
+
 	  fclose(fhd);
 	}
 	
 	mv = calloc( 1, sizeof(MetricValue) + 
 		     sizeof(unsigned long long) +
-		     (strlen(_enum_pid + (i*64))+1) );
+		     (strlen(resname)+1) );
 	if (mv) {
 	  mv->mvId = mid;
 	  mv->mvTimeStamp = time(NULL);
@@ -502,7 +566,8 @@ int metricRetrVirtualSize( int mid,
 	  mv->mvData = (char*)mv + sizeof(MetricValue);
 	  *(unsigned long long *)mv->mvData = htonll(size);	
 	  mv->mvResource = (char*)mv + sizeof(MetricValue) + sizeof(unsigned long long);
-	  strcpy(mv->mvResource,_enum_pid + (i*64));
+	  strcpy(mv->mvResource,resname);
+      free(resname);
 	  mret(mv);
 	}
       }
@@ -523,6 +588,8 @@ int metricRetrSharedSize( int mid,
   MetricValue   * mv         = NULL;
   FILE          * fhd        = NULL;
   char          * _enum_pid  = NULL;
+  char          * resname    = NULL;
+  char          * procname   = NULL;
   char            buf[254];
   int             _enum_size = 0;
   int             i          = 0;
@@ -554,11 +621,28 @@ int metricRetrSharedSize( int mid,
 	  fclose(fhd);
 	}
 
+    memset(buf,0,sizeof(buf));
+    strcpy(buf,"/proc/");
+    strcat(buf,_enum_pid + (i*64));
+    strcat(buf,"/stat");
+    if ((fhd = fopen(buf,"r")) != NULL) {
+        fscanf(fhd,"%as %as", &resname, &procname);
+
+        /* remove parens from procname and concatenate as "pid.procname" */
+        procname[0] = '.';
+        procname[strlen(procname) - 1] = 0;
+        resname = realloc(resname, strlen(resname) + strlen(procname) + 1);
+        strcat(resname, procname);
+        free(procname);
+
+        fclose(fhd);
+    }
+
 	size = size * sysconf(_SC_PAGESIZE);
 	
 	mv = calloc( 1, sizeof(MetricValue) + 
 		     sizeof(unsigned long long) +
-		     (strlen(_enum_pid + (i*64))+1) );
+		     (strlen(resname)+1) );
 	if (mv) {
 	  mv->mvId = mid;
 	  mv->mvTimeStamp = time(NULL);
@@ -567,7 +651,8 @@ int metricRetrSharedSize( int mid,
 	  mv->mvData = (char*)mv + sizeof(MetricValue);
 	  *(unsigned long long *)mv->mvData = htonll(size);	
 	  mv->mvResource = (char*)mv + sizeof(MetricValue) + sizeof(unsigned long long);
-	  strcpy(mv->mvResource,_enum_pid + (i*64));
+	  strcpy(mv->mvResource,resname);
+      free(resname);
 	  mret(mv);
 	}
       }

@@ -1,0 +1,152 @@
+/*
+ * $Id: metriczECKD.readme,v 1.2 2009/05/20 19:39:56 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2006, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://opensource.org/licenses/cpl1.0.php
+ *
+ * Author:       Viktor Mihajlovski
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for System z ECKD Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+
+- _ECKD
+- ResponseTime
+- InitialCommandResponseTime
+- ControlUnitQueueTime
+- PendingTime
+- ConnectTime
+- DisconnectTime
+- AverageDeviceUtilization
+- RequestRate
+- IOIntensity
+
+/* ---------------------------------------------------------------------------*/
+
+_ECKD
+-----
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : n/a
+
+Value Source    : /sys/bus/ccw/drivers/dasd-eckd/<device-number>
+
+Syntax          : avg_control_unit_queuing_time:\
+                  avg_device_active_only_time:\
+		  avg_device_busy_time:\
+	          avg_device_connect_time:\
+		  avg_device_disconnect_time:\
+		  avg_function_pending_time:\
+		  avg_initial_command_response_time:\
+		  avg_sample_interval:\
+		  avg_utilization:\
+		  ssch_rsch_count:\
+		  sample_count
+
+ResponseTime
+------------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 4th, 5th and 6th field of _ECKD
+
+InitialCommandResponseTime
+--------------------------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 7th field of _ECKD
+
+ControlUnitQueueTime
+--------------------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 1st field of _ECKD
+
+PendingTime
+-----------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 6th field of _ECKD
+
+ConnectTime
+-----------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 4th field of _ECKD
+
+DisconnectTime
+--------------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 5th field of _ECKD
+
+AverageDeviceUtilization
+------------------------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 9th field of _ECKD
+
+RequestRate
+-----------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 10th field of _ECKD
+
+IOIntensity
+-----------
+
+Metric Type     : Interval
+Based on Metric : _ECKD
+CIM Data Type   : float32
+Units           : Millisecond
+
+Value Source    : 4th, 5th, 6th and 10th field of _ECKD
+
+
+/* ---------------------------------------------------------------------------*/

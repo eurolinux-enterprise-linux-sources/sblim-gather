@@ -1,5 +1,5 @@
 /*
- * $Id: repositoryKvm.c,v 1.3 2010/04/19 23:58:19 tyreld Exp $
+ * $Id: repositoryKvm.c,v 1.8 2011/05/11 01:42:58 tyreld Exp $
  *
  * (C) Copyright IBM Corp. 2009
  *
@@ -50,7 +50,7 @@
 
 /* ---------------------------------------------------------------------------*/
 
-static MetricCalculationDefinition metricCalcDef[15];
+static MetricCalculationDefinition metricCalcDef[17];
 
 // metric _Internal_CPUTime
 static MetricCalculator metricCalcCPUTime;
@@ -85,10 +85,20 @@ static MetricCalculator metricCalcHostMemoryPercentage;
 // metric VirtualSystemState
 static MetricCalculator metricCalcVirtualSystemState;
 
+// metric SchedulerStats
+static MetricCalculator metricCalcSchedulerStats;
+
+// metric SumExecRuntime
+// static MetricCalculator metricCalcSumExecRuntime
+
+// metric WaitSum
+// static MetricCalculator metricCalcWaitSum
+
 
 /* unit definitions */
 static char *muKiloBytes = "Kilobytes";
 static char *muPercent = "Percent";
+static char *muMicroSeconds = "MicroSeconds";
 static char *muMilliSeconds = "MilliSeconds";
 static char *muSeconds = "Seconds";
 static char *muNA = "N/A";
@@ -163,7 +173,7 @@ int _DefinedRepositoryMetrics(MetricRegisterId * mr,
     metricCalcDef[4].mcName = "ActiveVirtualProcessors";
     metricCalcDef[4].mcId = mr(pluginname, metricCalcDef[4].mcName);
     metricCalcDef[4].mcMetricType =
-	MD_PERIODIC | MD_RETRIEVED | MD_INTERVAL;
+	MD_PERIODIC | MD_RETRIEVED | MD_POINT;
     metricCalcDef[4].mcChangeType = MD_GAUGE;
     metricCalcDef[4].mcIsContinuous = MD_TRUE;
     metricCalcDef[4].mcCalculable = MD_NONSUMMABLE;
@@ -287,7 +297,7 @@ int _DefinedRepositoryMetrics(MetricRegisterId * mr,
     metricCalcDef[14].mcName = "VirtualSystemState";
     metricCalcDef[14].mcId = mr(pluginname, metricCalcDef[14].mcName);
     metricCalcDef[14].mcMetricType =
-	MD_PERIODIC | MD_RETRIEVED | MD_INTERVAL;
+	MD_PERIODIC | MD_RETRIEVED | MD_POINT;
     metricCalcDef[14].mcChangeType = MD_GAUGE;
     metricCalcDef[14].mcIsContinuous = MD_TRUE;
     metricCalcDef[14].mcCalculable = MD_NONSUMMABLE;
@@ -295,7 +305,31 @@ int _DefinedRepositoryMetrics(MetricRegisterId * mr,
     metricCalcDef[14].mcCalc = metricCalcVirtualSystemState;
     metricCalcDef[14].mcUnits = muNA;
 
-    *mcnum = 15;
+    metricCalcDef[15].mcVersion = MD_VERSION;
+    metricCalcDef[15].mcName = "CPUUsedTimeCounter";
+    metricCalcDef[15].mcId = mr(pluginname, metricCalcDef[15].mcName);
+    metricCalcDef[15].mcMetricType =
+	MD_PERIODIC | MD_RETRIEVED | MD_POINT;
+    metricCalcDef[15].mcChangeType = MD_COUNTER;
+    metricCalcDef[15].mcIsContinuous = MD_TRUE;
+    metricCalcDef[15].mcCalculable = MD_NONSUMMABLE;
+    metricCalcDef[15].mcDataType = MD_UINT64;
+    metricCalcDef[15].mcCalc = metricCalcSchedulerStats;
+    metricCalcDef[15].mcUnits = muMicroSeconds;
+    
+    metricCalcDef[16].mcVersion = MD_VERSION;
+    metricCalcDef[16].mcName = "CPUReadyTimeCounter";
+    metricCalcDef[16].mcId = mr(pluginname, metricCalcDef[16].mcName);
+    metricCalcDef[16].mcMetricType =
+	MD_PERIODIC | MD_RETRIEVED | MD_POINT;
+    metricCalcDef[16].mcChangeType = MD_COUNTER;
+    metricCalcDef[16].mcIsContinuous = MD_TRUE;
+    metricCalcDef[16].mcCalculable = MD_NONSUMMABLE;
+    metricCalcDef[16].mcDataType = MD_UINT64;
+    metricCalcDef[16].mcCalc = metricCalcSchedulerStats;
+    metricCalcDef[16].mcUnits = muMicroSeconds;
+
+    *mcnum = 17;
     *mc = metricCalcDef;
     return 0;
 }
@@ -366,6 +400,8 @@ size_t metricCalcTotalCPUTime(MetricValue * mv,
 	    ntohll(*(unsigned long long *) mv[0].mvData);
 
 	unsigned long long cputime = end_time - start_time;
+    if (end_time == 0) cputime = 0;
+
 	memcpy(v, &cputime, sizeof(unsigned long long));
 	return sizeof(unsigned long long);
     }
@@ -401,6 +437,7 @@ size_t metricCalcExtTotalCPUTimePerc(MetricValue * mv,
 #endif
 
 	float result = (end_time - start_time) / interval_length * 100;
+    if (end_time == 0) result = 0;
 
 	memcpy(v, &result, sizeof(float));
 	return sizeof(float);
@@ -424,7 +461,7 @@ size_t metricCalcActiveVirtualProcessors(MetricValue * mv,
     // it's an eServer interval metric, however on Xen the number of processors
     // cannot currently change dynamically so just one of the values is actually
     // picked
-    if (mv && (mnum >= 2)) {
+    if (mv && (mnum >= 1)) {
 	memcpy(v, mv[0].mvData, mv->mvDataLength);
 	return mv->mvDataLength;
     }
@@ -625,9 +662,30 @@ size_t metricCalcVirtualSystemState(MetricValue * mv,
     fprintf(stderr, "Calculate Virtual System State\n");
 #endif
 
-    if (mv && (mnum >= 2)) {
+    if (mv && (mnum >= 1)) {
 	memcpy(v, mv[0].mvData, mv->mvDataLength);
 	return mv->mvDataLength;
+    }
+
+    return -1;
+}
+
+/* ---------------------------------------------------------------------------*/
+/* Scheduler Statistics                                                       */
+/* ---------------------------------------------------------------------------*/
+
+size_t metricCalcSchedulerStats(MetricValue * mv,
+                    int mnum, void *v, size_t vlen)
+{
+#ifdef DEBUG
+    fprintf(stderr, "Raw Scheduler Statistics\n");
+#endif
+
+    /* plain copy */
+    if (mv && (vlen >= mv->mvDataLength) && (mnum == 1) ) {
+        memcpy(v, mv->mvData, mv->mvDataLength);
+        *(unsigned long long *) v = ntohll(*(unsigned long long *) v);
+        return mv->mvDataLength;
     }
 
     return -1;

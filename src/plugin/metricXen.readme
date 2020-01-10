@@ -1,5 +1,5 @@
 /*
- * $Id: metricXen.readme,v 1.7 2009/05/20 19:39:56 tyreld Exp $
+ * $Id: metricXen.readme,v 1.8 2010/08/04 23:24:36 tyreld Exp $
  *
  * (C) Copyright IBM Corp. 2006, 2009
  *
@@ -45,7 +45,7 @@ TotalCPUTime
 ------------
 
 Metric Type     : Interval
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : uint64
 Units           : MilliSeconds
 
@@ -67,7 +67,7 @@ ActiveVirtualProcessors
 -----------------------
 
 Metric Type     : Interval
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : real32
 Units           : MilliSeconds
 
@@ -78,7 +78,7 @@ ExternalViewTotalCPUPercentage
 ------------------------------
 
 Metric Type     : Interval
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : real32
 Units           : Percent
 
@@ -102,7 +102,7 @@ PhysicalMemoryAllocatedToVirtualSystem
 ----------------------                  
 
 Metric Type     : Point   
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : uint64
 Units           : KiloBytes
 
@@ -113,7 +113,7 @@ HostFreePhysicalMemory
 ----------------------                  
 
 Metric Type     : Point   
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : uint64
 Units           : KiloBytes
 
@@ -124,7 +124,7 @@ PhysicalMemoryAllocatedToVirtualSystemPercentage
 ----------------------                  
 
 Metric Type     : Point   
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : uint64
 Units           : KiloBytes
 
@@ -135,7 +135,7 @@ HostMemoryPercentage
 --------------------                  
 
 Metric Type     : Point   
-Sample Interval : 30 sec
+Sample Interval : 60 sec
 CIM Data Type   : real32
 Units           : Percent 
 

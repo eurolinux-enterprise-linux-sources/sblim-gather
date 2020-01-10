@@ -14,7 +14,7 @@
 
 @SET_MAKE@
 
-# $Id: Makefile.am,v 1.21 2010/04/19 23:53:39 tyreld Exp $
+# $Id: Makefile.am,v 1.22 2011/05/16 07:00:50 tyreld Exp $
 # ==================================================================
 # (C) Copyright IBM Corp. 2005, 2009
 #
@@ -129,7 +129,7 @@ libmetricIPProtocolEndpoint_la_LINK = $(LIBTOOL) --tag=CC \
 	$(libmetricIPProtocolEndpoint_la_LDFLAGS) $(LDFLAGS) -o $@
 @BASE_METRICS_TRUE@am_libmetricIPProtocolEndpoint_la_rpath = -rpath \
 @BASE_METRICS_TRUE@	$(metricplugindir)
-am_libmetricKvm_la_OBJECTS = metricKvm.lo metricVirt.lo
+am_libmetricKvm_la_OBJECTS = metricKvm.lo metricVirt.lo mlog.lo
 libmetricKvm_la_OBJECTS = $(am_libmetricKvm_la_OBJECTS)
 libmetricKvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -179,7 +179,7 @@ libmetricUnixProcess_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libmetricUnixProcess_la_LDFLAGS) $(LDFLAGS) -o $@
 @BASE_METRICS_TRUE@am_libmetricUnixProcess_la_rpath = -rpath \
 @BASE_METRICS_TRUE@	$(metricplugindir)
-am_libmetricXen_la_OBJECTS = metricXenV2.lo metricVirt.lo
+am_libmetricXen_la_OBJECTS = metricXenV2.lo metricVirt.lo mlog.lo
 libmetricXen_la_OBJECTS = $(am_libmetricXen_la_OBJECTS)
 libmetricXen_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -761,11 +761,11 @@ libmetricProcessor_la_SOURCES = plugin/metricProcessor.c
 libmetricProcessor_la_LIBADD = $(srcdir)/libgatherutil.la
 libmetricProcessor_la_DEPENDENCIES = libgatherutil.la
 libmetricProcessor_la_LDFLAGS = $(PLUG_FLAGS)
-libmetricXen_la_SOURCES = plugin/metricXenV2.c plugin/metricVirt.c
+libmetricXen_la_SOURCES = plugin/metricXenV2.c plugin/metricVirt.c util/mlog.c
 libmetricXen_la_LIBADD = $(srcdir)/libgatherutil.la -lvirt
 libmetricXen_la_DEPENDENCIES = libgatherutil.la
 libmetricXen_la_LDFLAGS = $(PLUG_FLAGS)
-libmetricKvm_la_SOURCES = plugin/metricKvm.c plugin/metricVirt.c
+libmetricKvm_la_SOURCES = plugin/metricKvm.c plugin/metricVirt.c util/mlog.c
 libmetricKvm_la_LIBADD = $(srcdir)/libgatherutil.la -lvirt
 libmetricKvm_la_DEPENDENCIES = libgatherutil.la
 libmetricKvm_la_LDFLAGS = $(PLUG_FLAGS)
@@ -1259,6 +1259,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/metriczCH.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/metriczECKD.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/metriczLPAR.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mlog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mtracetest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rcclt_ip.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rcctest.Po@am__quote@
@@ -1480,6 +1481,13 @@ metricVirt.lo: plugin/metricVirt.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='plugin/metricVirt.c' object='metricVirt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o metricVirt.lo `test -f 'plugin/metricVirt.c' || echo '$(srcdir)/'`plugin/metricVirt.c
+
+mlog.lo: util/mlog.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mlog.lo -MD -MP -MF $(DEPDIR)/mlog.Tpo -c -o mlog.lo `test -f 'util/mlog.c' || echo '$(srcdir)/'`util/mlog.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/mlog.Tpo $(DEPDIR)/mlog.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='util/mlog.c' object='mlog.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mlog.lo `test -f 'util/mlog.c' || echo '$(srcdir)/'`util/mlog.c
 
 metricLocalFileSystem.lo: plugin/metricLocalFileSystem.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT metricLocalFileSystem.lo -MD -MP -MF $(DEPDIR)/metricLocalFileSystem.Tpo -c -o metricLocalFileSystem.lo `test -f 'plugin/metricLocalFileSystem.c' || echo '$(srcdir)/'`plugin/metricLocalFileSystem.c

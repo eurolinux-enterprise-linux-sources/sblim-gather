@@ -1,5 +1,5 @@
 /*
- * $Id: repos.c,v 1.27 2009/05/20 19:39:55 tyreld Exp $
+ * $Id: repos.c,v 1.29 2010/12/15 00:41:09 tyreld Exp $
  *
  * (C) Copyright IBM Corp. 2004, 2009
  *
@@ -162,7 +162,11 @@ int reposplugin_add(const char *pluginname)
   RepositoryPlugin *rp;
   int status = -1;
   int i;
-  if (initialized && pluginname && pl_find(pluginname)==NULL) {
+  if (initialized && pluginname) {
+    if (pl_find(pluginname) != NULL) {
+        /* plugin is already loaded, treat as success */
+        return 0;
+    }
     rp = malloc(sizeof(RepositoryPlugin));
     /* load plugin */
     rp->rpName = strdup(pluginname);
@@ -367,7 +371,7 @@ int reposvalue_get(ValueRequest *vs, COMMHEAP ch)
 	  syslen=strlen(mv[j][numv[j]-1].mvSystemId) + 1;
 	  reslen=strlen(mv[j][numv[j]-1].mvResource) + 1;
 	  if (useIntervals) {
-	    vs->vsValues[actnum].viCaptureTime=mv[j][numv[j]-1].mvTimeStamp;
+	    vs->vsValues[actnum].viCaptureTime=mv[j][0].mvTimeStamp;
 	    vs->vsValues[actnum].viDuration=
 	      mv[j][0].mvTimeStamp -
 	      vs->vsValues[actnum].viCaptureTime;

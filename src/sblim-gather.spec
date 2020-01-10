@@ -8,7 +8,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Summary: SBLIM Performance Data Gatherer
 Name: sblim-gather
-Version: 2.2.1
+Version: 2.2.3
 Release: 1
 Group: Systems Management/Base
 URL: http://www.sblim.org
