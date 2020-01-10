@@ -1,0 +1,37 @@
+Test Environment for SBLIM Metrics Instrumentation
+
+The SBLIM project offers a Test Suite to perform tests against
+the provider implementation and consistence tests against system
+values.
+
+Prerequisites are : 
+
+- gather package properly installed
+- wbemcli in version 1.4 installed
+- testsuite package installed
+
+
+make test
+... to test the existence of a testsuite directory
+
+make install 
+... to install the input files into the corresponding testsuite
+directories
+
+make uninstall
+... to delete the gather specific files out of the testsuite
+directories
+
+Make sure the CIMOM is running.
+The Linux_MetricGatherer service will be started by the test script.
+
+Run the test in the testsuite dir by executing . test-gather.sh
+
+If the environment is not set up properly the script will exit with an
+error message. Otherwise, the script will execute all the testcases and
+store the results in the ./stat directory.
+
+HINT: a 'grep "failed :" *' in the ./stat directory will list the number
+and location of failed testcases. 
+
+A word of CAUTION: this is a long-running test. Be patient.

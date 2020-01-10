@@ -1,0 +1,61 @@
+#!/bin/bash
+#
+# $Id: gatherer.init-none.in,v 1.1 2009/09/23 01:45:14 tyreld Exp $
+# 
+# Generic System V Init Script
+
+echo $PATH | grep -q @sbindir@ ||PATH=@sbindir@:$PATH
+
+start() {
+	echo -n "Starting gatherd: "
+	gatherd && echo "done." &&
+	echo -n "Starting reposd: " &&
+	reposd && echo "done." && return 0 ||
+	echo failed
+	return 1
+}	
+
+stop() {
+	echo -n "Shutting down gatherd: "
+	killall gatherd && echo "done." && 
+	echo -n "Shutting down reposd: " &&
+	killall reposd && echo "done" && return 0 ||
+	echo "failed."
+	return 1
+}
+
+reload() {
+	echo -n "Reloading gatherd configuration: "
+	killall -HUP gatherd && echo "done." && 
+	echo -n "Reloading reposd configuration: " &&
+	killall -HUP reposd && echo "done" && return 0 ||
+	echo "failed."
+	return 1
+}
+
+case "$1" in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    status)
+	echo -n "Checking gatherd status: "
+	ps --noheaders -C gatherd || echo "stopped." 
+	echo -n "Checking reposd status: "
+	ps --noheaders -C reposd || echo "stopped."
+	;;
+    restart)
+    stop
+	start
+	;;
+    reload)
+	reload
+	;;
+    *)
+	echo "Usage: gatherd {start|stop|status|reload|restart}"
+	exit 1
+	;;
+esac
+exit $?

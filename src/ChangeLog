@@ -1,0 +1,2276 @@
+2010-06-01  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, gatherer.init-redhat.in:
+
+	Fixed 3010178: initialze gatherer after libvirtd
+
+2010-05-26  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, configure.ac:
+
+	Bumped to version 2.2.1-preview
+
+2010-05-26  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/OSBase_MetricForMEProvider.c:
+
+	Fixed 2142290: MetricForME association is broken
+
+2010-05-22  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* .cvsignore:
+
+	Update .cvsignore to include service init scripts
+
+2010-05-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricVirt.c:
+
+	Fixed 3005591: segfault if num domains set to -1 on error
+
+2010-05-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS:
+
+	Fixed 3005544: add package release info to service providers
+
+2010-05-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/: OSBase_MetricGathererProvider.c,
+	OSBase_MetricRepositoryServiceProvider.c,
+	OSBase_MetricServiceProvider.c, mof/Linux_Metric.mof:
+
+	Fixed  3005544: add package release info to service providers
+
+2010-05-13  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/repositoryIPProtocolEndpoint.c:
+
+	Fixed 3000971: add rate metrics for ip interfaces
+
+2010-04-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricKvm.c, plugin/metricKvm.readme,
+	plugin/metricVirt.c, plugin/metricVirt.h, plugin/repositoryKvm.c:
+
+	Fixed 2989650: add VitualSystemState metric for KVM (Patch by
+	Thomas Weber	     <thomas.weber@de.ibm.com> )
+
+2010-04-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricOperatingSystem.c,
+	plugin/metricOperatingSystem.readme,
+	plugin/repositoryOperatingSystem.c:
+
+	Fixed 2989651: add iowait cpu metric for OS (Patch by Thomas Weber
+	       <thomas.weber@de.ibm.com> )
+
+2010-04-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* Makefile.am, NEWS:
+
+	Fixed 2989648: expose extra devel headers
+
+2010-03-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/sysfswrapper.c:
+
+	Fixed 2971232: sblim-gatherer-provider-s390x does not collect or
+	return zCh
+
+2009-12-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, mreposl.c:
+
+	Fixed 2907773: resource list corrupted by metric retrieval
+
+2009-12-01  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* Makefile.am, reposd.c:
+
+	Fixed 2907191: debug compile errors
+
+2009-11-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/indicationtest/: SFCBCreateFilter2.xml,
+	SFCBCreateFilterMod.xml, SFCBCreateSubscription2.xml,
+	SFCBDeleteFilter2.xml, SFCBDeleteSubscription2.xml:
+
+	Added more SFCB indication subscription samples
+
+2009-11-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/indicationtest/: SFCBCreateFilter.xml,
+	SFCBCreateHandler.xml, SFCBCreateSubscription.xml,
+	SFCBDeleteFilter.xml, SFCBDeleteHandler.xml,
+	SFCBDeleteSubscription.xml:
+
+	Added Sample SFCB indication subscriptions
+
+2009-09-22  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* Makefile.am, NEWS, configure.ac, gatherer.init-none.in,
+	gatherer.init-redhat.in, gatherer.init-suse.in:
+
+	Fixed 2863817: add service boot scripts
+
+2009-08-18  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* Makefile.am, NEWS, provider/Makefile.am:
+
+	Fixed 2839915: 2.2.0 release fails to build
+
+2009-07-22  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog:
+
+	Updated for 2.2.0 release
+
+2009-07-17  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/: cimplugKvm.c, cimplugXen.c:
+
+	Rejected Fix 2818791: libvirt metric associations need to be to
+	root/virt
+
+2009-07-17  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, configure.ac:
+
+	Update to version 2.2.0
+
+2009-07-17  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/OSBase_MetricServiceAffectsElementProvider.c:
+
+	Removed block of commented out code
+
+2009-07-17  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/: Makefile.am,
+	OSBase_MetricElementConformsToProfileProvider.c,
+	OSBase_MetricRegisteredProfileProvider.c, mof/Linux_Metric.mof,
+	mof/Linux_Metric.registration, mof/Linux_MetricProfile.mof,
+	mof/Linux_MetricProfile.registration:
+
+	Fixed 2811900: DSP1053 Base Metric Profile Conformance
+
+2009-07-16  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/: Makefile.am,
+	OSBase_MetricElementCapabilitiesProvider.c,
+	OSBase_MetricHostedServiceProvider.c,
+	OSBase_MetricServiceAffectsElementProvider.c, mof/Linux_Metric.mof,
+	mof/Linux_Metric.registration:
+
+	Fixed 2811892: add Service and Capabilities associations
+
+2009-07-09  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/cimplugKvm.c, plugin/cimplugXen.c:
+
+	Fixed 2818791: libvirt metric associations need to be to root/virt
+
+2009-06-29  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, provider/OSBase_MetricServiceProvider.c,
+	provider/mof/Linux_Metric.registration:
+
+	Fixed 2811897: add Service method provider
+
+2009-06-26  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, provider/Makefile.am,
+	provider/OSBase_MetricServiceCapabilitiesProvider.c,
+	provider/OSBase_MetricServiceProvider.c,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_Metric.registration:
+
+	Fixed 2811885: add Service and Capabilities providers
+
+2009-06-24  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricIPProtocolEndpoint.readme,
+	plugin/repositoryIPProtocolEndpoint.c:
+
+	Fixed 2811685: add packet rate metrics
+
+2009-06-24  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, plugin/metricOperatingSystem.readme,
+	plugin/repositoryOperatingSystem.c:
+
+	Fixed 2811680: add used memory metrics
+
+2009-06-19  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* README, gatherc.h, gatherctl.c, gatherd.c,
+	provider/indicationtest/README.indicationtest:
+
+	Fixed 2794542: migrate license from CPL to EPL (missed a couple
+	files 1st time)
+
+2009-05-20  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[2794542] gather: migrate license from CPL to EPL
+
+2009-05-20  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* COPYING, Makefile.am, acinclude.m4, autoconfiscate.sh, cimplug.h,
+	gather.c, gather.h, marshal.c, marshal.h, metric.h, mlist.c,
+	mlist.h, mplugin.h, mplugmgr.c, mplugmgr.h, mreg.c, mreg.h,
+	mrepos.h, mreposl.c, mreposp.c, mretr.c, mretr.h, repos.c, repos.h,
+	reposctl.c, reposd.c, reposdump.c, rgather.c, rgather.h, rplugin.h,
+	rplugmgr.c, rplugmgr.h, rreg.c, rreg.h, rrepos.c, rrepos.h,
+	sblim-gather.rh.spec, sblim-gather.spec.in, sforward.c, sforward.h,
+	slisten.c, slisten.h, comms/mcclt.h, comms/mcclt_unix.c,
+	comms/mcctest.c, comms/mcdefs.h, comms/mcserv.h,
+	comms/mcserv_unix.c, comms/mcstest.c, comms/rcclt.h,
+	comms/rcclt_ip.c, comms/rcctest.c, comms/rcserv.h,
+	comms/rcserv_ip.c, comms/rcstest.c, plugin/channelclt.c,
+	plugin/channelutil.c, plugin/channelutil.h,
+	plugin/cimplugIPProtocolEndpoint.c, plugin/cimplugKvm.c,
+	plugin/cimplugLocalFileSystem.c, plugin/cimplugNetworkPort.c,
+	plugin/cimplugOperatingSystem.c, plugin/cimplugProcessor.c,
+	plugin/cimplugUnixProcess.c, plugin/cimplugXen.c,
+	plugin/cimplugzCEC.c, plugin/cimplugzCH.c, plugin/cimplugzECKD.c,
+	plugin/cimplugzLPAR.c, plugin/hypfs.c, plugin/hypfs.h,
+	plugin/hyptest.c, plugin/lparutil.c, plugin/lparutil.h,
+	plugin/metricIPProtocolEndpoint.c,
+	plugin/metricIPProtocolEndpoint.readme, plugin/metricKvm.c,
+	plugin/metricKvm.readme, plugin/metricLocalFileSystem.c,
+	plugin/metricLocalFileSystem.readme, plugin/metricNetworkPort.c,
+	plugin/metricNetworkPort.readme, plugin/metricOperatingSystem.c,
+	plugin/metricOperatingSystem.readme, plugin/metricProcessor.c,
+	plugin/metricProcessor.readme, plugin/metricUnixProcess.c,
+	plugin/metricUnixProcess.readme, plugin/metricVirt.c,
+	plugin/metricVirt.h, plugin/metricXen.c, plugin/metricXen.readme,
+	plugin/metricXenV2.c, plugin/metriczCEC.c,
+	plugin/metriczCEC.readme, plugin/metriczCH.c,
+	plugin/metriczCH.readme, plugin/metriczECKD.c,
+	plugin/metriczECKD.readme, plugin/metriczLPAR.c,
+	plugin/metriczLPAR.readme, plugin/repositoryIPProtocolEndpoint.c,
+	plugin/repositoryKvm.c, plugin/repositoryLocalFileSystem.c,
+	plugin/repositoryNetworkPort.c, plugin/repositoryOperatingSystem.c,
+	plugin/repositoryProcessor.c, plugin/repositoryUnixProcess.c,
+	plugin/repositoryXen.c, plugin/repositoryzCEC.c,
+	plugin/repositoryzCH.c, plugin/repositoryzECKD.c,
+	plugin/repositoryzLPAR.c, provider/Makefile.am,
+	provider/OSBase_MetricDefForMEProvider.c,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricForMEProvider.c,
+	provider/OSBase_MetricGathererProvider.c,
+	provider/OSBase_MetricIndicationProvider.c,
+	provider/OSBase_MetricInstanceProvider.c,
+	provider/OSBase_MetricLifeCycleProvider.c,
+	provider/OSBase_MetricRepositoryServiceProvider.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h,
+	provider/OSBase_MetricValueProvider.c,
+	provider/provider-register.sh,
+	provider/mof/Linux_IPProtocolEndpointMetric.mof,
+	provider/mof/Linux_KVMMetric.mof,
+	provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_NetworkPortMetric.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof,
+	provider/mof/Linux_ProcessorMetric.mof,
+	provider/mof/Linux_UnixProcessMetric.mof,
+	provider/mof/Linux_XenMetric.mof,
+	provider/mof/Linux_zCECMetric.mof,
+	provider/mof/Linux_zCHMetric.mof,
+	provider/mof/Linux_zECKDMetric.mof,
+	provider/mof/Linux_zLPARMetric.mof,
+	provider/mof/Massive_Metric.mof, provider/mof/Sample.mof,
+	samples/cimplugMassive.c, samples/metricMassive.c,
+	samples/metricSample1.c, samples/metricSample2.c,
+	samples/metricSample3.c, samples/metricSample4.c,
+	samples/repositoryMassive.c, samples/repositorySample3.c,
+	samples/repositorySample4.c, util/commheap.c, util/commheap.h,
+	util/commutil.c, util/commutil.h, util/dirutil.c, util/dirutil.h,
+	util/gathercfg.c, util/gathercfg.h, util/mcfg.c, util/mcfg.h,
+	util/mcfgtest.c, util/merrdefs.h, util/merrno.c, util/merrno.h,
+	util/merrnotest.c, util/mlog.c, util/mlog.h, util/mrwlock.c,
+	util/mrwlock.h, util/mtrace.c, util/mtrace.h, util/mtracetest.c,
+	util/reposcfg.c, util/reposcfg.h:
+
+	[2794542] gather: migrate license from CPL to EPL
+
+2009-05-14  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, provider/Makefile.am:
+
+	[2791496] gather: fix linker paths to gather utility libraries
+
+2009-05-13  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, provider/Makefile.am:
+
+	[2791472] gather: plugins should be built as dlopen modules
+
+2009-05-12  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, configure.ac, provider/Makefile.am:
+
+	[2790937] gather: Xen/KVM and zLinux metrics should be optional
+
+2009-05-12  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* configure.ac:
+
+	Fixed typo
+
+2009-05-12  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac:
+
+	[2790901] gather: need to test for libvirt-devel in configure
+	script
+
+2009-05-08  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, plugin/metricVirt.c:
+
+	[2789260] gather: KVM HostFreePhysicalMemory uses first domain name
+
+2009-05-07  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, plugin/cimplugKvm.c,
+	plugin/metricKvm.c, plugin/metricKvm.readme, plugin/metricVirt.c,
+	plugin/metricVirt.h, plugin/metricXen.readme, plugin/metricXenV2.c,
+	plugin/repositoryKvm.c, plugin/repositoryXen.c,
+	provider/Makefile.am, provider/mof/Linux_KVMMetric.mof,
+	provider/mof/Linux_KVMMetric.registration:
+
+	[2787612] gather: add KVM metric support
+
+2009-05-06  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, plugin/metricVirt.c,
+	plugin/metricVirt.h, plugin/metricXenV2.c:
+
+	[2787610] gather: port Xen metrics to libvirt API
+
+2009-03-05  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricXen.readme, ChangeLog, NEWS:
+
+	[ 2666450 ] gather: update metricXen.readme with correct metrics
+
+2009-03-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac:
+
+	[ 2655459 ] gather: Need AM_PROG_CC_C_O for reposdump.c
+
+2009-03-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, plugin/cimplugLocalFileSystem.c,
+	plugin/metricOperatingSystem.c:
+
+	[ 2655422 ] gather: metricOS plugin reads from wrong end of stderr
+	pipe [ 2655431 ] gather: add <stdio.h> to cimplugLocalFilesystem
+
+2009-02-27  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, comms/mcclt_unix.c, comms/mcserv_unix.c:
+
+	[ 1942072 ] sblim-gather doesn't build with glibc-2.8
+
+2009-01-14  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[ 2508615 ] gather: add CMPIStatus to indication function return
+
+2009-01-14  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/: OSBase_MetricIndicationProvider.c,
+	OSBase_MetricLifeCycleProvider.c:
+
+	[ 2508615 ] gather: add CMPIStatus to indication function return
+
+2008-12-10  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, configure.ac:
+
+	Prep for release of version 2.1.8
+
+2008-12-10  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, provider/OSBase_MetricUtil.c:
+
+	[ 2414836 ] gather: replace vendor defined timescope with point
+
+2008-12-03  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* reposdump.c, comms/rcstest.c, plugin/sysfswrapper.c,
+	provider/OSBase_MetricRepositoryServiceProvider.c, util/mcfg.c,
+	ChangeLog, NEWS:
+
+	[ 2385101 ] gather: remove compile warnings
+
+2008-12-03  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog:
+
+	Latest changes in change log were made in December and November.
+	whoops ;)
+
+2008-12-03  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[ 2384020 ] gather: incorrect process count
+
+2008-12-03  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* .cvsignore, provider/.cvsignore:
+
+	Updated .cvsignore files with list of build generated files to
+	ignore when ci/diff/update/etc...
+
+2008-12-03  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricOperatingSystem.c:
+
+	[ 2384020 ] gather: incorrect process count
+
+2008-12-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricProcessor.c, plugin/metricProcessor.readme,
+	plugin/repositoryProcessor.c, ChangeLog, NEWS:
+
+	[ 2322593 ] gather: TotalCPUTimePerc should be based on metric
+	interval
+
+2008-12-01  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricProcessor.c, ChangeLog, NEWS:
+
+	[ 2375829 ] gather: raw processor metric identical across multipe
+	cpus
+
+2008-12-01  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricProcessor.c, ChangeLog, NEWS:
+
+	[ 2347308 ] gather: processor metric assigns bad measureElementName
+
+2008-10-22  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS:
+
+	Updated version to 2.1.7 for release
+
+2008-10-22  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* configure.ac:
+
+	Updated version to 2.1.7 for release
+
+2008-10-16  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* plugin/metricXen.c, ChangeLog, NEWS:
+
+	[2172899] gatherer: xenMetric segfaults on non-running DomU's
+
+2008-08-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[ 2065755 ] gatherer: getInstance always reports zero plugins
+
+2008-08-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* provider/: OSBase_MetricGathererProvider.c,
+	OSBase_MetricRepositoryServiceProvider.c:
+
+	[ 2065755 ] gatherer: getInstance always reports zero plugins
+
+2008-03-04  nsharoff
+
+	* configure.ac:
+
+	Updated AC_INIT version to 2.1.6
+
+2007-12-06  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[ 1845491 ] gather reposdump facility segfaults
+
+2007-10-18  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, README, configure.ac,
+	reposd2csv.pl, reposdump.c:
+
+	[ 1815686 ] gather needs a way to persist historical data Added
+	reposdump utility for offloading historical data.
+
+2007-10-18  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, repos.c:
+
+	[ 1810856 ] gather metric retrieval issue with variable intervals
+
+2007-10-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, provider/test/test-gather.sh:
+
+	[ 1808022 ] gather testsuite script can report failure Added check
+	for Gatherer service's sampling state.
+
+2007-10-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, provider/Makefile.am,
+	provider/OSBase_MetricLifeCycleProvider.c,
+	provider/OSBase_MetricUtil.c,
+	provider/indicationtest/PegasusCreateFilterMod.xml,
+	provider/mof/Linux_Metric.registration:
+
+	[ 1808017 ] gather lifecycle indications not supported Added new
+	provider for lifecycle indications.
+
+2007-07-11  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* configure.ac:
+
+	bumped release number to 2.1.4
+
+2007-07-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog:
+
+	Meta information update.
+
+2007-07-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricIndicationProvider.c,
+	indicationtest/PegasusCreateFilter.xml,
+	indicationtest/PegasusDeleteFilter.xml,
+	indicationtest/PegasusDeleteFilter2.xml,
+	indicationtest/PegasusDeleteHandler.xml:
+
+	[ 1751133 ] gather indication provider not working properly
+	Completed the initial fix and modified testcase XML.
+
+2007-07-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, plugin/metricXen.c:
+
+	[ 1751173 ] gather potential memory problem in Xen plugin.
+	Terminating buffer with \0 now.
+
+2007-07-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, cimplug.h, configure.ac,
+	provider/OSBase_MetricDefForMEProvider.c,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricForMEProvider.c,
+	provider/OSBase_MetricGathererProvider.c,
+	provider/OSBase_MetricIndicationProvider.c,
+	provider/OSBase_MetricInstanceProvider.c,
+	provider/OSBase_MetricRepositoryServiceProvider.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h,
+	provider/OSBase_MetricValueProvider.c:
+
+	[ 1751133 ] gather indication provider not working properly Fixed
+	CMPI function signatures and related code areas.
+
+2007-07-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, acinclude.m4, cimplug.h,
+	provider/OSBase_MetricForMEProvider.c,
+	provider/OSBase_MetricIndicationProvider.c:
+
+	[ 1744262 ] gather provider doesn't compile with CVS head of
+	tog-pegasus
+
+2007-06-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS:
+
+	[ 1736593 ] XEN gatherd is not running
+
+	    Fixed NEWS to reflect that this fix is not in release 2.1.3,
+	but will be
+	    available in maintainence release 2.1.4
+
+2007-06-21  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog, NEWS, plugin/metricXen.c:
+
+	[ 1736593 ] XEN gatherd is not running
+
+2007-05-01  Chris Buccella <buccella@vnet.linux.ibm.com>
+
+	* README:
+
+	Fixed some typos, updated sblim URL
+
+2007-02-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* configure.ac:
+
+	commit for 2.1.3
+
+2007-02-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, plugin/sysfswrapper.c:
+
+	[ 1652565 ] gather compile fails with libsysfs version 2
+
+2007-02-01  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, provider/test/test-gather.sh:
+
+	[ 1648800 ] gather testsuite start script fails with https
+	Corrected thep protocol check in the script and added -noverify.
+
+2006-12-11  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, plugin/metricOperatingSystem.c,
+	plugin/repositoryOperatingSystem.c:
+
+	[ 1613105 ] gather operating system plugin invalid uint32 handling
+	Changed casts from unsigned long to unsigned.
+
+2006-12-09  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* configure.ac:
+
+	Update for 2.1.2 release.
+
+2006-10-27  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricUtil.c,
+	provider/OSBase_MetricValueProvider.c:
+
+	[ 1565458 ] gather: CIMOM crashes on gi of invalid xen metric
+	instance added more checks for valid metric identifiers.
+
+2006-10-27  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, plugin/lparutil.c, plugin/lparutil.h,
+	plugin/metriczCEC.c, plugin/repositoryzCEC.c,
+	plugin/repositoryzCH.c, plugin/repositoryzLPAR.c:
+
+	[ 1585628 ] gather: Invalid value of CEC CPU usage [ 1585629 ]
+	gather: Channel usage become nealy 0% at intervals
+
+2006-07-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, plugin/repositoryzCH.c:
+
+	[ 1525914 ] gather plugin for z channels corrupts repository data.
+
+2006-07-03  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, configure.ac, sblim-gather.rh.spec,
+	sblim-gather.spec.in, plugin/channelclt.c, plugin/channelutil.c,
+	plugin/channelutil.h, plugin/cimplugzCEC.c, plugin/cimplugzCH.c,
+	plugin/cimplugzECKD.c, plugin/cimplugzLPAR.c, plugin/hypfs.c,
+	plugin/hypfs.h, plugin/hyptest.c, plugin/lparutil.c,
+	plugin/lparutil.h, plugin/metriczCEC.c, plugin/metriczCEC.readme,
+	plugin/metriczCH.c, plugin/metriczCH.readme, plugin/metriczECKD.c,
+	plugin/metriczECKD.readme, plugin/metriczLPAR.c,
+	plugin/metriczLPAR.readme, plugin/repositoryzCEC.c,
+	plugin/repositoryzCH.c, plugin/repositoryzECKD.c,
+	plugin/repositoryzLPAR.c, plugin/sysfswrapper.c,
+	plugin/sysfswrapper.h, provider/Makefile.am,
+	provider/mof/Linux_zCECMetric.mof,
+	provider/mof/Linux_zCECMetric.registration,
+	provider/mof/Linux_zCHMetric.mof,
+	provider/mof/Linux_zCHMetric.registration,
+	provider/mof/Linux_zECKDMetric.mof,
+	provider/mof/Linux_zECKDMetric.registration,
+	provider/mof/Linux_zLPARMetric.mof,
+	provider/mof/Linux_zLPARMetric.registration,
+	provider/test/test-gather.sh,
+	provider/test/system/linux/Linux_MetricGatherer.system,
+	provider/test/system/linux/Linux_MetricRepositoryService.system:
+
+	[ 1509902 ] gather need System z plugins.  Implemented metrics for
+	System z CEC, LPAR, Channel and ECKD DASD.
+
+2006-06-28  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[ 1509900 ] Xen Plugin causes memory corruption.  Update of
+	ChangeLog and NEWS.
+
+2006-06-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, provider/test/test-gather.sh:
+
+	[ 1506037 ] gather testsuite doesn't support https Fixed testsuite
+	invocation script.
+
+2006-05-22  obenke
+
+	* plugin/: cimplugXen.c, metricXen.c, metricXen.readme,
+	repositoryXen.c:
+
+	fixed memory leak fixed cimplugXen module for
+	enumerateInstanceNames operation
+
+2006-05-05  obenke
+
+	* plugin/metricXen.c:
+
+	single quote for single character `\n`
+
+2006-05-05  obenke
+
+	* plugin/metricXen.c:
+
+	solved memory leak problem (thanks to Viktor and Wayne!)
+
+2006-05-05  obenke
+
+	* plugin/repositoryXen.c:
+
+	fixed memory leak (thanks to Viktor and Wayne!)
+
+2006-04-26  obenke
+
+	* plugin/metricXen.c:
+
+	(hopefully) fixed memory leak
+
+2006-04-21  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, sblim-gather.rh.spec, sblim-gather.spec.in:
+
+	[ 1474178 ] gather sample RPMs set bogus file ownerships Added
+	defattrs for all file sections.
+
+2006-04-11  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, sblim-gather.rh.spec, provider/Makefile.am:
+
+	Post 2.1.0 updates.
+
+2006-04-11  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/OSBase_MetricUtil.c:
+
+	[ 1468385 ] gather invalid display of 32bit values on 64bit
+	systems.  Wrong datatype was used for 32 bit integers.
+
+2006-04-05  obenke
+
+	* plugin/: metricXen.c, metricXen.readme, repositoryXen.c:
+
+	some renames of Xen metrics
+
+2006-04-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* repos.c:
+
+	[ 1464845 ] gather potential repository failure with interval
+	metrics.  Fixed the calculation of number of valid metric values.
+
+2006-04-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* NEWS, configure.ac, sblim-gather.rh.spec, sblim-gather.spec.in,
+	provider/provider-register.sh, provider/test/test-gather.sh,
+	provider/test/system/linux/Linux_MetricGatherer.system,
+	provider/test/system/linux/Linux_MetricRepositoryService.system:
+
+	[ 1454734 ] gather: enhance RPM structure.  Better support for
+	installation/deinstallation.  Fixed some test cases.
+
+2006-03-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, configure.ac, reposd.c, slisten.c,
+	comms/mcclt_unix.c, util/commutil.c:
+
+	[ 1444826 ] gather has some portability nits.  Backported patches
+	from head (2.1.0 level).
+
+2006-03-21  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* NEWS:
+
+	Update metadata.
+
+2006-03-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, configure.ac, metric.h,
+	sblim-gather.rh.spec, sblim-gather.spec.in, util/commutil.c:
+
+	[ 1454734 ] gather: enhance RPM structure Support for -devel
+	package added.
+
+2006-03-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* comms/: mcclt_unix.c, mcserv_unix.c:
+
+	[ 1454722 ] gather potential memory overwrite in mcclt_unix.c
+	Extended sockname buffer to make room for trainling 0.
+
+2006-03-17  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* Makefile.am:
+
+	Added missing install hook for rundir.
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* NEWS:
+
+	News for 2.0.99i
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, configure.ac, comms/mcdefs.h:
+
+	[ 1450569 ] multiple gather instances should be able to coexist.
+	Change from hard-coded socket names to names relative to the
+	installation prefix.
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* samples/metricMassive.c:
+
+	Upped the number of resources.
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, mretr.c:
+
+	Minor cleanup.
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, repos.c, reposd.c, util/mcfg.c:
+
+	Minor cleanups in the area of _terminate processing.
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* util/commheap.c, mreposl.c:
+
+	Update for [1449436]: Rewrote commheap and also exploited in local
+	repository.
+
+2006-03-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, repos.c:
+
+	[ 1450216 ] gather filtered getvalue performance bad Changed
+	sorting strategy: if the quicksort recursion level gets to high we
+	fall back to bubblesort (which performs well with presorted
+	values).
+
+2006-03-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, plugin/metricXen.c:
+
+	[ 1449628 ] gather Xen plugin causes segfault on System z.  Fixed
+	by casting char to signed.
+
+2006-03-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* mreposp.c:
+
+	Update for 1449436: fixed function signatures.
+
+2006-03-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, configure.ac, mreposp.c, repos.c, rreg.c:
+
+	Updates to 1449436.
+
+2006-03-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, mrepos.h, mreposl.c, repos.c, reposd.c, rreg.c,
+	rrepos.c, comms/rcserv_ip.c:
+
+	[ 1449436 ] gather large metric volume performance bad.
+	Restructured the repository interface to reduce the number of
+	necessary calls.  Optimized resource list algorithms and local
+	repository data structures for CPU cycles.
+
+2006-03-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/mof/Massive_Metric.mof,
+	provider/mof/Massive_Metric.registration, samples/cimplugMassive.c,
+	samples/metricMassive.c, samples/repositoryMassive.c:
+
+	Added new sample 'Massive' which generates potentially large number
+	of dummy metric values.
+
+2006-03-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, reposctl.c, reposd.c, rgather.c, rrepos.c,
+	comms/mcclt_unix.c:
+
+	[ 1446497 ] gather repository must support unlimited metric
+	volumes.  Unlimited volume support added for plugins and resource
+	lists as well.
+
+2006-03-09  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherc.h, mrepos.h, mreposl.c, mreposp.c, repos.c, reposd.c,
+	rrepos.c, comms/mcclt_unix.c, comms/mcserv_unix.c:
+
+	[ 1446497 ] gather repository must support unlimited metric
+	volumes.  Removed limit for returned metric instances.
+
+2006-03-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, gatherd.conf, marshal.c,
+	reposctl.c, reposd.c, reposd.conf, slisten.c,
+	provider/OSBase_MetricRepositoryServiceProvider.c, util/commutil.c:
+
+	[ 1444826 ] gather has some portability nits.  Fixed some minor
+	32/64 bit and endianness related issues.
+
+2006-03-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	Metadata update.
+
+2006-03-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, plugin/metricOperatingSystem.readme,
+	plugin/metricUnixProcess.readme,
+	plugin/repositoryOperatingSystem.c, plugin/repositoryUnixProcess.c:
+
+	[ 1444711 ] gather CPU metric incorrect units.	Changed from
+	microseconds to milliseconds.
+
+2006-03-06  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, provider/OSBase_MetricUtil.c:
+
+	[ 1444272 ] gather provider segfaults on NULL metric unit string.
+	Added NULL ptr check.
+
+2006-03-06  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, rrepos.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h:
+
+	[ 1443997 ] gather provider failures fo unloaded plugins.  Fixed
+	cache handling and class-to-plugin loading code.
+
+2006-03-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, gatherd.conf, mlist.c, mlist.h, reposctl.c,
+	util/gathercfg.c:
+
+	[ 1441802 ] gather require synchronized metric samples Added new
+	config option and modified calculation of next sample time.
+
+2006-03-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac:
+
+	Updates for latest checkins, related to bugs 1441802 1441804
+
+2006-03-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* sblim-gather.spec.in:
+
+	[ 1441804 ] gather specfile incorrect.	Fixed directory specs.
+
+2006-02-23  obenke
+
+	* plugin/: cimplugXen.c, metricXen.c, metricXen.readme,
+	repositoryXen.c:
+
+	- Implemented "ten minute" metrics - Used repository interval time
+	in metricCalcTotalCPUTime - Extended metricXen.readme description -
+	Applied "indent -kr -i 4" on the source
+
+2006-02-22  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* AUTHORS, ChangeLog, Makefile.am, NEWS, acinclude.m4,
+	configure.ac, plugin/cimplugXen.c, plugin/metricXen.c,
+	plugin/metricXen.readme, plugin/repositoryXen.c,
+	provider/Makefile.am, provider/provider-register.sh,
+	provider/mof/Linux_XenMetric.mof,
+	provider/mof/Linux_XenMetric.registration:
+
+	[ 1436671 ] gather new metrics for Xen requested.  New plugin added
+	for Xen performance data:	  - TotalCPUTime	 -
+	ActiveVirtualProcessors 	- ExternalViewTotalCPUPercentage
+	     - PartitionClaimedMemory	      -
+	PartitionClaimedMaximumMemory	      - HostFreePhysicalMemory
+	   - ClaimedMemoryPercentage	     - HostMemoryPercentage
+
+2006-02-22  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, configure.ac, mreposl.c,
+	reposd.conf, util/reposcfg.c:
+
+	[ 1436591 ] gather needs configurable expiration interval.  Added
+	new config option "ExpirationInterval" to reposd.conf with which
+	the repository expiration can be set.
+
+2006-02-22  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, gatherc.h, marshal.c, marshal.h,
+	repos.c, repos.h, reposctl.c, reposd.c, rrepos.c, rrepos.h,
+	provider/OSBase_MetricRepositoryServiceProvider.c,
+	provider/mof/Linux_Metric.mof:
+
+	[ 1436488 ] gather needs top-N capability.  Added new function to
+	get values filtered by a limit and a sorting order. This allows a
+	client to limit the amount of data returned in response to an
+	enumeration or association request.  The provider can be used to
+	set a global limit which stays in place for subsequent calls.
+
+2006-02-13  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, gatherctl.c, rgather.c, rrepos.c:
+
+	[ 1430516 ] gather call to mcc_term disconnects terminally.
+	Invalidating server handle after disconnect allows to reconnect
+	later on.
+
+2006-02-13  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, rgather.c, rrepos.c:
+
+	[ 1430516 ] gather call to mcc_term disconnects terminally.
+	Changed code to invalidate server handle. This allows to reconnect
+	later on.
+
+2006-02-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, gather.c, gatherd.conf,
+	util/gathercfg.c:
+
+	[ 1429155 ] gather needs sampling interval override Added new
+	SampleInterval config property for globale sampling interval.
+
+2006-02-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, configure.ac, gatherc.h, metric.h,
+	reposd.c, rrepos.c, comms/mcdefs.h, comms/rcclt_ip.c,
+	comms/rcctest.c, comms/rcserv_ip.c:
+
+	[ 1426051 ] gather interoperability defects.  Merged in patch from
+	2.0 branch.
+
+2006-02-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, Makefile.am, NEWS, README, configure.ac, gather.c,
+	gather.h, gatherd.c, gatherd.conf, mplugmgr.c, mplugmgr.h, repos.c,
+	repos.h, reposd.c, reposd.conf, rplugmgr.c, rplugmgr.h,
+	util/dirutil.c, util/dirutil.h, util/gathercfg.c, util/reposcfg.c:
+
+	[ 1427714 ] gather daemons need autostart capability Added two new
+	config params for reposd and gatherd.  PluginDirectory specifies
+	the location of the metric or repository plugins.  AutoLoad allows
+	to automatically load some or all plugins.
+
+2006-02-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog:
+
+	Updates for peace of valgrind.
+
+2006-02-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* comms/: mcclt_unix.c, mcserv_unix.c, rcclt_ip.c, rcserv_ip.c:
+
+	Enhanced valgrind-friendliness.
+
+2006-02-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS:
+
+	[ 1422395 ] gather MetricInstance association only unidirectional.
+	Metafile update.
+
+2006-02-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: Makefile.am, OSBase_MetricDefForMEProvider.c,
+	OSBase_MetricUtil.c:
+
+	[ 1422395 ] gather MetricInstance association only unidirectional.
+	Add support for traversal from metric instance to metric
+	definition.
+
+2006-02-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac:
+
+	[ 1426051 ] gather interoperability defects Updates for new
+	release.
+
+2006-02-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* Makefile.am:
+
+	[ 1426051 ] gather interoperability defects.  Remove config.h from
+	distribution file list. Must be created on target system.
+
+2006-02-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherc.h, metric.h, reposd.c, rrepos.c:
+
+	[ 1426051 ] gather interoperability defects.  Data definitions
+	changed for better control of 32 vs 64 bit representation.  Client
+	and server code changed to deal with both 32 and 64 bit data.
+	Using padding fields in 64 bit structures to identify bitness.
+
+2006-02-07  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* comms/: mcdefs.h, rcclt_ip.c, rcctest.c, rcserv_ip.c:
+
+	[ 1426051 ] gather interoperability defects.  Fixed communication
+	header encoding.
+
+2006-02-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/OSBase_MetricInstanceProvider.c:
+
+	[ 1422395 ] gather MetricInstance association only unidirectional.
+	Enabled bi-directional association traversal.
+
+2006-02-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, provider/OSBase_MetricInstanceProvider.c:
+
+	[ 1422395 ] gather MetricInstance association only unidirectional.
+
+2006-02-01  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* slisten.c:
+
+	Removed compile warning with -O optimization level.
+
+2006-02-01  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/Makefile.am, ChangeLog, NEWS:
+
+	[ 1395363 ] Providers' postinstall step location dependent.
+
+2005-12-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, provider/Makefile.am,
+	provider/test/makefile, provider/test/test-gather.sh,
+	provider/test/cim/Linux_MetricGatherer.cim,
+	provider/test/cim/Linux_MetricRepositoryService.cim,
+	provider/test/system/linux/Linux_IPProtocolEndpointMetricValue.system,
+	provider/test/system/linux/Linux_MetricGatherer.system,
+	provider/test/system/linux/Linux_MetricRepositoryService.system,
+	provider/test/system/linux/Linux_NetworkPortMetricValue.system,
+	provider/test/system/linux/Linux_OperatingSystemMetric.system,
+	provider/test/system/linux/Linux_OperatingSystemMetricValue.system,
+	provider/test/system/linux/Linux_UnixProcessMetric.system:
+
+	[ 1376211 ] gather testsuite is incorrectly reporting failures.
+	Fixed test script and corrected a few system property expect
+	values.  Also added tests for the repository service.
+
+2005-11-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* ChangeLog, NEWS, configure.ac, provider/provider-register.sh:
+
+	Bugs fixed: 1236584. Fixed provider registration.
+
+2005-06-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* Makefile.am, configure.ac, sblim-gather.spec.in:
+
+	Added RPM support.
+
+2005-06-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* .cvsignore, acinclude.m4, autoconfiscate.sh, configure.ac,
+	provider/.cvsignore, provider/AUTHORS, provider/COPYING,
+	provider/ChangeLog, provider/Makefile.am, provider/NEWS,
+	provider/README, provider/acinclude.m4, provider/configure.ac:
+
+	Changed to have only one configure script -> size reduction of
+	distribution tarball.
+
+2005-06-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* AUTHORS, COPYING, ChangeLog, Makefile.am, NEWS, README.TEST,
+	autoconfiscate.sh, configure.ac, gatherd.c, makefile, reposctl.c,
+	reposd.c, rules, testenv.sh, comms/makefile, plugin/makefile,
+	plugin/metricProcessor.c, plugin/platform.sh,
+	provider/indicationtest/PegasusCreateFilter.xml~, samples/makefile,
+	util/gathercfg.c, util/makefile, util/mtrace.c, util/mtracetest.c,
+	util/reposcfg.c:
+
+	Updated for Autoconf/Automake.
+
+2005-06-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: AUTHORS, COPYING, ChangeLog, Makefile.am, NEWS,
+	OSBase_MetricDefinitionProvider.c, OSBase_MetricGathererProvider.c,
+	OSBase_MetricIndicationProvider.c,
+	OSBase_MetricRepositoryServiceProvider.c,
+	OSBase_MetricValueProvider.c, README, acinclude.m4, configure.ac,
+	makefile, provider-register.sh, setting.cmpi,
+	mof/Linux_IPProtocolEndpointMetric.registration,
+	mof/Linux_IPProtocolEndpointMetricRegistration.mof,
+	mof/Linux_LocalFileSystemMetric.registration,
+	mof/Linux_LocalFileSystemMetricRegistration.mof,
+	mof/Linux_Metric.registration, mof/Linux_MetricRegistration.mof,
+	mof/Linux_NetworkPortMetric.registration,
+	mof/Linux_NetworkPortMetricRegistration.mof,
+	mof/Linux_OperatingSystemMetric.registration,
+	mof/Linux_OperatingSystemMetricRegistration.mof,
+	mof/Linux_ProcessorMetric.registration,
+	mof/Linux_ProcessorMetricRegistration.mof,
+	mof/Linux_UnixProcessMetric.registration,
+	mof/Linux_UnixProcessMetricRegistration.mof,
+	mof/SampleRegistration.mof, mof/makefile,
+	mof/makefile.IPProtocolEndpoint.pegasus,
+	mof/makefile.IPProtocolEndpoint.standalone,
+	mof/makefile.LocalFileSystem.pegasus,
+	mof/makefile.LocalFileSystem.standalone,
+	mof/makefile.NetworkPort.pegasus,
+	mof/makefile.NetworkPort.standalone,
+	mof/makefile.OperatingSystem.pegasus,
+	mof/makefile.OperatingSystem.standalone,
+	mof/makefile.Processor.pegasus, mof/makefile.Processor.standalone,
+	mof/makefile.UnixProcess.pegasus,
+	mof/makefile.UnixProcess.standalone, mof/makefile.pegasus,
+	mof/makefile.sample, mof/makefile.standalone, test/test-gather.sh:
+
+	Restructured for Autoconf/Automakes. Support of the SBLIM
+	"ecosystem".
+
+2004-12-23  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/: metricUnixProcess.c, repositoryOperatingSystem.c,
+	repositoryUnixProcess.c:
+
+	Fixed resident set size calculation for Operating System.  Fixed
+	CPU precentage calculation divide by zeros for Unix Process.
+	Corrected some unit types in operating system and unix process.
+
+2004-12-23  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricDefForMEProvider.c,
+	OSBase_MetricForMEProvider.c, OSBase_MetricInstanceProvider.c,
+	OSBase_MetricValueProvider.c:
+
+	Hardened the providers: failed object path or instance
+	constructions were not caught and could segfault the CIMOM.
+
+2004-12-22  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* cimplug.h, repos.c, reposctl.c,
+	plugin/cimplugIPProtocolEndpoint.c,
+	plugin/cimplugLocalFileSystem.c, plugin/cimplugNetworkPort.c,
+	plugin/cimplugOperatingSystem.c, plugin/cimplugProcessor.c,
+	plugin/cimplugUnixProcess.c, plugin/repositoryIPProtocolEndpoint.c,
+	provider/OSBase_MetricDefForMEProvider.c,
+	provider/OSBase_MetricForMEProvider.c,
+	provider/OSBase_MetricGathererProvider.c,
+	provider/OSBase_MetricInstanceProvider.c,
+	provider/OSBase_MetricRepositoryServiceProvider.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h,
+	provider/OSBase_MetricValueProvider.c, samples/metricSample3.c:
+
+	Fixed interval processing to use two samples.  Only return most
+	current value data in providers.  Fixed all compile warnings.
+
+2004-12-22  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, gather.h, gatherctl.c, gatherd.c, marshal.c, marshal.h,
+	metric.h, repos.c, repos.h, reposctl.c, reposd.c, rgather.c,
+	rrepos.c, plugin/repositoryIPProtocolEndpoint.c,
+	plugin/repositoryLocalFileSystem.c, plugin/repositoryNetworkPort.c,
+	plugin/repositoryOperatingSystem.c, plugin/repositoryProcessor.c,
+	plugin/repositoryUnixProcess.c, provider/OSBase_MetricUtil.c,
+	provider/indicationtest/PegasusCreateFilter.xml:
+
+	Added missing CIM_BaseDefinition properties Calculable and Units.
+	Reworked affected code (repository plugin) to use marshalling.
+
+2004-12-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/indicationtest/PegasusCreateFilter.xml:
+
+	Use simpler query to work arounf Pegasus/CMPI selectexp problem.
+
+2004-12-15  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricIndicationProvider.c,
+	indicationtest/PegasusCreateFilter.xml,
+	indicationtest/PegasusCreateFilter.xml~,
+	indicationtest/PegasusCreateFilter2.xml,
+	indicationtest/PegasusCreateHandler.xml,
+	indicationtest/PegasusCreateSubscription.xml,
+	indicationtest/PegasusCreateSubscription2.xml,
+	indicationtest/PegasusDeleteFilter.xml,
+	indicationtest/PegasusDeleteFilter2.xml,
+	indicationtest/PegasusDeleteHandler.xml,
+	indicationtest/PegasusDeleteSubscription.xml,
+	indicationtest/PegasusDeleteSubscription2.xml,
+	indicationtest/README.indicationtest:
+
+	Add indication tests.
+
+2004-12-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* .cvsignore, comms/.cvsignore, plugin/.cvsignore,
+	provider/.cvsignore, provider/OSBase_MetricIndicationProvider.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h,
+	samples/.cvsignore, util/.cvsignore:
+
+	Completed first version of process indication provider.
+
+2004-12-13  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* rrepos.c, slisten.c:
+
+	Fixed unsubscription in rrepos.c.
+
+2004-12-13  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricIndicationProvider.c, makefile,
+	mof/Linux_Metric.mof, mof/Linux_MetricRegistration.mof:
+
+	Initial version of indication provider (no instance construction).
+
+2004-12-03  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/: metricProcessor.c, repositoryProcessor.c:
+
+	Fixed incorrect datatype (uint->float32).
+
+2004-12-03  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/: metricNetworkPort.c, metricOperatingSystem.c,
+	repositoryOperatingSystem.c:
+
+	Bugfix: NetworkPort /proc/net/dev parsing.  Bugfix: OperatingSystem
+	Rates did not apply h/n conversion.
+
+2004-12-03  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/metricIPProtocolEndpoint.c,
+	plugin/metricLocalFileSystem.c, plugin/repositoryLocalFileSystem.c,
+	util/commutil.c:
+
+	Bugfix: fixed IPProtocolEndpoint.BytesSubmitted retriever.  Bugfix:
+	available space percentage for non-block fs fixed. Datatype
+	changed.  Reworked htonf implementation (removed 4-byte
+	assumption).
+
+2004-12-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* mrepos.h, mreposl.c, repos.c, plugin/cimplugUnixProcess.c,
+	plugin/metricIPProtocolEndpoint.c, plugin/metricLocalFileSystem.c,
+	plugin/metricNetworkPort.c, plugin/metricOperatingSystem.c,
+	plugin/metricProcessor.c, plugin/metricUnixProcess.c,
+	plugin/repositoryIPProtocolEndpoint.c,
+	plugin/repositoryNetworkPort.c, plugin/repositoryOperatingSystem.c,
+	plugin/repositoryUnixProcess.c:
+
+	AIX compatibility patches (Michael Schuele).  Resource list
+	handling had a severe bug: was returning all resources regardless
+	of their type. Embarassing. Fixed now.
+
+2004-12-01  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* mrepos.h, mreposl.c, repos.c, reposctl.c:
+
+	Support for non-point metric types.
+
+2004-11-30  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* mplugmgr.c, reposd.c, comms/mcclt_unix.c, comms/mcserv_unix.c,
+	comms/rcclt_ip.c, comms/rcserv_ip.c, util/commheap.c,
+	util/commutil.c, util/commutil.h, util/mlog.c, util/mtrace.c:
+
+	Patches for AIX compatibility.
+
+2004-11-26  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherc.h, gatherd.conf, repos.c, repos.h, reposctl.c, reposd.c,
+	reposd.conf, rrepos.c, rrepos.h, sforward.c, sforward.h, slisten.c,
+	slisten.h, comms/rcserv_ip.c:
+
+	Enabled unsubsription.
+
+2004-11-22  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, marshal.c, reposd.c, rplugmgr.c, rrepos.c,
+	comms/mcclt_unix.c, comms/mcserv_unix.c, comms/rcserv_ip.c,
+	samples/metricSample4.c:
+
+	Compatibility fixes for AIX.
+
+2004-11-18  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* sforward.c, slisten.c:
+
+	Fixed some bugs in the list handling both on the forwarder and
+	listener sides.
+
+2004-11-12  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* makefile, marshal.c, marshal.h, repos.c, repos.h, reposctl.c,
+	reposd.c, rrepos.c, rrepos.h, sforward.c, sforward.h, slisten.c,
+	slisten.h:
+
+	Subscription update - still buggy, but the first susbcription was
+	successfully transferred.
+
+2004-11-10  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* gatherc.h, repos.c, repos.h, reposd.c, rrepos.c, rrepos.h,
+	provider/OSBase_MetricDefForMEProvider.c, provider/makefile,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_MetricRegistration.mof:
+
+	enabled access to resource list; added association MetricDefForME
+
+2004-11-10  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* repos.c, util/merrno.c, util/mtrace.c:
+
+	Fixes for subscriber list processing.
+
+2004-11-09  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* util/: commutil.c, commutil.h, makefile:
+
+	utility functions for data submission; hton and ntoh for unsigned
+	long long and float values
+
+2004-11-09  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: makefile, metricLocalFileSystem.c,
+	metricOperatingSystem.c, metricUnixProcess.c,
+	repositoryLocalFileSystem.c, repositoryOperatingSystem.c,
+	repositoryUnixProcess.c:
+
+	enabled platform independent metric value handling by using hton
+	and ntoh functions
+
+2004-11-09  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherc.h, mrepos.h, mreposl.c, repos.c, repos.h, reposctl.c,
+	reposd.c, rrepos.c, rrepos.h:
+
+	First shot at subscription support.
+
+2004-11-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/OSBase_MetricForMEProvider.c:
+
+	Fix coredump for remote resource associators.
+
+2004-11-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricForMEProvider.c, OSBase_MetricUtil.c,
+	OSBase_MetricUtil.h:
+
+	Removed case sensitivitiy for class names.  Changed default
+	resource namespace computation to use the systemid.
+
+2004-11-04  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* mrepos.h, mreposl.c, mreposp.c, repos.c, repos.h, reposctl.c,
+	reposd.c, rrepos.c, provider/OSBase_MetricForMEProvider.c,
+	provider/OSBase_MetricInstanceProvider.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h,
+	provider/OSBase_MetricValueProvider.c:
+
+	Overhauled repository resource identification to include the system
+	identifier.
+
+2004-11-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* makefile, metric.h, repos.c, repos.h,
+	plugin/repositoryIPProtocolEndpoint.c,
+	plugin/repositoryLocalFileSystem.c, plugin/repositoryNetworkPort.c,
+	plugin/repositoryOperatingSystem.c, plugin/repositoryProcessor.c,
+	plugin/repositoryUnixProcess.c, provider/OSBase_MetricUtil.c,
+	provider/makefile, provider/mof/Linux_IPProtocolEndpointMetric.mof,
+	provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_NetworkPortMetric.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof,
+	provider/mof/Linux_ProcessorMetric.mof,
+	provider/mof/Linux_UnixProcessMetric.mof:
+
+	enabled infrastructure for CIM_BaseMetricDefinition properties
+	IsContinuous, ChangeType, TimeScope and GatheringType; updated
+	plugins to support the new properties
+
+2004-10-22  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/: mcclt_unix.c, rcclt.h, rcclt_ip.c, rcserv.h, rcserv_ip.c:
+
+	enabled tracing and error setting
+
+2004-10-21  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* README, makefile, comms/mcclt_unix.c, comms/mcctest.c,
+	comms/mcdefs.h, util/makefile, util/mcfg.c, util/merrdefs.h,
+	util/merrno.c, util/merrno.h, util/merrnotest.c:
+
+	Added errno-like error handling support and instrumented
+	mcclt_unix.
+
+2004-10-21  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* reposd.c, util/reposcfg.c:
+
+	extented debugging and logging for reposd
+
+2004-10-21  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* reposd.c, reposd.conf:
+
+	enabled logging and tracing
+
+2004-10-20  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* reposd.c, reposd.conf, util/makefile, util/reposcfg.c,
+	util/reposcfg.h:
+
+	enabled configuration for remote repository daemon
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* util/: mcfg.c, mcfgtest.c:
+
+	Restrict config keys and make keys case-insensitive.
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, gatherd.conf, util/gathercfg.c, util/mtrace.c:
+
+	Enabled trace for gatherd.
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* util/: makefile, mtrace.c, mtrace.h, mtracetest.c:
+
+	Added trace support.
+
+2004-10-20  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* reposd.c:
+
+	removed unused variables
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* comms/mcserv_unix.c:
+
+	Addded logging to mcser_unix
+
+2004-10-20  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* reposd.c:
+
+	switched from busy wait to phread_cond_wait for remote threads
+
+2004-10-20  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* testenv.sh:
+
+	added util dir
+
+2004-10-20  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* makefile:
+
+	added path to util directory
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* comms/: makefile, mcclt_unix.c:
+
+	Added logging to comms/mcclt_unix.
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* commheap.c, commheap.h, gathercfg.c, gathercfg.h, gatherutil.c,
+	makefile, mcfg.c, mcfg.h, mcfgtest.c, mlog.c, mlog.h, mrwlock.c,
+	mrwlock.h, test.cfg:
+
+	Deleted stuff nowin util.
+
+2004-10-20  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* util/: commheap.c, commheap.h, gathercfg.c, gathercfg.h,
+	gatherutil.c, makefile, mcfg.c, mcfg.h, mcfgtest.c, mlog.c, mlog.h,
+	mrwlock.c, mrwlock.h, test.cfg:
+
+	Restructured: all utility stuff is going to the util direcotry.
+
+2004-10-19  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* reposd.c, rrepos.c, comms/rcclt_ip.c:
+
+	fixed remote communication
+
+2004-10-19  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, makefile, mlog.c, mlog.h, reposd.c:
+
+	Added logging support.
+
+2004-10-19  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gathercfg.c, gathercfg.h, gatherd.c, gatherd.conf, makefile,
+	mcfg.c, mcfg.h, mcfgtest.c, rrepos.c, test.cfg, comms/rcserv_ip.c:
+
+	Added config file support.
+
+2004-10-19  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.conf, makefile:
+
+	Added sample gatherd.conf.
+
+2004-10-19  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* makefile, mcfg.c, mcfg.h, mcfgtest.c, test.cfg:
+
+	Added Configuration Support.
+
+2004-10-18  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/rcclt_ip.c:
+
+	fixed occurance of duplicated sampling values
+
+2004-10-18  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* makefile, reposctl.c, reposd.c, rrepos.c:
+
+	communication between gatherer and repository is now remote
+
+2004-10-15  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/rcstest.c:
+
+	limited number of accepted client connects
+
+2004-10-15  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/: rcctest.c, rcserv_ip.c, rcstest.c:
+
+	set SO_LINGER on server socket to avoid lose of data
+
+2004-10-14  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/: rcctest.c, rcstest.c:
+
+	stop after server not responding
+
+2004-10-14  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/: rcclt_ip.c, rcctest.c:
+
+	check socket for EPIPE signal
+
+2004-10-14  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* comms/: makefile, rcclt.h, rcclt_ip.c, rcctest.c, rcserv.h,
+	rcserv_ip.c, rcstest.c:
+
+	added remote communication layer
+
+2004-10-12  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, reposd.c, rgather.c, rrepos.c, comms/makefile,
+	comms/mcclt_unix.c, comms/mcctest.c, comms/mcdefs.h,
+	comms/mcserv.h, comms/mcserv_unix.c, comms/mcstest.c:
+
+	Significiant rework of comm layer: supports disconnect and
+	reconnect now.	The client portions of remote repository and
+	gatherer do serialization using mutexes now.
+
+2004-10-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, metricProcessor.c:
+
+	Removed commented statements.
+
+2004-10-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, reposd.c, rgather.c, rrepos.c,
+	plugin/metricIPProtocolEndpoint.c, plugin/metricNetworkPort.c,
+	plugin/metricOperatingSystem.c, plugin/metricProcessor.c,
+	plugin/metricUnixProcess.c, provider/mof/makefile,
+	provider/mof/makefile.IPProtocolEndpoint.pegasus,
+	provider/mof/makefile.IPProtocolEndpoint.standalone:
+
+	Various smaller bug fixes and cleanup. Assisted by valgrind.
+
+2004-10-08  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/: cimplugIPProtocolEndpoint.c, cimplugLocalFileSystem.c,
+	cimplugNetworkPort.c, cimplugProcessor.c, cimplugUnixProcess.c,
+	makefile, metricLocalFileSystem.c:
+
+	Added CIM plugins for the supported metrics.
+
+2004-10-07  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/metricUnixProcess.c:
+
+	fixed retrieving of kernel and user mode times
+
+2004-10-06  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* cimplug.h, metric.h, repos.c, repos.h, reposd.c, rrepos.c,
+	plugin/cimplugOperatingSystem.c, plugin/makefile,
+	provider/OSBase_MetricForMEProvider.c,
+	provider/OSBase_MetricInstanceProvider.c,
+	provider/OSBase_MetricUtil.c, provider/OSBase_MetricUtil.h,
+	provider/OSBase_MetricValueProvider.c, provider/makefile,
+	provider/mof/Linux_IPProtocolEndpointMetric.mof,
+	provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_MetricRegistration.mof,
+	provider/mof/Linux_NetworkPortMetric.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof,
+	provider/mof/Linux_ProcessorMetric.mof,
+	provider/mof/Linux_UnixProcessMetric.mof:
+
+	Added resource/metric value association support.
+
+2004-09-30  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* metric.h, mreposl.c, reposd.c, rrepos.c:
+
+	Adedd system id to metric value.
+
+2004-09-27  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricUtil.c, OSBase_MetricUtil.h,
+	OSBase_MetricValueProvider.c:
+
+	Reworked the metric value provider to exploit the utility lib.
+
+2004-09-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricDefinitionProvider.c,
+	OSBase_MetricGathererProvider.c, OSBase_MetricInstanceProvider.c,
+	OSBase_MetricRepositoryServiceProvider.c, OSBase_MetricUtil.c,
+	OSBase_MetricUtil.h, OSBase_MetricValueProvider.c, makefile:
+
+	Restructured Metric Definition Provider to use the utility library
+	and therefore exploit the data caching.
+
+2004-09-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/mof/: Linux_IPProtocolEndpointMetric.mof,
+	Linux_IPProtocolEndpointMetricRegistration.mof:
+
+	Support for new metric resource.
+
+2004-09-24  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricInstanceProvider.c, OSBase_MetricUtil.c,
+	OSBase_MetricUtil.h, makefile, start_gathering.sh,
+	stop_gathering.sh, mof/Linux_Metric.mof,
+	mof/Linux_MetricRegistration.mof:
+
+	Added utility library for providers.  First association provider
+	completeted: Definition->Value.  Added scripts for
+	starting/stopping the sampling.
+
+2004-09-23  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, metricOperatingSystem.readme:
+
+	kernel 2.6 support for metrics PageIn and PageOut
+
+2004-09-22  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, metricOperatingSystem.readme:
+
+	updated value source for memory related metrics to fit for kernel
+	2.4 and 2.6
+
+2004-09-22  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* provider/test/: test-gather.sh,
+	cim/Linux_IPProtocolEndpointMetric.cim,
+	cim/Linux_IPProtocolEndpointMetricValue.cim,
+	system/linux/Linux_IPProtocolEndpointMetric.system,
+	system/linux/Linux_IPProtocolEndpointMetricValue.system:
+
+	added test scripts for IPProtocolEndpoint
+
+2004-09-15  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: makefile, metricIPProtocolEndpoint.c,
+	metricIPProtocolEndpoint.readme, repositoryIPProtocolEndpoint.c:
+
+	added plugins to gather IP Protocol Endpoint specific metrics of
+	BytesReceived, BytesTransmitted, PacketsReceived,
+	PacketsTransmitted and ErrorRate
+
+2004-09-15  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricNetworkPort.c, metricNetworkPort.readme,
+	repositoryNetworkPort.c:
+
+	fixed metric calculation of ErrorRate
+
+2004-09-15  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/repositoryOperatingSystem.c:
+
+	beautifying
+
+2004-09-14  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/metricUnixProcess.readme:
+
+	updated CPUTime description
+
+2004-09-14  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricUnixProcess.c, metricUnixProcess.readme,
+	repositoryUnixProcess.c:
+
+	added metric PageOutRate; updated README
+
+2004-09-13  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricUnixProcess.c, repositoryUnixProcess.c:
+
+	added metric SharedSize
+
+2004-09-13  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/repositoryOperatingSystem.c:
+
+	fixed calculation for point value of KernelModeTime and
+	UserModeTime
+
+2004-08-19  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, metricOperatingSystem.readme,
+	metricUnixProcess.c, repositoryOperatingSystem.c,
+	repositoryUnixProcess.c:
+
+	added Monitoring II metrics
+
+2004-08-06  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/repositoryOperatingSystem.c:
+
+	added metric InternalViewIdlePercentage
+
+2004-08-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/OSBase_MetricRepositoryServiceProvider.c:
+
+	Added Provider for RepositoryService.
+
+2004-08-05  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* repos.c, rgather.c, rrepos.c, comms/mcclt.h, comms/mcclt_unix.c,
+	comms/mcctest.c, provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_NetworkPortMetric.mof,
+	provider/mof/Linux_ProcessorMetric.mof,
+	provider/mof/Linux_UnixProcessMetric.mof:
+
+	Bugfixes in communication and memory handling.
+
+2004-08-04  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, reposctl.c, rgather.c, rrepos.c, rrepos.h,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricValueProvider.c, provider/makefile,
+	provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_MetricRegistration.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof:
+
+	Fixes for the provider support.
+
+2004-08-04  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/platform.sh:
+
+	updated switch statement to retrieve platform info
+
+2004-08-04  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricLocalFileSystem.readme, metricNetworkPort.readme,
+	metricOperatingSystem.readme, metricProcessor.readme,
+	metricUnixProcess.readme:
+
+	adpoted interface changes of gatherer
+
+2004-08-04  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: repositoryNetworkPort.c, repositoryProcessor.c,
+	repositoryUnixProcess.c:
+
+	adpoted interface changes of gatherer
+
+2004-08-04  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: makefile, metricLocalFileSystem.c, metricNetworkPort.c,
+	metricOperatingSystem.c, metricProcessor.c, metricUnixProcess.c,
+	repositoryLocalFileSystem.c, repositoryOperatingSystem.c:
+
+	adopted interface changes of gatherer
+
+2004-08-04  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* mreposl.c, mreposp.c, testenv.sh,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricValueProvider.c, provider/makefile,
+	provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof,
+	provider/mof/makefile:
+
+	Support for providers.	Fix in proxy repository: deallocate metrics
+	after forwarding.
+
+2004-08-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: makefile, metricLocalFileSystem.c,
+	repositoryLocalFileSystem.c, repositoryOperatingSystem.c:
+
+	adopted interface changes of gatherer
+
+2004-08-03  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* reposctl.c, samples/makefile, samples/metricSample3.c,
+	samples/metricSample4.c, samples/repositorySample3.c:
+
+	Enable Sample3 for new metric plugin layout.  Fix printout for
+	uint8.
+
+2004-08-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/repositoryOperatingSystem.c:
+
+	added AliasId to calculated metrics
+
+2004-08-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/metricOperatingSystem.c:
+
+	removed DataType, MetricType
+
+2004-08-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, makefile,
+	repositoryOperatingSystem.c:
+
+	adopted interface changes in gatherer
+
+2004-08-03  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, gather.h, gatherctl.c, metric.h, mreposl.c, repos.c,
+	rrepos.c, samples/metricSample3.c, samples/metricSample4.c,
+	samples/repositorySample4.c:
+
+	All basic functions working.
+
+2004-08-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* testenv.sh:
+
+	Add test script.
+
+2004-08-02  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, gatherc.h, metric.h, mreposp.c, repos.c, repos.h,
+	reposctl.c, reposd.c, rgather.c, rrepos.c, rrepos.h,
+	samples/metricSample4.c:
+
+	Intermediate checkin - compiles.
+
+2004-07-23  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* repos.h, rrepos.c, samples/makefile, samples/repositorySample4.c:
+
+	Intermediate version - doesn't compile!
+
+2004-07-16  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* README, gather.c, gather.h, gatherc.h, gatherctl.c, gatherd.c,
+	gatherutil.c, makefile, metric.h, mrepos.h, mreposl.c, mreposp.c,
+	repos.c, repos.h, reposctl.c, reposd.c, rgather.c, rgather.h,
+	rplugin.h, rplugmgr.c, rplugmgr.h, rreg.c, rreg.h, rrepos.c,
+	rrepos.h, comms/mcclt.h, comms/mcclt_unix.c, comms/mcctest.c,
+	comms/mcdefs.h, comms/mcserv.h, comms/mcserv_unix.c,
+	comms/mcstest.c, samples/metricSample3.c, samples/metricSample4.c:
+
+	New files and updates for the V2 prototype.
+
+2004-07-09  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gather.c, gather.h, metric.h, repos.c, repos.h:
+
+	Preparations for gather v2.
+
+2004-06-23  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* rgather.c:
+
+	Added startup delay to rgather_load.
+
+2004-06-09  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* plugin/metricOperatingSystem.c,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricValueProvider.c,
+	provider/test/test-gather.sh:
+
+	Fixes for LTC bugzillas 9225, 9226, 9235, 9242 and 9243.
+
+2004-06-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* provider/OSBase_MetricValueProvider.c:
+
+	InstanceId string parsing struggled for names containg .
+
+2004-06-03  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* provider/OSBase_MetricGathererProvider.c:
+
+	fixed always returning FALSE status for method StartSampling
+
+2004-06-02  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* provider/OSBase_MetricGathererProvider.c:
+
+	fixed NumberOfPlugins and NumberOfMetrics on big endian machine
+	(PPC)
+
+2004-05-28  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* provider/test/test-gather.sh:
+
+	raised sleep interval to give gatherd the change to initialize and
+	start at least two sample intervals
+
+2004-05-14  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* gatherd.c, rgather.c, provider/test/test-gather.sh,
+	provider/test/system/linux/Linux_MetricGatherer.system:
+
+	Changes for SLS9 bugillas: - daemonize the gatherd process - add 30
+	seconds sleep - fixed gatherer service class name in testcase.
+
+2004-04-29  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/test/test-gather.sh:
+
+	Fixed test script.
+
+2004-04-29  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/test/system/linux/: Linux_MetricGatherer.system,
+	createKeyFiles.sh, gather-systemname.sh:
+
+	Fixed test script to avoid clashes with cmpi-base.
+
+2004-04-28  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: makefile, test/test-gather.sh:
+
+	Build changes for Pegasus/SUSE compatibility.
+
+2004-04-27  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/makefile:
+
+	Fixed Makefile.
+
+2004-04-27  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* comms/makefile, provider/setting.cmpi, samples/makefile:
+
+	Fixed makefiles.
+
+2004-03-27  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* makefile, comms/makefile, plugin/makefile, plugin/platform.sh,
+	provider/env, provider/makefile, provider/setting.cmpi,
+	provider/mof/makefile,
+	provider/mof/makefile.LocalFileSystem.standalone,
+	provider/mof/makefile.NetworkPort.standalone,
+	provider/mof/makefile.OperatingSystem.standalone,
+	provider/mof/makefile.Processor.standalone,
+	provider/mof/makefile.UnixProcess.standalone,
+	provider/mof/makefile.standalone, samples/makefile:
+
+	Added RPM support and restructured accordingly.
+
+2004-02-25  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* README:
+
+	Update readme.
+
+2004-02-23  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/test/: README, makefile, test-gather.sh,
+	cim/Linux_LocalFileSystemMetric.cim,
+	cim/Linux_LocalFileSystemMetricValue.cim,
+	cim/Linux_MetricGatherer.cim, cim/Linux_NetworkPortMetric.cim,
+	cim/Linux_NetworkPortMetricValue.cim,
+	cim/Linux_OperatingSystemMetric.cim,
+	cim/Linux_OperatingSystemMetricValue.cim,
+	cim/Linux_ProcessorMetric.cim, cim/Linux_ProcessorMetricValue.cim,
+	cim/Linux_UnixProcessMetric.cim,
+	cim/Linux_UnixProcessMetricValue.cim,
+	system/linux/Linux_LocalFileSystemMetric.system,
+	system/linux/Linux_LocalFileSystemMetricValue.system,
+	system/linux/Linux_MetricGatherer.system,
+	system/linux/Linux_NetworkPortMetric.system,
+	system/linux/Linux_NetworkPortMetricValue.system,
+	system/linux/Linux_OperatingSystemMetric.system,
+	system/linux/Linux_OperatingSystemMetricValue.system,
+	system/linux/Linux_ProcessorMetric.system,
+	system/linux/Linux_ProcessorMetricValue.system,
+	system/linux/Linux_UnixProcessMetric.system,
+	system/linux/Linux_UnixProcessMetricValue.system,
+	system/linux/createKeyFiles.sh:
+
+	Testsuite test cases added.
+
+2004-02-11  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/: OSBase_MetricGathererProvider.c, env:
+
+	Fixed endianness problem with boolean values.
+
+2003-12-05  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/metricUnixProcess.c:
+
+	prepared for new kernel feature: threads are flagged with a
+	starting "." in the /proc fs and not reported as processes any more
+
+2003-12-05  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, metricOperatingSystem.readme:
+
+	fixed source of PageInRate value
+
+2003-11-05  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricUnixProcess.c, metricUnixProcess.readme:
+
+	fixed value source of ResidentSetSize; added metrics PageInCounter
+	and PageInRate
+
+2003-11-05  Heidi Eckhart <heidineu@de.ibm.com>
+
+	* plugin/: metricOperatingSystem.c, metricOperatingSystem.readme:
+
+	changed value source of metric NumberOfProcesses
+
+2003-10-30  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* provider/mof/Linux_Metric.mof:
+
+	Ficed Provider Qualifier for SNIA CIMOM registration.
+
+2003-10-17  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* commheap.c, README, commheap.h, gather.c, gather.h, gatherc.h,
+	gatherctl.c, gatherd.c, makefile, metric.h, mlist.c, mlist.h,
+	mplugin.h, mplugmgr.c, mplugmgr.h, mreg.c, mreg.h, mrepos.h,
+	mreposl.c, mretr.c, mretr.h, mrwlock.c, mrwlock.h, rgather.c,
+	rgather.h, rules, comms/makefile, comms/mcclt.h,
+	comms/mcclt_unix.c, comms/mcctest.c, comms/mcdefs.h,
+	comms/mcserv.h, comms/mcserv_unix.c, comms/mcstest.c,
+	plugin/makefile, plugin/metricLocalFileSystem.c,
+	plugin/metricLocalFileSystem.readme, plugin/metricNetworkPort.c,
+	plugin/metricNetworkPort.readme, plugin/metricOperatingSystem.c,
+	plugin/metricOperatingSystem.readme, plugin/metricProcessor.c,
+	plugin/metricProcessor.readme, plugin/metricUnixProcess.c,
+	plugin/metricUnixProcess.readme, plugin/platform.sh,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricGathererProvider.c,
+	provider/OSBase_MetricValueProvider.c, provider/env,
+	provider/makefile, provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_LocalFileSystemMetricRegistration.mof,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_MetricRegistration.mof,
+	provider/mof/Linux_NetworkPortMetric.mof,
+	provider/mof/Linux_NetworkPortMetricRegistration.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof,
+	provider/mof/Linux_OperatingSystemMetricRegistration.mof,
+	provider/mof/Linux_ProcessorMetric.mof,
+	provider/mof/Linux_ProcessorMetricRegistration.mof,
+	provider/mof/Linux_UnixProcessMetric.mof,
+	provider/mof/Linux_UnixProcessMetricRegistration.mof,
+	provider/mof/Sample.mof, provider/mof/SampleRegistration.mof,
+	provider/mof/makefile,
+	provider/mof/makefile.LocalFileSystem.pegasus,
+	provider/mof/makefile.NetworkPort.pegasus,
+	provider/mof/makefile.OperatingSystem.pegasus,
+	provider/mof/makefile.Processor.pegasus,
+	provider/mof/makefile.UnixProcess.pegasus,
+	provider/mof/makefile.pegasus, provider/mof/makefile.sample,
+	samples/makefile, samples/metricSample1.c, samples/metricSample2.c,
+	samples/metricSample3.c, samples/metricSample4.c:
+
+	Initial revision
+
+2003-10-17  Viktor Mihajlovski <mihajlov@de.ibm.com>
+
+	* commheap.c, README, commheap.h, gather.c, gather.h, gatherc.h,
+	gatherctl.c, gatherd.c, makefile, metric.h, mlist.c, mlist.h,
+	mplugin.h, mplugmgr.c, mplugmgr.h, mreg.c, mreg.h, mrepos.h,
+	mreposl.c, mretr.c, mretr.h, mrwlock.c, mrwlock.h, rgather.c,
+	rgather.h, rules, comms/makefile, comms/mcclt.h,
+	comms/mcclt_unix.c, comms/mcctest.c, comms/mcdefs.h,
+	comms/mcserv.h, comms/mcserv_unix.c, comms/mcstest.c,
+	plugin/makefile, plugin/metricLocalFileSystem.c,
+	plugin/metricLocalFileSystem.readme, plugin/metricNetworkPort.c,
+	plugin/metricNetworkPort.readme, plugin/metricOperatingSystem.c,
+	plugin/metricOperatingSystem.readme, plugin/metricProcessor.c,
+	plugin/metricProcessor.readme, plugin/metricUnixProcess.c,
+	plugin/metricUnixProcess.readme, plugin/platform.sh,
+	provider/OSBase_MetricDefinitionProvider.c,
+	provider/OSBase_MetricGathererProvider.c,
+	provider/OSBase_MetricValueProvider.c, provider/env,
+	provider/makefile, provider/mof/Linux_LocalFileSystemMetric.mof,
+	provider/mof/Linux_LocalFileSystemMetricRegistration.mof,
+	provider/mof/Linux_Metric.mof,
+	provider/mof/Linux_MetricRegistration.mof,
+	provider/mof/Linux_NetworkPortMetric.mof,
+	provider/mof/Linux_NetworkPortMetricRegistration.mof,
+	provider/mof/Linux_OperatingSystemMetric.mof,
+	provider/mof/Linux_OperatingSystemMetricRegistration.mof,
+	provider/mof/Linux_ProcessorMetric.mof,
+	provider/mof/Linux_ProcessorMetricRegistration.mof,
+	provider/mof/Linux_UnixProcessMetric.mof,
+	provider/mof/Linux_UnixProcessMetricRegistration.mof,
+	provider/mof/Sample.mof, provider/mof/SampleRegistration.mof,
+	provider/mof/makefile,
+	provider/mof/makefile.LocalFileSystem.pegasus,
+	provider/mof/makefile.NetworkPort.pegasus,
+	provider/mof/makefile.OperatingSystem.pegasus,
+	provider/mof/makefile.Processor.pegasus,
+	provider/mof/makefile.UnixProcess.pegasus,
+	provider/mof/makefile.pegasus, provider/mof/makefile.sample,
+	samples/makefile, samples/metricSample1.c, samples/metricSample2.c,
+	samples/metricSample3.c, samples/metricSample4.c:
+
+	The SBLIM Data Gatherer and Performance Providers.
+

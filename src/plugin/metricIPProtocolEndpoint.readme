@@ -1,0 +1,132 @@
+/*
+ * $Id: metricIPProtocolEndpoint.readme,v 1.3 2009/06/24 21:24:22 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2004, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Heidi Neumann <heidineu@de.ibm.com>
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for IP Protocol Endpoint Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+
+- BytesSubmitted
+- BytesTransmitted
+- BytesReceived
+- ErrorRate
+- PacketsTransmitted
+- PacketsReceived
+- PacketTransmitRate
+- PacketReceiveRate
+
+
+/* ---------------------------------------------------------------------------*/
+
+BytesSubmitted
+--------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : Byte; number of errors since start up
+
+Value Source    : the corresponding line of /proc/net/dev contains the values
+                  of this IP Protocol Endpoint
+
+Syntax          : <bytes received>:<bytes transmitted>:
+		  <errors received>:<errors transmitted>:
+		  <packets received>:<packets transmitted>
+
+
+BytesTransmitted
+----------------
+
+Metric Type     : Interval
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint64
+Units           : Byte
+
+Value Source    : second entry of BytesSubmitted
+
+
+BytesReceived
+-------------
+
+Metric Type     : Interval
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint64
+Units           : Byte
+
+Value Source    : first entry of BytesSubmitted
+
+
+ErrorRate
+---------
+
+Metric Type     : Rate
+Based on Metric : BytesSubmitted
+CIM Data Type   : sint32
+Units           : Errors per second
+
+Value Source    : ( ((third + fourth entry of BytesSubmitted)(n)) - 
+		    ((third + fourth entry of BytesSubmitted)(n-1)) ) / 
+		  SampleTime(n)-SampleTime(n-1)
+
+
+PacketsTransmitted
+------------------
+
+Metric Type     : Interval
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint64
+Units           : Packets
+
+Value Source    : fifth entry of BytesSubmitted
+
+
+PacketsReceived
+---------------
+
+Metric Type     : Interval
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint64
+Units           : Packets
+
+Value Source    : last entry of BytesSubmitted
+
+
+PacketTransmitRate
+------------------
+
+Metric Type		: Rate
+Based on Metric	: BytesSubmitted
+CIM Data Type	: unint32
+Units			: Packets per second
+
+Value Source	: fifth entry of BytesSubmitted / sample time
+
+
+PacketReceiveRate
+------------------
+
+Metric Type		: Rate
+Based on Metric	: BytesSubmitted
+CIM Data Type	: unint32
+Units			: Packets per second
+
+Value Source	: last entry of BytesSubmitted / sample time
+
+/* ---------------------------------------------------------------------------*/

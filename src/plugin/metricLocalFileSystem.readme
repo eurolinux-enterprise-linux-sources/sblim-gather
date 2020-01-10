@@ -1,0 +1,55 @@
+/*
+ * $Id: metricLocalFileSystem.readme,v 1.3 2009/05/20 19:39:56 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2003, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Heidi Neumann <heidineu@de.ibm.com>
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for Local File System Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+- AvailableSpace
+- AvailableSpacePercentage
+
+
+/* ---------------------------------------------------------------------------*/
+
+AvailableSpace
+--------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : Byte
+
+Value Source    : the system call statfs() offers the free blocks and the size 
+                  of each block in Byte
+
+
+AvailableSpacePercentage
+------------------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint8
+Units           : percent
+
+Value Source    : the system call statfs() offers the total number of blocks  
+                  and the number of free blocks as base for the calculation
+
+
+/* ---------------------------------------------------------------------------*/

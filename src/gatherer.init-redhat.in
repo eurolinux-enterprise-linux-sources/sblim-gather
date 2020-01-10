@@ -1,0 +1,86 @@
+#!/bin/bash
+#
+# $Id: gatherer.init-redhat.in,v 1.2 2010/06/02 01:41:20 tyreld Exp $
+#
+# chkconfig: 35 98 03
+# description: SBLIM Data Gatherer metric service
+
+. /etc/init.d/functions
+
+echo $PATH | grep -q @sbindir@ ||PATH=@sbindir@:$PATH
+
+RETVAL=0
+
+start() {
+	echo -n "Starting gatherd: "
+	daemon gatherd
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+		touch /var/lock/subsys/gatherd
+	
+		echo -n "Starting reposd: "
+		daemon reposd
+		RETVAL=$?
+		echo
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/reposd
+	fi
+}
+
+stop() {
+	echo -n "Stopping reposd: "
+	killproc reposd
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+		rm -f /var/lock/subsys/reposd
+	fi
+	
+	echo -n "Stopping gatherd: "
+	killproc gatherd
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+		rm -f /var/lock/subsys/gatherd
+	fi
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+	echo -n "Reloading gatherd: "
+	killproc gatherd -HUP
+	RETVAL=$?
+	echo
+	
+	echo -n "Reloading reposd: "
+	killproc reposd -HUP
+	RETVAL=$?
+	echo
+}
+
+case "$1" in
+	start|stop|restart|reload)
+		$1
+		;;
+	status)
+		status gatherd
+		RETVAL=$?
+		status reposd
+		RETVAL=$?
+		;;
+	force-reload)
+		reload
+		;;
+	condrestart|try-restart)
+		[ -f /var/lock/subsys/gatherd ] && [ -f /var/lock/subsys/reposd ] && restart || :
+		;;
+	*)
+		echo "Usage gatherd {start|stop|status|restart|condrestart|reload}"
+		exit 1
+		;;
+esac
+exit $RETVAL

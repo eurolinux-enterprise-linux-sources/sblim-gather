@@ -1,0 +1,21 @@
+********************************************************************************
+class : Linux_OperatingSystemMetricValue
+objectPath : Linux_OperatingSystemMetricValue.InstanceId=ivalid-id,MetricDefinitionId=invalid-id
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED

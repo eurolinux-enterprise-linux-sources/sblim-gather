@@ -1,0 +1,119 @@
+SBLIM Performance Data Gatherer and Provider
+============================================
+
+(C) Copyright IBM Corp. 2003, 2006, 2009
+
+ THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+
+ You can obtain a current copy of the Eclipse Public License from
+ http://www.opensource.org/licenses/eclipse-1.0.php
+
+Author: Viktor Mihajlovski <mihajlov@de.ibm.com>
+Last Change Date: 02/08/2006
+
+Changelog:
+10/17/2003	Initial Version.
+02/20/2004	Added test cases for SBLIM testsuite.
+07/16/2004	Started prototyping for version 2
+10/20/2004	Many changes: remote repository (by Heidi Neumann),
+		logging, tracing and config file processing.
+		Association Providers for Metric Values completed.
+02/08/2006	Overdue update: The version 2.0 is considered stable
+	  	for quite some time. Removed some outdated passages.
+
+About this Package
+------------------
+The purpose of this package is to implement the DMTF CIM Metrics Model
+for Linux, making it available via a CIMOM supporting/supported by the CMPI
+provider interface. 
+
+The package consists of three parts:
+1. The Gatherer Component
+2. The Metric Plugins
+3. The Performance Data Providers
+
+While the Gatherer and it's plugins can be used standalone, the greatest
+benefit comes from using it in conjuction with a CIM Object Manager (CIMOM)
+like Pegasus (The Open Group). Basically it allows to remotely obtain
+performance information about a Linux system.
+For more information about CIM and the CIM Metrics Model you are referred to
+the Distributed Management Task Force (DMTF) at http://www.dmtf.org.
+
+Requirements
+------------
+
+In order to build, install, and operate this package you will need a 
+contemporary (as of this writing) Linux System, like RHEL4, SLES9 
+or equivalent.
+Further the following packages are required:
+
+A CIM Server supporting the CMPI Interface
+- Pegasus 2.4.1 or higher
+- OpenWBEM 3.0 or higher
+
+- SBLIM CMPI Base 1.2.1 or higher from http://sblim.org
+
+Build and install the packages above according to the instructions contained
+therein before you continue.
+
+
+Building and Installing the Gatherer
+------------------------------------
+
+Change to the main subdirectory of this package and invoke "./configure"
+followed by "make". The gatherer and the plugins should now be compiled.
+
+Performing "make install" (you have to do that with superuser rights) will
+put the executables and libraries in the "/usr/local" branch of your system.
+It might be necessary for you to point your PATH or LD_LIBRARY_PATH variables
+to /usr/local/[s]bin or /usr/local/lib, respectively.
+
+With the command line utility "gatherctl" you can now start and stop the
+gatherer (implemented by the "gatherd" program), load metric plugin libraries
+and get metric values. At the moment there's no documentation about the
+standalone gatherer and we suggest that you use it via the CIM interface, see
+below.
+
+Building and Installing the Performance Providers
+-------------------------------------------------
+
+In fact the only thing you have to do is to do a "make postinstall".
+This will register the providers with your CIM server.
+
+Using the Providers
+-------------------
+
+Before you can obtain metric values you have to start the gatherer. There's
+a CIM class Linux_MetricGatherer controlling gatherer operations. Using a
+CIM client, a CIM browser for instance, the methods StartService and
+StartSampling have to be called in order to start gatherer processing.
+
+Once started it is possible to enumerate instances of CIM_BaseMetricDefinition
+and CIM_BaseMetricValue to get information about the system using a CIM
+client application.
+
+Dumping the Repository
+----------------------
+
+The repository of the Gatherer is not persistent. If historical data needs
+to be maintained, it is necessary to regularly retrieve all metric data
+from the repository. One possibility is to regularly retrieve all metric 
+values via the WBEM interface. One disadvantage thereof is that, depending 
+on the amount of metrics, this can lead to noticeable machine load. Further, 
+it is not possible to retrieve the metric data in a condensed fashion
+as it is often required for historical performance data.
+
+For the purpose of unloading the repository, the package ships with a
+utility called "reposdump". It will export metrics into a text file.
+The text file contains sections separated by lines of the format
+===metricdefs <pluginname>===
+and 
+===metricvals <pluginname>===
+followed by a list of comma-separated records containing the defined
+metrics or the metric values.
+
+A sample perl script reposd2csv.pl is included, which demonstrates how to
+convert the dump output to a comma separated value list (CSV) suitable for 
+import into a spreadsheet. 

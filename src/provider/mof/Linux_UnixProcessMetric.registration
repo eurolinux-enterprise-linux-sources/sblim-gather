@@ -1,0 +1,3 @@
+# Classname Namespace ProviderName ProviderModule ProviderTypes ...
+Linux_UnixProcessMetric root/cimv2 OSBase_MetricDefinitionProvider OSBase_MetricDefinitionProvider instance
+Linux_UnixProcessMetricValue root/cimv2 OSBase_MetricValueProvider OSBase_MetricValueProvider instance

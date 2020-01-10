@@ -1,0 +1,3 @@
+# Classname Namespace ProviderName ProviderModule ProviderTypes ...
+Linux_MetricRegisteredProfile root/interop OSBase_MetricRegisteredProfileProvider OSBase_MetricRegisteredProfileProvider instance
+Linux_MetricElementConformsToProfile root/interop OSBase_MetricElementConformsToProfileProvider OSBase_MetricElementConformsToProfileProvider instance association

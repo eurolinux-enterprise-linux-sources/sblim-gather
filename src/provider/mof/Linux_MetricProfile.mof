@@ -1,0 +1,30 @@
+//
+// $Id: Linux_MetricProfile.mof,v 1.1 2009/07/17 22:15:39 tyreld Exp $
+//
+// (C) Copyright IBM Corp. 2009
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Eclipse Public License from
+// http://www.opensource.org/licenses/eclipse-1.0.php
+//
+// Author:       Tyrel Datwyler
+// Contributors:
+//
+// Description:
+// CIM Registered Profile Classes
+//
+
+
+#pragma locale ("en_US")
+
+class Linux_MetricRegisteredProfile : CIM_RegisteredProfile
+{ };
+
+[
+	Association
+]
+class Linux_MetricElementConformsToProfile : CIM_ElementConformsToProfile
+{ };

@@ -1,0 +1,492 @@
+/*
+ * $Id: metricOperatingSystem.readme,v 1.11 2010/04/19 23:56:27 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2003, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Heidi Neumann <heidineu@de.ibm.com>
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for Operating System Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+- NumberOfUsers
+
+- NumberOfProcesses
+
+- CPUTime
+- KernelModeTime
+- UserModeTime
+- IOWaitTime
+- TotalCPUTime
+- InternalViewKernelModePercentage
+- InternalViewUserModePercentage
+- InternalViewIdlePercentage
+- InternalViewTotalCPUPercentage
+- ExternalViewKernelModePercentage
+- ExternalViewUserModePercentage
+- ExternalViewTotalCPUPercentage
+- CPUConsumptionIndex
+
+- MemorySize
+- TotalVisibleMemorySize
+- FreePhysicalMemory
+- UsedPhysicalMemory
+- SizeStoredInPagingFiles
+- FreeSpaceInPagingFiles
+- TotalVirtualMemorySize
+- FreeVirtualMemory
+- UsedVirtualMemory
+
+- PageInCounter
+- PageInRate
+
+- PageOutCounter
+- PageOutRate
+
+- LoadCounter
+- LoadAverage
+
+- ContextSwitchCounter
+- ContextSwitchRate
+
+- HardwareInterruptCounter
+- HardwareInterruptRate
+
+
+/* ---------------------------------------------------------------------------*/
+
+NumberOfUsers
+-------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint32
+Units           : users
+
+Value Source    : execute command "who -u | wc -l"; 
+                  "who -u" displays the users currently logged on; 
+                  "wc -l" counts the lines and delivers the number of users
+
+
+/* ---------------------------------------------------------------------------*/
+
+NumberOfProcesses
+-----------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint32
+Units           : processes
+
+Value Source    : fourth entry in /proc/loadavg contains 
+                  "<running processes>/<total number of processes>"
+
+
+/* ---------------------------------------------------------------------------*/
+
+CPUTime
+-------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : Jiffies ( 1/100ths of a second )
+
+Value Source    : the first line of /proc/stat contains the CPU times,
+                  summarized over all CPUs
+
+Syntax          : <user mode>:<user mode with low priority(nice)>:<kernel mode>:<idle task>:
+                  <iowait>:<irq>:<softirq>:<steal time>:<guest time>
+
+
+KernelModeTime
+--------------
+
+Metric Type     : Interval
+Based on Metric : CPUTime
+CIM Data Type   : uint64
+Units           : milli-seconds
+
+Value Source    : third entry of CPUTime * 10
+
+
+UserModeTime
+------------
+
+Metric Type     : Interval
+Based on Metric : CPUTime
+CIM Data Type   : uint64
+Units           : milli-seconds
+
+Value Source    : first entry of CPUTime * 10
+
+IOWaitTime
+------------
+
+Metric Type     : Interval
+Based on Metric : CPUTime
+CIM Data Type   : uint64
+Units           : milli-seconds
+
+Value Source    : fith entry of CPUTime * 10
+
+TotalCPUTime
+------------
+
+Metric Type     : Interval
+Based on Metric : CPUTime
+CIM Data Type   : uint64
+Units           : milli-seconds
+
+Value Source    : sum of user and kernel CPUTime
+
+
+InternalViewKernelModePercentage
+--------------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : Percentage of cpu used in kernel mode by the system.
+
+
+InternalViewUserModePercentage
+------------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : Percentage of cpu used in user mode by the system.
+
+
+InternalViewTotalCPUPercentage
+------------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : 100 - InternalViewIdlePercentage
+
+
+InternalViewIdlePercentage
+--------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : Percentage of time the system was idle.
+
+
+ExternalViewKernelModePercentage
+--------------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : At this point in time there exists no Linux implementation to 
+		  gather performance data in a virtualized environments. 
+		  Therefore the value is the same as for 
+		  InternalViewKernelModePercentage.
+
+
+ExternalViewUserModePercentage
+------------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : At this point in time there exists no Linux implementation to 
+		  gather performance data in a virtualized environments. 
+		  Therefore the value is the same as for 
+		  InternalViewUserModePercentage.
+
+
+ExternalViewTotalCPUPercentage
+------------------------------
+
+Metric Type     : Percentage
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : percent
+
+Value Source    : At this point in time there exists no Linux implementation to 
+		  gather performance data in a virtualized environments. 
+		  Therefore the value is the same as for 
+		  InternalViewTotalCPUPercentage.
+
+
+CPUConsumptionIndex
+-------------------
+
+Metric Type     : Index
+Based on Metric : CPUTime
+CIM Data Type   : sint32
+Units           : index
+
+Value Source    : CPU time used divided by CPU time available.
+
+
+/* ---------------------------------------------------------------------------*/
+
+MemorySize
+----------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : kByte
+
+Value Source    : /proc/meminfo contains TotalVisibleMemorySize (MemTotal),
+		  FreePhysicalMemory (MemFree), SizeStoredInPagingFiles 
+		  (SwapTotal), FreeSpaceInPagingFiles (SwapFree)
+
+Syntax          : <TotalVisibleMemorySize>:<FreePhysicalMemory>:<SizeStoredInPagingFiles>:<FreeSpaceInPagingFiles>
+
+
+TotalVisibleMemorySize
+----------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : first entry of MemorySize
+
+
+FreePhysicalMemory
+------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : second entry of MemorySize
+
+
+UsedPhysicalMemory
+------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : first entry minus second of MemorySize
+
+
+SizeStoredInPagingFiles
+-----------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : third entry of MemorySize
+
+
+FreeSpaceInPagingFiles
+----------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : fourth entry of MemorySize
+
+
+TotalVirtualMemorySize
+----------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : sum of first and third entry of MemorySize
+
+
+FreeVirtualMemory
+-----------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : sum of second and fourth entry of MemorySize
+
+
+UsedVirtualMemory
+------------------
+
+Metric Type     : Point
+Based on Metric : MemorySize
+CIM Data Type   : uint64
+Units           : kByte
+
+Value Source    : sum of first and third entry minus sum of second and fourth
+				  entry of MemorySize
+
+
+/* ---------------------------------------------------------------------------*/
+
+PageInCounter
+-------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : pages since boot
+
+Value Source    : kernel 2.4 : /proc/stat line "swap" second entry contains the
+		  number of pages paged in since system start up
+		  kernel >=2.5 : /proc/vmstat entry pswpin
+
+
+PageInRate
+----------
+
+Metric Type     : Rate
+Based on Metric : PageInCounter
+CIM Data Type   : uint64
+Units           : pages per second
+
+Value Source    : PageInCounter(n)-PageInCounter(n-1) / 
+		  SampleTime(n)-SampleTime(n-1)
+
+
+/* ---------------------------------------------------------------------------*/
+
+PageOutCounter
+--------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : pages since boot
+
+Value Source    : kernel 2.4 : /proc/stat line "swap" thirf entry contains the
+		  number of pages paged out since system start up
+		  kernel >=2.5 : /proc/vmstat entry pswpout
+
+
+PageOutRate
+-----------
+
+Metric Type     : Rate
+Based on Metric : PageInCounter
+CIM Data Type   : uint64
+Units           : pages per second
+
+Value Source    : PageOutCounter(n)-PageOutCounter(n-1) / 
+		  SampleTime(n)-SampleTime(n-1)
+
+
+/* ---------------------------------------------------------------------------*/
+
+LoadCounter
+-----------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : sint32
+Units           : number of jobs in run queue per 60 seconds
+                  (equal to sample interval !)
+
+Value Source    : the first entry of /proc/loadavg contains the number of jobs 
+                  in run queue averaged over the last 60 seconds
+
+
+LoadAverage
+-----------
+
+Metric Type     : Average
+Based on Metric : LoadCounter
+CIM Data Type   : sint32
+Units           : averaged number of jobs in run queue per asked interval
+
+Value Source    : LoadCounter(0)+...+LoadCounter(n) / n
+
+
+/* ---------------------------------------------------------------------------*/
+
+ContextSwitchCounter
+--------------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : context switches since boot
+
+Value Source    : the line "ctxt" of /proc/stat contains the number of context 
+                  switches since system start up
+
+
+ContextSwitchRate
+-----------------
+
+Metric Type     : Rate
+Based on Metric : PageInCounter
+CIM Data Type   : uint64
+Units           : context switches per second
+
+Value Source    : ContextSwitchCounter(n)-ContextSwitchCounter(n-1) / 
+		  SampleTime(n)-SampleTime(n-1)
+
+
+/* ---------------------------------------------------------------------------*/
+
+HardwareInterruptCounter
+------------------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : hardware interrupts since boot
+
+Value Source    : the line "intr" of /proc/stat contains the number of hardware 
+                  interrupts since system start up
+
+
+HardwareInterruptRate
+---------------------
+
+Metric Type     : Rate
+Based on Metric : PageInCounter
+CIM Data Type   : uint64
+Units           : hardware interrupts per second
+
+Value Source    : HardwareInterruptCounter(n)-HardwareInterruptCounter(n-1) / 
+		  SampleTime(n)-SampleTime(n-1)
+
+
+/* ---------------------------------------------------------------------------*/
