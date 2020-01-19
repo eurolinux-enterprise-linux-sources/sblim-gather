@@ -1,0 +1,26 @@
+diff -up sblim-gather-2.2.8/man/gatherd.conf.5.xml.pre.in.orig sblim-gather-2.2.8/man/gatherd.conf.5.xml.pre.in
+--- sblim-gather-2.2.8/man/gatherd.conf.5.xml.pre.in.orig	2013-02-12 02:08:25.000000000 +0100
++++ sblim-gather-2.2.8/man/gatherd.conf.5.xml.pre.in	2014-03-17 12:23:54.825349694 +0100
+@@ -71,7 +71,8 @@ Valid components are: comm, util, gather
+ <term><option>PluginDirectory</option>=<replaceable>dir</replaceable></term>
+ <listitem>
+ <para>Directory where metric collection plugins are located. Default is
+-<command>@libdir@/gather/mplug</command>.</para>
++<command>/usr/lib/gather/mplug</command>
++(<command>/usr/lib64/gather/mplug</command>).</para>
+ </listitem>
+ </varlistentry>
+ <varlistentry>
+diff -up sblim-gather-2.2.8/man/reposd.conf.5.xml.pre.in.orig sblim-gather-2.2.8/man/reposd.conf.5.xml.pre.in
+--- sblim-gather-2.2.8/man/reposd.conf.5.xml.pre.in.orig	2014-03-17 12:24:10.634427699 +0100
++++ sblim-gather-2.2.8/man/reposd.conf.5.xml.pre.in	2014-03-17 12:24:38.697566201 +0100
+@@ -71,7 +71,8 @@ Valid components are: comm, util, repos.
+ <term><option>PluginDirectory</option>=<replaceable>dir</replaceable></term>
+ <listitem>
+ <para>Directory where repository metric plugins are located. Default is
+-<command>@libdir@/gather/rplug</command>.</para>
++<command>/usr/lib/gather/rplug</command>
++(<command>/usr/lib64/gather/rplug</command>).</para>
+ </listitem>
+ </varlistentry>
+ <varlistentry>

@@ -4,7 +4,7 @@
 
 Name:           sblim-gather
 Version:        2.2.8
-Release:        2%{?dist}
+Release:        6%{?dist}
 Summary:        SBLIM Gatherer
 
 Group:          Applications/System
@@ -28,6 +28,9 @@ BuildRequires:  xmlto
 BuildRequires:  cmake
 Patch1:         sblim-gather-2.2.7-missing_providers.patch
 Patch2:         sblim-gather-2.2.7-typos.patch
+
+# Patch3: fixes multilib conflicts, rhbz#1076428
+Patch3:         sblim-gather-2.2.8-multilib.patch
 
 Requires:       tog-pegasus >= %{tog_pegasus_version}
 Requires(post): systemd
@@ -84,6 +87,7 @@ Testsuite
 tar xfvz %{SOURCE4}
 %patch1 -p1 -b .missing_providers
 %patch2 -p1 -b .typos
+%patch3 -p1 -b .multilib
 
 %build
 %ifarch s390 s390x ppc ppc64
@@ -208,7 +212,7 @@ fi
 if [ $1 -gt 1 ]
 then
   %{_datadir}/%{name}/provider-register.sh -t pegasus -d \
-        -r %{GATHER_REGISTRATION} -m %{GATHER_SCHEMA} &> /dev/null
+        -r %{GATHER_REGISTRATION} -m %{GATHER_SCHEMA} &> /dev/null || :;
   # don't let registration failure when server not running fail upgrade!
 fi
 
@@ -229,13 +233,27 @@ fi
 if [ $1 -eq 0 ]
 then
   %{_datadir}/%{name}/provider-register.sh -t pegasus -d \
-        -r %{GATHER_REGISTRATION} -m %{GATHER_SCHEMA} > /dev/null
+        -r %{GATHER_REGISTRATION} -m %{GATHER_SCHEMA} &> /dev/null || :;
   # don't let registration failure when server not running fail erase!
 fi
 
 %postun provider -p /sbin/ldconfig
 
 %changelog
+* Mon Mar 24 2014 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-6
+- Fix failing scriptlets when CIMOM is not running
+  Related: #1076428
+
+* Mon Mar 17 2014 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-5
+- Fix multilib conflicts
+  Resolves: #1076428
+
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.2.8-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.2.8-3
+- Mass rebuild 2013-12-27
+
 * Mon May 06 2013 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-2
 - Add -fno-strict-aliasing
 - Do not ship old init script, add systemd support
