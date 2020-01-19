@@ -5,7 +5,7 @@
 
 Name:           sblim-gather
 Version:        2.2.8
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        SBLIM Gatherer
 
 Group:          Applications/System
@@ -32,6 +32,8 @@ Patch2:         sblim-gather-2.2.7-typos.patch
 
 # Patch3: fixes multilib conflicts, rhbz#1076428
 Patch3:         sblim-gather-2.2.8-multilib.patch
+# Patch4: backported from upstream, rhbz#1467038
+Patch4:         sblim-gather-2.2.8-SIGFPE-during-calcluation-of-interval-metric.patch
 
 Requires:       tog-pegasus >= %{tog_pegasus_version}
 Requires(post): systemd
@@ -89,6 +91,7 @@ tar xfvz %{SOURCE4}
 %patch1 -p1 -b .missing_providers
 %patch2 -p1 -b .typos
 %patch3 -p1 -b .multilib
+%patch4 -p1 -b .SIGFPE-during-calcluation-of-interval-metric
 
 %build
 %ifarch s390 s390x ppc ppc64
@@ -238,6 +241,11 @@ fi
 %postun provider -p /sbin/ldconfig
 
 %changelog
+* Tue Jul 11 2017 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-8
+- Fix reposd crashes with SIGFPE during calcluation of interval metric when there
+  are duplicate data values in the repository
+  Resolves: #1467038
+
 * Mon Feb 22 2016 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-7
 - Fix sblim-gather is installing files under /etc/tmpfiles.d/
   Resolves: #1180992

@@ -1,0 +1,97 @@
+diff -up sblim-gather-2.2.8/gather.c.orig sblim-gather-2.2.8/gather.c
+--- sblim-gather-2.2.8/gather.c.orig	2013-02-16 00:18:57.000000000 +0100
++++ sblim-gather-2.2.8/gather.c	2017-07-11 09:38:42.053847679 +0200
+@@ -375,5 +375,12 @@ static void gather_sample(int id)
+   md=MPR_GetMetric(id);
+   if (md && md->mproc) {
+     md->mproc(id,MetricRepository->mrep_add);
++    /* For testing [bugs:#2739] */
++    extern char *hiccup;
++    if (hiccup && !strcmp(md->mdName, hiccup)) {
++      fprintf(stderr,"--> %s(%i) : gather_sample() adding duplicate value for \"%s\"\n",
++           __FILE__,__LINE__,md->mdName);
++      md->mproc(id,MetricRepository->mrep_add); // hack to add dup value to the repo
++    }
+   }
+ }
+diff -up sblim-gather-2.2.8/gatherd.c.orig sblim-gather-2.2.8/gatherd.c
+--- sblim-gather-2.2.8/gatherd.c.orig	2013-02-12 02:08:25.000000000 +0100
++++ sblim-gather-2.2.8/gatherd.c	2017-07-11 09:38:42.054847680 +0200
+@@ -34,6 +34,8 @@
+ 
+ #define CHECKBUFFER(comm,buffer,sz,len) ((comm)->gc_datalen+sizeof(GATHERCOMM)+(sz)<=len)
+ 
++char *hiccup;
++
+ int main(int argc, char * argv[])
+ {
+   int           quit=0;
+@@ -62,6 +64,15 @@ int main(int argc, char * argv[])
+     }
+   }
+ 
++  /* For testing [bugs:#2739] */
++  if (argc == 2 && !strncasecmp(argv[1],"hiccup=",7)) {
++    if (argv[1][7]) {
++      hiccup = strdup(argv[1] + 7);
++      fprintf(stderr,"--> %s(%i) : Hiccup on metric \"%s\"\n",
++          __FILE__,__LINE__,hiccup);
++    }
++  }
++
+   if (gathercfg_init()) {
+     m_log(M_ERROR,M_SHOW,"Could not open gatherd config file.\n");
+   }
+diff -up sblim-gather-2.2.8/plugin/repositoryUnixProcess.c.orig sblim-gather-2.2.8/plugin/repositoryUnixProcess.c
+--- sblim-gather-2.2.8/plugin/repositoryUnixProcess.c.orig	2013-02-12 02:08:25.000000000 +0100
++++ sblim-gather-2.2.8/plugin/repositoryUnixProcess.c	2017-07-11 09:38:42.054847680 +0200
+@@ -608,8 +608,9 @@ size_t metricCalcPageInRate( MetricValue
+ 	  __FILE__,__LINE__);
+ #endif
+   if ( mv && (vlen>=sizeof(unsigned long long)) && (mnum>=2) ) {
+-    total = (*(unsigned long long*)mv[0].mvData - *(unsigned long long*)mv[mnum-1].mvData) / 
+-            (mv[0].mvTimeStamp - mv[mnum-1].mvTimeStamp);
++    total = (unsigned long long) (ntohll(*(unsigned long long*) mv[0].mvData)
++        - ntohll(*(unsigned long long*) mv[mnum - 1].mvData))
++        / (mv[0].mvTimeStamp - mv[mnum - 1].mvTimeStamp);
+     memcpy(v, &total, sizeof(unsigned long long));
+     return sizeof(unsigned long long);
+   }
+@@ -655,8 +656,9 @@ size_t metricCalcPageOutRate( MetricValu
+ 	  __FILE__,__LINE__);
+ #endif
+   if ( mv && (vlen>=sizeof(unsigned long long)) && (mnum>=2) ) {
+-    total = (*(unsigned long long*)mv[0].mvData - *(unsigned long long*)mv[mnum-1].mvData) / 
+-            (mv[0].mvTimeStamp - mv[mnum-1].mvTimeStamp);
++    total = (unsigned long long) (ntohll(*(unsigned long long*) mv[0].mvData)
++        - ntohll(*(unsigned long long*) mv[mnum - 1].mvData))
++        / (mv[0].mvTimeStamp - mv[mnum - 1].mvTimeStamp);
+     memcpy(v, &total, sizeof(unsigned long long));
+     return sizeof(unsigned long long);
+   }
+diff -up sblim-gather-2.2.8/repos.c.orig sblim-gather-2.2.8/repos.c
+--- sblim-gather-2.2.8/repos.c.orig	2013-02-16 00:18:57.000000000 +0100
++++ sblim-gather-2.2.8/repos.c	2017-07-11 09:38:42.055847681 +0200
+@@ -23,6 +23,7 @@
+ #include "repos.h"
+ #include "rreg.h"
+ #include "rplugmgr.h"
++#include "mlog.h"
+ #include "mrepos.h"
+ #include "mtrace.h"
+ #include <reposcfg.h>
+@@ -382,6 +383,14 @@ int reposvalue_get(ValueRequest *vs, COM
+ 	      ch_alloc(ch,vs->vsValues[actnum].viValueLen);
+ 	    vs->vsValues[actnum].viResource=ch_alloc(ch,reslen);	    
+ 	    memcpy(vs->vsValues[actnum].viResource, mv[j][numv[j]-1].mvResource,reslen);
++	    /* Workround for [bugs:#2739]: check for duplicate timestamp, don't crash */
++	    if (mv[j][0].mvTimeStamp == mv[j][1].mvTimeStamp) {
++	      m_log(M_ERROR,M_SHOW,"Hit repeated value on calculation of %s (mid=%d)\n", mc->mcName, mv[j][0].mvId);
++	      m_log(M_ERROR,M_SHOW,"0: sys=%s res=%s value=%lu at %lu\n",mv[j][0].mvSystemId, mv[j][0].mvResource, ntohll(*(unsigned long long*)mv[j][0].mvData), mv[j][0].mvTimeStamp);
++	      m_log(M_ERROR,M_SHOW,"1: sys=%s res=%s value=%lu at %lu\n",mv[j][1].mvSystemId, mv[j][1].mvResource, ntohll(*(unsigned long long*)mv[j][1].mvData), mv[j][1].mvTimeStamp);
++	      memset(vs->vsValues[actnum].viValue, 0, sizeof(unsigned long long));
++	      vs->vsValues[actnum].viValueLen = sizeof(unsigned long long);
++	    } else // do the calculation as normal
+ 	    if (mc->mcCalc(mv[j],
+ 			   numv[j],
+ 			   vs->vsValues[actnum].viValue,
