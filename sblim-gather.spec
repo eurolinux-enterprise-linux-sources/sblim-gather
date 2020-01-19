@@ -1,10 +1,11 @@
 %global sblim_testsuite_version 1.2.4
 %global provider_dir %{_libdir}/cmpi
 %global tog_pegasus_version 2:2.6.1-1
+%define _hardened_build 1
 
 Name:           sblim-gather
 Version:        2.2.8
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        SBLIM Gatherer
 
 Group:          Applications/System
@@ -91,9 +92,9 @@ tar xfvz %{SOURCE4}
 
 %build
 %ifarch s390 s390x ppc ppc64
-export CFLAGS="$RPM_OPT_FLAGS -fsigned-char -fno-strict-aliasing"
+export CFLAGS="$RPM_OPT_FLAGS -fsigned-char -fno-strict-aliasing -Wl,-z,relro,-z,now"
 %else
-export CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
+export CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -Wl,-z,relro,-z,now"
 %endif
 %configure TESTSUITEDIR=%{_datadir}/sblim-testsuite \
         CIMSERVER=pegasus \
@@ -125,9 +126,8 @@ cat %{SOURCE1} \
 chmod 644 $RPM_BUILD_ROOT/%{_includedir}/gather/gather-config.h
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT/%{_includedir}/gather/
 
-%if %{?fedora}0 > 140 || %{?rhel}0 > 60
-    install -p -D -m 644 %{SOURCE3} $RPM_BUILD_ROOT/%{_sysconfdir}/tmpfiles.d/sblim-gather.conf
-%endif
+mkdir -p $RPM_BUILD_ROOT/%{_tmpfilesdir}
+install -p -D -m 644 %{SOURCE3} $RPM_BUILD_ROOT/%{_tmpfilesdir}/sblim-gather.conf
 
 # shared libraries
 mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/ld.so.conf.d
@@ -152,9 +152,7 @@ install -p -m 644 %{SOURCE6} $RPM_BUILD_ROOT%{_unitdir}/reposd.service
 %{_bindir}/*
 %{_sbindir}/*
 %{_datadir}/doc/%{name}-%{version}
-%if %{?fedora}0 > 140 || %{?rhel}0 > 60
-    %config(noreplace) %{_sysconfdir}/tmpfiles.d/sblim-gather.conf
-%endif
+%{_tmpfilesdir}/sblim-gather.conf
 %ghost /var/run/gather
 %{_libdir}/lib[^O]*.so.*
 %dir %{_libdir}/gather
@@ -240,6 +238,12 @@ fi
 %postun provider -p /sbin/ldconfig
 
 %changelog
+* Mon Feb 22 2016 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-7
+- Fix sblim-gather is installing files under /etc/tmpfiles.d/
+  Resolves: #1180992
+- Build with PIE and full RELRO
+  Resolves: #1092566
+
 * Mon Mar 24 2014 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-6
 - Fix failing scriptlets when CIMOM is not running
   Related: #1076428
