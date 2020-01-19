@@ -5,7 +5,7 @@
 
 Name:           sblim-gather
 Version:        2.2.8
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        SBLIM Gatherer
 
 Group:          Applications/System
@@ -34,6 +34,8 @@ Patch2:         sblim-gather-2.2.7-typos.patch
 Patch3:         sblim-gather-2.2.8-multilib.patch
 # Patch4: backported from upstream, rhbz#1467038
 Patch4:         sblim-gather-2.2.8-SIGFPE-during-calcluation-of-interval-metric.patch
+# Patch5: use Pegasus root/interop instead of root/PG_Interop
+Patch5:         sblim-gather-2.2.8-pegasus-interop.patch
 
 Requires:       tog-pegasus >= %{tog_pegasus_version}
 Requires(post): systemd
@@ -92,6 +94,7 @@ tar xfvz %{SOURCE4}
 %patch2 -p1 -b .typos
 %patch3 -p1 -b .multilib
 %patch4 -p1 -b .SIGFPE-during-calcluation-of-interval-metric
+%patch5 -p1 -b .pegasus-interop
 
 %build
 %ifarch s390 s390x ppc ppc64
@@ -101,6 +104,9 @@ export CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -Wl,-z,relro,-z,now"
 %endif
 %configure TESTSUITEDIR=%{_datadir}/sblim-testsuite \
         CIMSERVER=pegasus \
+%ifarch s390 s390x
+        --enable-z \
+%endif
         PROVIDERDIR=%{provider_dir}
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
@@ -241,6 +247,11 @@ fi
 %postun provider -p /sbin/ldconfig
 
 %changelog
+* Fri Jun 15 2018 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-9
+- Use Pegasus root/interop instead of root/PG_Interop
+- Enable System Z specific providers for s390 and s390x architecture
+  Resolves: #1545811
+
 * Tue Jul 11 2017 Vitezslav Crhonek <vcrhonek@redhat.com> - 2.2.8-8
 - Fix reposd crashes with SIGFPE during calcluation of interval metric when there
   are duplicate data values in the repository

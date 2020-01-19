@@ -1,0 +1,12 @@
+diff -up sblim-gather-2.2.8/provider/provider-register.sh.orig sblim-gather-2.2.8/provider/provider-register.sh
+--- sblim-gather-2.2.8/provider/provider-register.sh.orig	2018-06-15 09:51:19.431344069 +0200
++++ sblim-gather-2.2.8/provider/provider-register.sh	2018-06-15 09:51:19.440343863 +0200
+@@ -216,7 +216,7 @@ pegasus_install()
+     then
+ 	chatter Registering providers with $state cimserver
+ 	$CIMMOF -uc -I $mofpath -n $namespace $mymofs &&
+-	$CIMMOF -uc -n root/PG_Interop $_REGFILENAME
++	$CIMMOF -uc -n root/interop $_REGFILENAME
+     else
+ 	echo "Failed to build pegasus registration MOF." >&2
+ 	return 1
