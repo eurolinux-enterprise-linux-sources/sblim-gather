@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# $Id: gatherer.init-suse.in,v 1.1 2009/09/23 01:45:14 tyreld Exp $
+#
+### BEGIN INIT INFO
+# Provides:          gatherd
+# Default-Start:     3 5
+# Default-Stop:      0 1 2 6
+# Short-Description: SBLIM Metric Gatherer collection daemon
+# Description:       Manage metric collections service
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.status
+
+GATHER=@sbindir@/gatherd
+REPOS=@sbindir@/reposd
+
+GPROCESS=gatherd
+RPROCESS=reposd
+
+start() {
+	echo -n "Starting gatherd: "
+	startproc $GATHER
+	rc_status -v
+	echo -n "Starting reposd: "
+	startproc $REPOS
+	rc_status -v
+}	
+
+stop() {
+	echo -n "Shutting down reposd: "
+	killproc $RPROCESS
+	rc_status -v
+	echo -n "Shutting down gatherd: "
+	killproc $GPROCESS
+	rc_status -v
+}
+
+reload() {
+	echo -n "Reloading gatherd configuration: "
+	killproc -HUP $GPROCESS
+	rc_status -v
+	echo -n "Reloading reposd configuration: "
+	killproc -HUP $RPROCESS
+	rc_status -v
+}
+
+status() {
+	echo -n "gatherd: "
+	checkproc $GPROCESS
+	rc_status -v
+	echo -n "reposd: "
+	checkproc $RPROCESS
+	rc_status -v
+}
+
+case "$1" in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    status)
+	status
+	;;
+    restart)
+   	stop
+	start
+	;;
+    reload)
+	reload
+	;;
+    condrestart)
+	$0 status
+	if test $? = 0; then
+		$0 restart
+	else
+		rc_reset
+	fi
+	rc_status
+	;;
+    *)
+	echo "Usage: gather {start|stop|status|reload|restart|condrestart}"
+	exit 1
+	;;
+esac
+exit $?

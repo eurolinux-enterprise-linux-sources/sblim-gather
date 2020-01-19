@@ -1,0 +1,85 @@
+SBLIM Performance Data Gatherer and Provider
+============================================
+
+Instructions for the Indication Provider Test
+
+(C) Copyright IBM Corp. 2004, 2009
+
+ THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+
+ You can obtain a current copy of the Eclipse Public License from
+ http://www.opensource.org/licenses/eclipse-1.0.php
+
+Author: Viktor Mihajlovski <mihajlov@de.ibm.com>
+Last Change Date: 12/15/2004
+
+Changelog:
+12/15/2004	Initial Version.
+
+
+About
+-----
+The purpose of this document is to describe how to test the indication
+provider for the Linux Metric classes.
+
+Requirements
+------------
+Of course the gatherer package must be installed and set up correctly.
+Also needed are the SBLIM packages cmpi-base, cmpi-fsvol an cmpi-network.
+As the provided tests are using the Pegasus indication subscription mechanism
+they require Pegasus (at least at version 2.4 with the patch for bug 2389
+applied, http://cvs.opengroup.org/bugzilla/attachment.cgi?id=142&action=view).
+
+Test Scenario
+-------------
+A CIM indication subscription is created using a filter expression, querying
+for a Linux_MetricIndication (process indication) and a CIMXML handler
+implemented by the Pegasus SimpleDisplayConsumer. If all is working as
+expected the file "indicationLog" will contain entries for the received
+notifications.
+
+Steps
+-----
+1. Make sure you have Pegasus installed and working and have the gatherer
+package and providers installed. Also make sure that sblim-cmpi-base,
+sblim-cmpi-fsvol and sblim-cmpi-network are installed.
+
+2. Start the gathering and repository service. See the scripts 
+start_gathering.sh and stop_gathering.sh on how to do this. If you want to
+use the scripts you will also need to install wbemcli from the SBLIM project
+site (http://oss.software.ibm.com/sblim).
+
+3. Register the Pegasus Simple Display consumer. The registration MOF for that 
+is $PEGASUS_ROOT/src/Providers/sample/Load/SimpleDisplayConsumerR.mof
+
+4. The necessary objects for the subscription are created via the wbemexec
+cmd and the accompanying XML files (Pegasus*.xml) in this directory. Please
+edit the files to contain the hostname of your system (use dnsdomainname to
+find it out). Although unlikely, it could happen that the metric ids have
+different values on your system. In this case use the following command to
+list the metric ids:
+wbemcli ein http://localhost/root/cimv2:CIM_BaseMetricDefinition 
+and replace the Id of the Local File System metric AvailableSpace
+in the PegasusCreateFilter.xml file.
+
+5. Now create the subscription using the Pegasus wbemexec command and the
+XML files in this directory. The correct order is
+wbemexec PegasusCreateFilter.xml
+wbemexec PegasusCreateHandler.xml
+wbemexec PegasusCreateSubscription.xml
+
+6. After no longer than a minute, appropriate entries should show up in
+the indicationLog file in the CIM Servers home directory
+
+
+7. In order to unsubscribe you need to call 
+wbemexec PegasusDeleteSubscription.xml
+and optionally delete the handler and filter as well.
+
+Troubleshooting
+---------------
+If things don't work as expected, have a look at the syslog and the
+/tmp/repos_provider.trc file. You can also turn on tracing of the repository
+daemon via /etc/repos.trc.

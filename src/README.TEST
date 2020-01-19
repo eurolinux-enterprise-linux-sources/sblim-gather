@@ -1,0 +1,33 @@
+Test Environment for SBLIM Metrics Instrumentation
+
+The SBLIM project offers a Test Suite to perform tests against
+the provider implementation and consistence tests against system
+values.
+
+Prerequisites 
+.............
+
+- sblim-gather packageproperly installed
+- sblim-cmpi-base package 
+- testsuite package
+
+
+Pepare Test
+...........
+
+done automatically during configure
+
+
+Install Configuration Files
+...........................
+
+done during make install
+
+
+Run Test
+........
+
+Run the test in the testsuite directory (typically /usr/share/sblim-testsuite)
+by executing 
+. test-gather.sh
+echo Status: $SBLIM_TESTSUITE_RUN

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<refentry id="gatherd.conf">
+
+<refentryinfo>
+<productname>@PACKAGE_NAME@-@PACKAGE_VERSION@</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle>gatherd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+<refmiscinfo class="manual">Linux Programmer's Manual</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gatherd.conf</refname>
+<refpurpose>SBLIM metric repository daemon configuration file</refpurpose>
+<refclass>UNIX/Linux</refclass>
+</refnamediv>
+
+<refsect1>
+<title>Description</title>
+<para>
+The file <replaceable>gatherd.conf</replaceable> is read by <citerefentry>
+<refentrytitle>gatherd</refentrytitle><manvolnum>8</manvolnum></citerefentry>
+at startup. Each line consists of a configuration option value pair delimited
+by an '=' character. A '#' (number sign) indicates the beginning of a comment.
+</para>
+</refsect1>
+
+<refsect1>
+<title>Options</title>
+<variablelist>
+<varlistentry>
+<term><option>RepositoryHost</option>=<replaceable>addr</replaceable></term>
+<listitem>
+<para>The ip address of the remote repository daemon to which metric values will
+be sent. Default is <command>localhost</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>RepositoryPort</option>=<replaceable>port</replaceable></term>
+<listitem>
+<para>TCP port of remote repository daemon. Default is <command>6363</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>TraceLevel</option>=<replaceable>level</replaceable></term>
+<listitem>
+<para>Trace level for the <command>gatherd</command> process. Default is
+<command>0</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>TraceFile</option>=<replaceable>file</replaceable></term>
+<listitem>
+<para>Name of file to write tracing information. Default is
+<command>stderr</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>TraceComponents</option>=<replaceable>comps[:comps...]</replaceable></term>
+<listitem>
+<para>Gatherer components to be traced seperated by a colon (:).
+Valid components are: comm, util, gather, rrepos. Default is <command>none</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>PluginDirectory</option>=<replaceable>dir</replaceable></term>
+<listitem>
+<para>Directory where metric collection plugins are located. Default is
+<command>@libdir@/gather/mplug</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>AutoLoad</option>=<replaceable>plugin[:plugin...]</replaceable></term>
+<listitem>
+<para>Plugins to automatically load, initalize and start sampling. Valid values are:
+* or colon-seperated list. Default is <command>none</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>SampleInterval</option>=<replaceable>secs</replaceable></term>
+<listitem>
+<para>If specified this interval will override the plugin defined individual
+sampling intervals. Unit is in seconds.</para>
+<para><command>WARNING:</command> This config option should only be used for
+debugging purposes. It overrides the per metric defined sample interval of all
+plugins, and really short intervals can introduce skew in the data due to seconds
+not being a high enough sample resolution.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>Synchronization</option>=<replaceable>0|1</replaceable></term>
+<listitem>
+<para>Specifies whether the metric plugins are invoked in a time-synchronized
+manner. Synchronized metrics with the same sample interval will be scheduled
+together. Possible values are:</para>
+<screen><![CDATA[1 synchronized relative to Jan, 1st, 1970, 00:00]]></screen>
+<screen><![CDATA[0 unsynchronized, will be scheduled asap]]></screen>
+<para>Default is <command>1</command>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Bugs</title>
+<para>The SBLIM project maintains a mailing list to which you should direct all
+questions regarding sfcb, sfcc, wbemcli, the metric data gatherer, or any of the 
+SBLIM providers. To subscribe to this list visit:
+
+<screen><![CDATA[https://lists.sourceforge.net/lists/listinfo/sblim-issues]]></screen>
+</para>
+
+<para>Please report bugs you discover to the bug tracker. The SBLIM project bug 
+tracking page can be found at:
+
+<screen><![CDATA[https://sourceforge.net/tracker/?group_id=128809&atid=712784]]></screen>
+</para>
+</refsect1>
+
+<refsect1>
+<title>Authors</title>
+<para>Please refer to the AUTHORS file distributed with sblim-gather.</para>
+</refsect1>
+
+<refsect1>
+<title>Copyright</title>
+<para>Copyright © 2003-2012 IBM Corp.</para>
+</refsect1>
+
+<refsect1>
+<title>License</title>
+<para><command>gatherd.conf</command> is distributed under the terms of the Eclipse
+Public License ("Agreement"). Any use, reproduction or distribution of this
+program constitutes recipeients acceptance of the agreement.</para>
+
+<para>You can obtain a current copy of the Eclipse Public License from
+http://www.opensource.org/licenses/eclipse-1.0.php</para>
+</refsect1>
+
+<refsect1>
+<title>See Also</title>
+<para>
+<citerefentry>
+<refentrytitle>gatherd</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>
+</para>
+</refsect1>
+
+</refentry>

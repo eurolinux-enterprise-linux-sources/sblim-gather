@@ -1,0 +1,76 @@
+//
+// $Id: Linux_zCHMetric.mof,v 1.2 2009/05/20 19:39:56 tyreld Exp $
+//
+// (C) Copyright IBM Corp. 2006, 2009
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Eclipse Public License from
+// http://www.opensource.org/licenses/eclipse-1.0.php
+//
+// Author:       Alexander Wolf-Reber <a.wolf-reber@de.ibm.com>
+// Contributors: 
+//
+// Description:
+// This mof file contains the definitions for the z Channel
+// Metrics.
+//
+
+
+
+// ===================================================================
+// Linux_zChannelMetric
+// ===================================================================
+
+[ Provider("cmpi:OSBase_MetricDefinitionProvider"),
+  Description ("Class for System z CH Metric Definitions")
+]
+class Linux_zChannelMetric : CIM_BaseMetricDefinition
+{
+	[Experimental]
+	boolean IsContinuous;
+	[Experimental]
+	uint16 ChangeType;
+	[Experimental]
+	uint16 TimeScope;
+	[Experimental]
+	uint16 GatheringType;
+};
+
+
+// ===================================================================
+// Linux_zChannelMetricValue
+// ===================================================================
+
+[ Provider("cmpi:OSBase_MetricValueProvider"),
+  Description ("Class for System z CH Metric Value")
+]
+class Linux_zChannelMetricValue : CIM_BaseMetricValue
+{ };
+
+
+// ===================================================================
+// instance definitions
+// ===================================================================
+
+instance of Linux_MetricPlugin  
+{
+	MetricDefinitionClassName = "Linux_zChannelMetric";
+ 	MetricPluginName = "libmetriczCH.so";
+};
+
+instance of Linux_RepositoryPlugin  
+{
+	MetricDefinitionClassName = "Linux_zChannelMetric";
+ 	RepositoryPluginName = "librepositoryzCH.so";
+ 	CIMTranslationPluginName = "libcimplugzCH.so";
+};
+
+
+instance of Linux_MetricValueDefinition
+{
+	MetricValueClassName = "Linux_zChannelMetricValue";
+	MetricDefinitionClassName = "Linux_zChannelMetric";
+};

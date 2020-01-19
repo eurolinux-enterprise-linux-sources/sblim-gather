@@ -1,0 +1,17 @@
+********************************************************************************
+class : Linux_MetricGatherer
+
+--------------------------------------------------------------------------------
+Linux_MetricGatherer : -eq 1
+
+--------------------------------------------------------------------------------
+SystemCreationClassName : -eq Linux_ComputerSystem
+SystemName : -eq -cmd gather-systemname.sh
+CreationClassName: -eq Linux_MetricGatherer
+Name : -eq gatherd
+
+EnabledState: -eq 2
+Started: -eq TRUE
+Sampling: -eq TRUE
+NumberOfPlugins: -eq 11
+NumberOfMetrics: -ge 24

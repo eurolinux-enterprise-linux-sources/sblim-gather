@@ -1,0 +1,125 @@
+/*
+ * $Id: metriczCEC.readme,v 1.2 2009/05/20 19:39:56 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2006, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://opensource.org/licenses/cpl1.0.php
+ *
+ * Author:       Viktor Mihajlovski
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for System z CEC Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+
+- _CECTimes
+- KernelModeTime
+- UserModeTime
+- TotalCPUTime
+- UnusedGlobalCPUCapacity
+- ExternalViewKernelModePercentage
+- ExternalViewUserModePercentage
+- ExternalViewTotalCPUPercentage
+
+/* ---------------------------------------------------------------------------*/
+
+_CECTimes
+---------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : n/a
+
+Value Source    : hypfs top level directory
+
+Syntax          : <total LPAR overhead microseconds>:<number of physical CPUs>
+
+KernelModeTime
+--------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : uint64
+Units           : Milliseconds since system start
+
+Value Source    : first entry of _CECTimes multiplied by 1000
+
+TotalCPUTime
+------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : uint64
+Units           : Milliseconds since system start
+
+Value Source    : first entry of _CECTimes multiplied by 1000
+
+UserModeTime
+------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : uint64
+Units           : Milliseconds since system start
+
+Value Source    : TotalCPUTime - KernelModeTime
+
+UnusedPartitionCPUCapacity
+--------------------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : uint64
+Units           : Milliseconds since system start
+
+Value Source    : OnlineTime (third entry of _CECTimes) - TotalCPUTime
+
+ExternalViewKernelModePercentage
+--------------------------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : float32
+Units           : Percent
+
+Value Source    : KernelModeTime/<elapsed time> divided
+                  by second entry of _CECTimes
+
+ExternalViewUserModePercentage
+------------------------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : float32
+Units           : Percent
+
+Value Source    : UserModeTime/<elapsed time> divided
+                  by second entry of _CECTimes
+
+
+ExternalViewTotalCPUPercentage
+------------------------------
+
+Metric Type     : Interval
+Based on Metric : _CECTimes
+CIM Data Type   : float32
+Units           : Percent
+
+Value Source    : TotalCPUTime/<elapsed time> divided
+                  by second entry of _CECTimes
+
+
+/* ---------------------------------------------------------------------------*/
+

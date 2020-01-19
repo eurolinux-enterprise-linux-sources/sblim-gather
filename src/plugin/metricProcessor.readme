@@ -1,0 +1,44 @@
+/*
+ * $Id: metricProcessor.readme,v 1.4 2009/05/20 19:39:56 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2003, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Heidi Neumann <heidineu@de.ibm.com>
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for Processor Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+
+- CPUTime
+
+
+/* ---------------------------------------------------------------------------*/
+
+CPUTime
+-------
+
+Metric Type     : Point 
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : Jiffies (1/100ths of a second)
+
+Value Source    : the corresponding line of /proc/stat contains the CPU times
+                  of this processor and are base for the calculation
+
+Syntax         : cpuid:<user>:<nice>:<system>:<idle>:<iowait>:<hirq>:<sirq>:<steal>:<guest>
+
+/* ---------------------------------------------------------------------------*/

@@ -1,0 +1,13 @@
+********************************************************************************
+class : Linux_OperatingSystemMetricValue
+
+--------------------------------------------------------------------------------
+Linux_OperatingSystemMetricValue : -ge 15
+
+--------------------------------------------------------------------------------
+InstanceId: -set
+MetricDefinitionId: -set
+MeasuredElementName: -set
+TimeStamp: -grep -cmd date +%Y%m%d
+Duration: -grep 0000000000.*:.*
+MetricValue: -set

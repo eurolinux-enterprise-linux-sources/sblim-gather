@@ -1,0 +1,12 @@
+[Unit]
+Description=SBLIM Data Gatherer repository of metrics
+After=syslog.target
+After=gatherer.service
+Requires=gatherer.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/reposd
+
+[Install]
+WantedBy=multi-user.target

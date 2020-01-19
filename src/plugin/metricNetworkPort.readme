@@ -1,0 +1,83 @@
+/*
+ * $Id: metricNetworkPort.readme,v 1.4 2009/05/20 19:39:56 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2003, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Heidi Neumann <heidineu@de.ibm.com>
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for Network Port Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+
+- BytesSubmitted
+- BytesTransmitted
+- BytesReceived
+- ErrorRate
+
+
+/* ---------------------------------------------------------------------------*/
+
+BytesSubmitted
+--------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : string
+Units           : Byte; number of errors since start up
+
+Value Source    : the corresponding line of /proc/net/dev contains the values
+                  of this network port
+
+Syntax          : <bytes received>:<bytes transmitted>:
+		  <errors received>:<errors transmitted>::
+		  <packets received>:<packets transmitted>
+
+
+BytesTransmitted
+----------------
+
+Metric Type     : Interval
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint64
+Units           : Byte
+
+Value Source    : second entry of BytesSubmitted
+
+
+BytesReceived
+-------------
+
+Metric Type     : Interval
+Based on Metric : BytesSubmitted
+CIM Data Type   : uint64
+Units           : Byte
+
+Value Source    : first entry of BytesSubmitted
+
+
+ErrorRate
+---------
+
+Metric Type     : Rate
+Based on Metric : BytesSubmitted
+CIM Data Type   : sint32
+Units           : errors per second
+
+Value Source    : sum of the third and fourth entry of BytesSubmitted
+
+
+/* ---------------------------------------------------------------------------*/

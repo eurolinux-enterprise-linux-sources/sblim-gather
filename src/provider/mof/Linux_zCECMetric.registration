@@ -1,0 +1,3 @@
+# Classname Namespace ProviderName ProviderModule ProviderTypes ...
+Linux_zCECMetric root/cimv2 OSBase_MetricDefinitionProvider OSBase_MetricDefinitionProvider instance
+Linux_zCECMetricValue root/cimv2 OSBase_MetricValueProvider OSBase_MetricValueProvider instance

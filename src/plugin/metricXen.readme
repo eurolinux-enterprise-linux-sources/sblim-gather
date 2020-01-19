@@ -1,0 +1,144 @@
+/*
+ * $Id: metricXen.readme,v 1.8 2010/08/04 23:24:36 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2006, 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Oliver Benke (benke@de.ibm.com)
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for Xen Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+- TotalCPUTime
+- TenMinuteTotalCPUTime
+- ActiveVirtualProcessors
+- ExternalViewTotalCPUPercentage
+- TenMinuteExternalViewTotalCPUPercentage
+- PhysicalMemoryAllocatedToVirtualSystem
+- HostFreePhysicalMemory
+- PhysicalMemoryAllocatedToVirtualSystemPercentage
+- HostMemoryPercentage
+
+plus the following metrics which are only intended for internal usage:
+- _Internal_CPUTime
+- _Internal_TotalCPUTime
+- _Internal_Memory
+- _Internal10m_CPUTime
+- _Internal10m_TotalCPUTime
+
+/* ---------------------------------------------------------------------------*/
+
+TotalCPUTime
+------------
+
+Metric Type     : Interval
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : MilliSeconds
+
+Value Source    : "xm list --long"
+
+
+TenMinuteTotalCPUTime
+---------------------
+
+Metric Type     : Interval
+Sample Interval : 10 min
+CIM Data Type   : uint64
+Units           : MilliSeconds
+
+Value Source    : like TotalCPUTime
+
+
+ActiveVirtualProcessors
+-----------------------
+
+Metric Type     : Interval
+Sample Interval : 60 sec
+CIM Data Type   : real32
+Units           : MilliSeconds
+
+Value Source    : "xm list --long"
+
+
+ExternalViewTotalCPUPercentage
+------------------------------
+
+Metric Type     : Interval
+Sample Interval : 60 sec
+CIM Data Type   : real32
+Units           : Percent
+
+Value Source    : "xm list --long"
+
+
+TenMinuteExternalViewTotalCPUPercentage
+---------------------------------------
+
+Metric Type     : Interval
+Sample Interval : 10 min
+CIM Data Type   : real32
+Units           : Percent
+
+Value Source    : like ExternalViewTotalCPUPercentage
+
+
+/* ---------------------------------------------------------------------------*/
+
+PhysicalMemoryAllocatedToVirtualSystem
+----------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : KiloBytes
+
+Value Source    : "xm list --long"                         
+
+
+HostFreePhysicalMemory
+----------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : KiloBytes
+
+Value Source    : "xm info"
+
+
+PhysicalMemoryAllocatedToVirtualSystemPercentage
+----------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : KiloBytes
+
+Value Source    : "xm list --long"
+
+
+HostMemoryPercentage
+--------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : real32
+Units           : Percent 
+
+Value Source    : "xm list --long" and "xm info"
+
+

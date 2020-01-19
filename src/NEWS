@@ -1,0 +1,284 @@
+Changes in Version 2.2.8
+========================
+
+Bugs fixed:
+- 3603719 Clean up configuration toolchain and fix DSO linking
+- 3196679 remove sysfs dependency when not building z plugins		
+- #2023 clean up compile warnings 
+- #2045 Metric assoc providers don't honor result class 
+- #1650 libvirt metric associations need to be to root/virt 
+
+Features added:
+- 2284848 CPU utilization should account for steal-time
+
+Changes in Version 2.2.7
+========================
+
+Bugs fixed:
+- 3557673 distcheck should check for system z plugins
+- 3573309 large memory counters overflow raw metric buffer
+- 3573315 thread cleanup segv if gather libs unloaded
+- 3580235 use setProperty for instance keys under Pegasus
+
+Features added:
+- 3019058 add man pages/help for gatherd and reposd
+- 3590926 add man page for reposdump utility
+
+Changes in Version 2.2.6
+========================
+
+Bugs fixed:
+- 3530668 Duration values always reported as zero
+- 3545751 BaseMetricValue.Volatile should be false
+- 3552310 incorrect metric definition for VirtualState
+- 2811884 dsp1053 unique BaseMetricDefinition.Name
+- 3554130 sample interval config warning
+- 3554137 multiple definitions of CMPI_false
+- 3557552 make distcheck fails
+
+Features added:
+- 3031802 add support for CIM property filters
+- 3552873 DSP1053 v1.0.1 profile conformance
+
+Changes in Version 2.2.5
+========================
+
+Bugs fixed:
+- 3482806 blkio not updated for inactive domains
+- 3482867 virDomainBlkStats garbage if domain undefined
+- 3482869 segv parsing xml if domain becomes undefined
+- 3482875 virDomBlkInfo garbage if domain undefined
+- 3514701 segv parsing xml if no defined source media
+
+Changes in Version 2.2.4
+========================
+
+Bugs fixed:
+- 3394202 large network counters overflow raw metric buffer
+- 3412635 bad string allocations
+- 3419837 bad alloc and unsigned returns in metricVirt
+- 3397109 UnixProcess plugins occasionally crashes
+- 3429346 libvirt race conditions
+- 3429347 initscript incorrect return code
+- 3438050 clean up IPProtocolEP raw data parsing
+- 3439114 storage plugin leaks file descriptors
+
+Features added:
+- 3438074 add packet drop metrics to IPProtocolEP
+- 3439075 add Host Block IO metrics
+- 3444879 add VM Block IO Metrics
+
+Features removed:
+- 3098510 add process name to UnixProcessMetric
+
+Changes in Version 2.2.3
+========================
+
+Bugs fixed:
+- 3275169 bash error reported in provider bootstrap scripts
+- 3289931 long vm names cause buffer overflow
+- 3181085 Mandatory Properties not instantiated: CIM_MetricServiceCapa
+- 3005596 virt plugin only connects to libvirtd at load
+- 3302709 leak libvir connections when no domains
+
+Features added:
+- 3300216 new KVM scheduler counter metrics
+- 3302712 log libvirt connection failures
+
+Changes in Version 2.2.2
+========================
+
+Bugs fixed:
+- 3039719 normalize virtual server metric sample interval
+- 3049802 plugin load generates error if already loaded
+- 3074431 change VSState to a Point metric
+- 3074452 change ActiveVirtualProcessors to point metric
+- 1845491 gather reposdump facility segfaults
+- 3078358 no metrics collected for inactive virtual servers
+- 3109840 mlog with arguments segfaults on M_SHOW
+- 3109852 TimeStamp property should be end of interval
+
+Features added:
+- 3098510 add process name to UnixProcessMetric
+
+Changes in Version 2.2.1
+========================
+
+Bugs fixed:
+- 2839915 2.2.0 release fails to build
+- 2907191 debug compile errors
+- 2907773 resource list corrupted by metric retrieval
+- 2971232 sblim-gatherer-provider-s390x does not collect or return zCh
+- 2989648 expose extra devel headers
+- 3005591 segfault if num domains set to -1 on error
+- 2142290 MetricForME association is broken
+- 3010178 initialze gatherer after libvirtd
+
+Features added:
+- 2863817 add service boot scripts
+- 2989650 add VitualSystemState metric for KVM
+- 2989651 add iowait cpu metric for OS
+- 3000971 add rate metrics for ip interfaces
+- 3005544 add package release info to service providers
+
+Changes in Version 2.2.0
+========================
+
+Bugs fixed:
+- 2666450 Updated metricXen.readme with correct metrics
+- 2789260 KVM HostFreePhysicalMemory uses first domain name
+- 2790901 need to test for libvirt-devel in configure script
+- 2790937 Xen/KVM and zLinux metrics should be optional
+- 2791472 plugins should be built as dlopen modules
+- 2791496 fix linker paths to gather utility libraries
+- 2794542 migrate license from CPL to EPL
+
+Features added:
+- 2787610 ported Xen metrics to libvirt API
+- 2787612 KVM metric support
+- 2811680 add used memory metrics
+- 2811685 add packet rate metrics
+- 2811885 add Service and Capabilities providers
+- 2811897 add Service method provider
+- 2811892 add Service and Capabilities associations
+- 2811900 DSP1053 Base Metric Profile Conformance
+
+Changes in Version 2.1.9
+========================
+
+Bugs fixed:
+- 2508615 Fixed add CMPIStatus to indication function return
+- 1942072 sblim-gather doesn't build with glibc-2.8
+- 2655431 Added <stdio.h> to cimplugLocalFilesystem
+- 2655422 Fixed metricOS plugin reads from wrong end of stderr pipe
+- 2655459 Fixed Need AM_PROG_CC_C_O for reposdump.c
+
+Changes in Version 2.1.8
+========================
+
+Bugs fixed:
+- 2347308 Fixed processor metric assigns bad measureElementName
+- 2375829 Fixed raw processor metric identical across multipe cpus
+- 2322593 Fixed TotalCPUTimePerc should be based on metric interval
+- 2384020 Fixed incorrect process count
+- 2385101 Removed compile warnings
+- 2414836 Replaced vendor defined timescope with point
+
+Changes in Version 2.1.7
+========================
+
+Bugs fixed:
+- 2065755 Fixed getInstance always reports zero plugins
+- 2172899 Fixed xenMetric segfaults on non-running DomU's
+
+Changes in Version 2.1.6
+========================
+
+Bugs fixed:
+- 1845491 Fixed reposdump segfault
+
+Changes in Version 2.1.5
+========================
+
+Bugs fixed:
+- 1808017 Added Lifecycle Indication Support
+- 1808022 Fixed false test script failure report
+- 1810856 Fixed data retrieval issue with variable intervals
+- 1815686 Added reposdump utility to offload historical data
+
+Changes in Version 2.1.4
+========================
+
+Bugs fixed:
+- 1736593 Fixed XEN gatherd is not running
+- 1744262 Fixed compilation problems with tog-pegasus headers
+- 1751133 Fixed gather indication provider not working properly
+- 1751173 Fixed potential memory problem in Xen plugin
+
+Changes in Version 2.1.3
+========================
+
+Bugs fixed:
+- 1648800 Fixed gather testsuite start script fails with https
+- 1652565 Fixed build problem with libsysfs v2
+
+Changes in Version 2.1.2
+========================
+
+Bugs fixed:
+- 1525914 Fixed repository overwrite by z channel plugin.
+- 1585629 Fixed z channel timestamp wrap
+- 1585628 Fixed invalid CPU values for z LPARs and CEC
+- 1565458 Fixed CIMOM crash after invalid getinstance ops
+- 1613105 Fixed handling of unsigned 32-bit integers
+
+Changes  in Version 2.1.1
+=========================
+
+Bugs fixed:
+- 1468385 Fixed 32bit value display
+- 1474178 Fixed bogus file ownerships in RPM specfiles
+- 1506037 Fixed testsuite for https CIM server connections
+- 1509900 Fixed memory corruption in Xen Plugin
+
+Features added:
+- 1509902 Added plugins for IBM System z
+
+Changes in Version 2.1.0
+========================
+
+Features added:
+- 1427714 Added new config properties for automatic plugin loading.
+- 1429155 Added new config option for sample interval override.
+- 1436488 Added top-N support for metric values.
+- 1436591 Added new config option to specify the repository expiration.
+- 1436671 New plugin for Xen.
+- 1441802 Added new config option for synchronized sampling.
+- 1450569 Multiple gather installations can coexist now on one system. 
+- 1454734 Support for seperate devel package added.
+
+Bugs fixed:
+- 1395363 Removed provider postinstall location dependencies.
+- 1441804 Fixed spec file 
+- 1446497 Removed metric instance number limit
+- 1449436 Enhanced metric repository performance for large data volumes
+- 1449628 Fixed segfault in Xen plugin
+- 1450216 Enhanced filter performance by adaptive sorting algorithms
+- 1454722 Fixed potential memory overwrite in local communications code
+- 1464845 Fixed potential repository failure for interval metrics
+
+Changes in Version 2.0.4
+========================
+
+Bugs fixed:
+- 1430516 Fixed unrecoverable disconnect.
+- 1443997 Fixed handling of partially loaded repository plugin sets
+- 1444272 Fixed coredump for NULL unit fields
+- 1444711 Fixed CPU time display units (now milliseconds)
+- 1444826 Fix some portability issues
+
+Changes in Version 2.0.3
+========================
+
+Bugs fixed:
+- 1422395 Fixed MetricInstance unidirectional misbehavior.
+- 1426051 Fixed interoperability issues between 32 and 64 bit systems.
+
+Changes in Version 2.0.2
+========================
+
+Bugs fixed:
+- 1376211 Fixed testsuite false failure reports.
+
+Changes in Version 2.0.1
+========================
+
+Bugs fixed:
+- 1236584 Enhanced compatibility with tog-pegasus.
+
+Changes in Version 2.0.0
+========================
+
+Gatherer is now fully distributable: a central repository node
+can collect data from a large number of remote nodes running the
+gatherd daemon.

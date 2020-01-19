@@ -1,0 +1,3 @@
+# Classname Namespace ProviderName ProviderModule ProviderTypes ...
+Linux_StorageMetric root/cimv2 OSBase_MetricDefinitionProvider OSBase_MetricDefinitionProvider instance
+Linux_StorageMetricValue root/cimv2 OSBase_MetricValueProvider OSBase_MetricValueProvider instance

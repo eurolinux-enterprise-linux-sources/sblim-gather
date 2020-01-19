@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<refentry id="reposd.conf">
+
+<refentryinfo>
+<productname>@PACKAGE_NAME@-@PACKAGE_VERSION@</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle>reposd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+<refmiscinfo class="manual">Linux Programmer's Manual</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>reposd.conf</refname>
+<refpurpose>SBLIM metric repository daemon configuration file</refpurpose>
+<refclass>UNIX/Linux</refclass>
+</refnamediv>
+
+<refsect1>
+<title>Description</title>
+<para>
+The file <replaceable>reposd.conf</replaceable> is read by <citerefentry>
+<refentrytitle>reposd</refentrytitle><manvolnum>8</manvolnum></citerefentry>
+at startup. Each line consists of a configuration option value pair delimited
+by an '=' character. A '#' (number sign) indicates the beginning of a comment.
+</para>
+</refsect1>
+
+<refsect1>
+<title>Options</title>
+<variablelist>
+<varlistentry>
+<term><option>RepositoryPort</option>=<replaceable>port</replaceable></term>
+<listitem>
+<para>TCP port repository daemon will listen. Default is <command>6363</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>RepositoryMaxConnections</option>=<replaceable>conns</replaceable></term>
+<listitem>
+<para>Number of parallel client connections the repository daemon is able to handle.
+Default is <command>100</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>TraceLevel</option>=<replaceable>level</replaceable></term>
+<listitem>
+<para>Trace level for the <command>reposd</command> process. Default is
+<command>0</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>TraceFile</option>=<replaceable>file</replaceable></term>
+<listitem>
+<para>Name of file to write tracing information. Default is
+<command>stderr</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>TraceComponents</option>=<replaceable>comps[:comps...]</replaceable></term>
+<listitem>
+<para>Repository components to be traced seperated by a colon (:).
+Valid components are: comm, util, repos. Default is <command>none</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>PluginDirectory</option>=<replaceable>dir</replaceable></term>
+<listitem>
+<para>Directory where repository metric plugins are located. Default is
+<command>@libdir@/gather/rplug</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>AutoLoad</option>=<replaceable>plugin[:plugin...]</replaceable></term>
+<listitem>
+<para>Plugins to be automatically load, initalize and start sampling. Valid values are:
+* or colon-seperated list. Default is <command>none</command>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>ExpirationInterval</option>=<replaceable>secs</replaceable></term>
+<listitem>
+<para>Specifies how many seconds metric values are kept in the in-core repository. 
+Note that the longer the interval is the more memory that will be consumed by
+<command>reposd</command>. Valid values are: and integer between 60 and 86400.
+Default is <command>1200</command>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Bugs</title>
+<para>The SBLIM project maintains a mailing list to which you should direct all
+questions regarding sfcb, sfcc, wbemcli, the metric data gatherer, or any of the 
+SBLIM providers. To subscribe to this list visit:
+
+<screen><![CDATA[https://lists.sourceforge.net/lists/listinfo/sblim-issues]]></screen>
+</para>
+
+<para>Please report bugs you discover to the bug tracker. The SBLIM project bug 
+tracking page can be found at:
+
+<screen><![CDATA[https://sourceforge.net/tracker/?group_id=128809&atid=712784]]></screen>
+</para>
+</refsect1>
+
+<refsect1>
+<title>Authors</title>
+<para>Please refer to the AUTHORS file distributed with sblim-gather.</para>
+</refsect1>
+
+<refsect1>
+<title>Copyright</title>
+<para>Copyright © 2003-2012 IBM Corp.</para>
+</refsect1>
+
+<refsect1>
+<title>License</title>
+<para><command>reposd.conf</command> is distributed under the terms of the Eclipse
+Public License ("Agreement"). Any use, reproduction or distribution of this
+program constitutes recipeients acceptance of the agreement.</para>
+
+<para>You can obtain a current copy of the Eclipse Public License from
+http://www.opensource.org/licenses/eclipse-1.0.php</para>
+</refsect1>
+
+<refsect1>
+<title>See Also</title>
+<para>
+<citerefentry>
+<refentrytitle>reposd</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>
+</para>
+</refsect1>
+
+</refentry>

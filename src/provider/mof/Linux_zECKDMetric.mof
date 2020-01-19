@@ -1,0 +1,76 @@
+//
+// $Id: Linux_zECKDMetric.mof,v 1.2 2009/05/20 19:39:56 tyreld Exp $
+//
+// (C) Copyright IBM Corp. 2006, 2009
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Eclipse Public License from
+// http://www.opensource.org/licenses/eclipse-1.0.php
+//
+// Author:       Alexander Wolf-Reber <a.wolf-reber@de.ibm.com>
+// Contributors: 
+//
+// Description:
+// This mof file contains the definitions for the ECKD
+// Metrics.
+//
+
+
+
+// ===================================================================
+// Linux_zECKDMetric
+// ===================================================================
+
+[ Provider("cmpi:OSBase_MetricDefinitionProvider"),
+  Description ("Class for System z ECKD Metric Definitions")
+]
+class Linux_zECKDMetric : CIM_BaseMetricDefinition
+{
+	[Experimental]
+	boolean IsContinuous;
+	[Experimental]
+	uint16 ChangeType;
+	[Experimental]
+	uint16 TimeScope;
+	[Experimental]
+	uint16 GatheringType;
+};
+
+
+// ===================================================================
+// Linux_zECKDMetricValue
+// ===================================================================
+
+[ Provider("cmpi:OSBase_MetricValueProvider"),
+  Description ("Class for System z ECKD Metric Value")
+]
+class Linux_zECKDMetricValue : CIM_BaseMetricValue
+{ };
+
+
+// ===================================================================
+// instance definitions
+// ===================================================================
+
+instance of Linux_MetricPlugin  
+{
+	MetricDefinitionClassName = "Linux_zECKDMetric";
+ 	MetricPluginName = "libmetriczECKD.so";
+};
+
+instance of Linux_RepositoryPlugin  
+{
+	MetricDefinitionClassName = "Linux_zECKDMetric";
+ 	RepositoryPluginName = "librepositoryzECKD.so";
+ 	CIMTranslationPluginName = "libcimplugzECKD.so";
+};
+
+
+instance of Linux_MetricValueDefinition
+{
+	MetricValueClassName = "Linux_zECKDMetricValue";
+	MetricDefinitionClassName = "Linux_zECKDMetric";
+};

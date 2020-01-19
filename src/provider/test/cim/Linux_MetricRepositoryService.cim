@@ -1,0 +1,21 @@
+********************************************************************************
+class : Linux_MetricRepositoryService
+objectPath : Linux_MetricRepositoryService.SystemCreationClassName=Linux_ComputerSystem,SystemName=testsystem,CreationClassName=Linux_MetricRepositoryService,Name=reposd
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED

@@ -1,0 +1,187 @@
+//
+// $Id: Linux_Metric.mof,v 1.15 2010/05/22 02:07:51 tyreld Exp $
+//
+// (C) Copyright IBM Corp. 2003, 2004, 2009
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Eclipse Public License from
+// http://www.opensource.org/licenses/eclipse-1.0.php
+//
+// Author:       Viktor Mihajlovski
+// Contributors:
+//
+// Description:
+// CIM classes for Linux Metrics
+//
+
+
+#pragma locale ("en_US")
+
+
+// -------------------------------------------------------------------
+// *******************************************************************
+// 	Classes
+// *******************************************************************
+// -------------------------------------------------------------------
+
+
+class Linux_MetricService : CIM_MetricService
+{ 
+  [Description("Package release version")]
+  String Release;
+};
+
+class Linux_MetricServiceCapabilities : CIM_MetricServiceCapabilities
+{ };
+
+[ 
+	Association
+]
+class Linux_MetricElementCapabilities : CIM_ElementCapabilities
+{ };
+
+[
+	Association
+]
+class Linux_MetricHostedService : CIM_HostedService
+{ };
+
+[
+	Association
+]
+class Linux_MetricServiceAffectsElement : CIM_ServiceAffectsElement
+{ };
+
+[
+	Association
+]
+class Linux_MetricElementConformsToProfile : CIM_ElementConformsToProfile
+{ };
+
+[ Provider("cmpi:OSBase_MetricGathererProvider"),
+  Description ("Data Gatherer Service")
+]
+class Linux_MetricGatherer : CIM_Service
+{ 
+  [Description("Package release version")]
+  String Release;
+  [Description("Number of registered plugins")]
+  uint16 NumberOfPlugins;
+  [Description("Number of active metrics")]
+  uint16 NumberOfMetrics;
+  [Description("Sampling indicator")]
+  boolean   Sampling;
+  [Description("Method to enable sampling")]
+  boolean   StartSampling();
+  [Description("Method to disable sampling")]
+  boolean   StopSampling();
+};
+
+[ Provider("cmpi:OSBase_MetricRepositoryServiceProvider"),
+  Description ("Metric Repository Service")
+]
+class Linux_MetricRepositoryService : CIM_Service
+{ 
+  [Description("Package release version")]
+  String Release;
+  [Description("Number of registered plugins")]
+  uint16 NumberOfPlugins;
+  [Description("Number of registered metrics")]
+  uint16 NumberOfMetrics;
+  [Description("If this property is greater than zero (0), this number specifies "
+	       "how many instances of metric values are visible. Also referred to "
+	       "as top-N filter.")]
+  uint32 EnumerationLimit;
+  [Description("This property is relevant only if EnumerationLimit is greater "
+	       "than zero. If set to true then the elements with the lowest "
+	       "values are visible, otherwise the elements with the highest "
+	       "values are visible.")]
+  boolean Ascending;
+  [Description("Method to set the enumeration limit and sort order for metric values.")]
+  boolean SetEnumerationLimits(uint32 Limit, boolean Ascending);
+};
+
+[ 
+  Association,
+  Provider("cmpi:OSBase_MetricInstanceProvider"),
+  Description ("MetricInstance Association for Linux")
+]
+class Linux_MetricInstance : CIM_MetricInstance
+{ 
+  CIM_BaseMetricDefinition REF Antecedent;
+  CIM_BaseMetricValue REF Dependent;
+};
+
+[ 
+  Association,
+  Provider("cmpi:OSBase_MetricForMEProvider"),
+  Description ("MetricForME Association for Linux")
+]
+class Linux_MetricForME : CIM_MetricForME
+{ 
+  CIM_ManagedElement REF Antecedent;
+  CIM_BaseMetricValue REF Dependent;
+};
+
+[ 
+  Association,
+  Provider("cmpi:OSBase_MetricDefForMEProvider"),
+  Description ("MetricDefForME Association for Linux")
+]
+class Linux_MetricDefForME : CIM_MetricDefForME
+{ 
+  CIM_ManagedElement REF Antecedent;
+  CIM_BaseMetricDefinition REF Dependent;
+};
+
+[  Description ("Plugin Control")
+]
+class Linux_MetricPlugin : CIM_Setting
+{
+  [Key, Description("Metric Definition Class Name")]
+  String MetricDefinitionClassName;
+  [Description("Name of the plugin library")]
+  String MetricPluginName; 
+  [Description("Is this plugin enabled")]
+  boolean Enabled; 
+};
+
+[  Description ("Plugin Control for Repository")
+]
+class Linux_RepositoryPlugin : CIM_Setting
+{
+  [Key, Description("Metric Definition Class Name")]
+  String MetricDefinitionClassName;
+  [Description("Name of the repository plugin library")]
+  String RepositoryPluginName; 
+  [Description("Name of the CIM name translation plugin library")]
+  String CIMTranslationPluginName; 
+  [Description("Is this plugin enabled")]
+  boolean Enabled; 
+};
+
+[  Description ("Definition to Value mapping")
+]
+class Linux_MetricValueDefinition : CIM_Setting
+{
+  [Key, Description("Metric Value Class Name")]
+  String MetricValueClassName;
+  [Description("Metric Definition Class Name")]
+  String MetricDefinitionClassName; 
+};
+
+[ Indication,
+  Description ("Metric Process Indication"),
+  Provider("cmpi:OSBase_MetricIndicationProvider")
+]
+class Linux_MetricIndication : CIM_ProcessIndication
+{
+  [Description("Metric Id for Indication")]
+  String MetricId;
+  [Description("Metric Value for Indication")]
+  String MetricValue;
+};
+

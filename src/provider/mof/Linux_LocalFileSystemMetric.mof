@@ -1,0 +1,76 @@
+//
+// $Id: Linux_LocalFileSystemMetric.mof,v 1.6 2009/05/20 19:39:56 tyreld Exp $
+//
+// (C) Copyright IBM Corp. 2003, 2004, 2009
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Eclipse Public License from
+// http://www.opensource.org/licenses/eclipse-1.0.php
+//
+// Author:       Heidi Neumann <heidineu@de.ibm.com>
+// Contributors: 
+//
+// Description:
+// This mof file contains the definitions for the Local File System 
+// Metrics, provided by the shared library libmetricLocalFileSystem.so
+//
+
+
+
+// ===================================================================
+// Linux_LocalFileSystemMetric
+// ===================================================================
+
+[ Provider("cmpi:OSBase_MetricDefinitionProvider"),
+  Description ("Class for Local File System Metric Definitions")
+]
+class Linux_LocalFileSystemMetric : CIM_BaseMetricDefinition
+{
+	[Experimental]
+	boolean IsContinuous;
+	[Experimental]
+	uint16 ChangeType;
+	[Experimental]
+	uint16 TimeScope;
+	[Experimental]
+	uint16 GatheringType;
+};
+
+
+// ===================================================================
+// Linux_LocalFileSystemMetricValue
+// ===================================================================
+
+[ Provider("cmpi:OSBase_MetricValueProvider"),
+  Description ("Class for Local File System Metric Value")
+]
+class Linux_LocalFileSystemMetricValue : CIM_BaseMetricValue
+{ };
+
+
+// ===================================================================
+// instance definitions
+// ===================================================================
+
+instance of Linux_MetricPlugin  
+{
+	MetricDefinitionClassName = "Linux_LocalFileSystemMetric";
+ 	MetricPluginName = "libmetricLocalFileSystem.so";
+};
+
+instance of Linux_RepositoryPlugin  
+{
+	MetricDefinitionClassName = "Linux_LocalFileSystemMetric";
+ 	RepositoryPluginName = "librepositoryLocalFileSystem.so";
+ 	CIMTranslationPluginName = "libcimplugLocalFileSystem.so";
+};
+
+
+instance of Linux_MetricValueDefinition
+{
+	MetricValueClassName = "Linux_LocalFileSystemMetricValue";
+	MetricDefinitionClassName = "Linux_LocalFileSystemMetric";
+};

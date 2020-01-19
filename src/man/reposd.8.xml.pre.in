@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<refentry id="reposd">
+
+<refentryinfo>
+<productname>@PACKAGE_NAME@-@PACKAGE_VERSION@</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle>reposd</refentrytitle>
+<manvolnum>8</manvolnum>
+<refmiscinfo class="manual">Linux Programmer's Manual</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>reposd</refname>
+<refpurpose>SBLIM metric repository daemon</refpurpose>
+<refclass>UNIX/Linux</refclass>
+</refnamediv>
+
+<refsynopsisdiv>
+<cmdsynopsis>
+<command>reposd</command>
+<arg choice="opt"><replaceable>argument</replaceable></arg>
+</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title>Description</title>
+<para>
+The <command>reposd</command> program is a system daemon that maintains
+a temporary repository of raw performance metrics for various system components. 
+Raw metric data is forwarded from a seperate collection daemon 
+that is located either locally or remotely
+(see <citerefentry><refentrytitle>gatherd</refentrytitle>
+<manvolnum>8</manvolnum></citerefentry>). The calculation of usable metrics
+from raw data is performed via repository metric plugins. 
+The repository communication port, location of plugin directory, and 
+other controllable configuration options are described in the configuration 
+file man page (see <citerefentry>
+<refentrytitle>reposd.conf</refentrytitle>
+<manvolnum>5</manvolnum></citerefentry>).
+</para>
+<para>
+The <command>reposd</command> daemon can be controlled at runtime by way of the
+<citerefentry><refentrytitle>reposctl</refentrytitle><manvolnum>8</manvolnum>
+</citerefentry> command. This provides the ability to query metric values or
+load and unload metric plugins online without the need to restart <command>reposd</command>.
+</para>
+<para>
+The primary goal of the the sblim-gather package is to implement the DMTF's Base 
+Metric Model (DSP1053). While, <command>reposd</command>, 
+<citerefentry><refentrytitle>gatherd</refentrytitle>
+<manvolnum>8</manvolnum></citerefentry>, and their plugins can be used standalone, 
+the greatest benefit comes from using their CIM provider layer in conjuction with 
+a CIM Object Manager (see <citerefentry><refentrytitle>cimserver</refentrytitle>
+<manvolnum>1</manvolnum></citerefentry>). For more information about CIM and the Base
+Metric Model refer to the Distrubuted Management Task Force (DMTF) at http://www.dmtf.org.
+</para>
+</refsect1>
+
+<refsect1>
+<title>Options</title>
+<variablelist>
+<varlistentry>
+<term><option><replaceable>argument</replaceable></option></term>
+<listitem>
+<para><command>reposd</command> daemonizes by default. Passing any value on the
+command line will cause it to run in the terminal.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Files</title>
+<variablelist>
+<varlistentry>
+<term><replaceable>@sysconfdir@/reposd.conf</replaceable></term>
+<listitem>
+<para>This file contains the daemon configuration settings. See
+<citerefentry>
+<refentrytitle>reposd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+</citerefentry> for more information.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Bugs</title>
+<para>The SBLIM project maintains a mailing list to which you should direct all
+questions regarding sfcb, sfcc, wbemcli, the metric data gatherer, or any of the 
+SBLIM providers. To subscribe to this list visit:
+
+<screen><![CDATA[https://lists.sourceforge.net/lists/listinfo/sblim-issues]]></screen>
+</para>
+
+<para>Please report bugs you discover to the bug tracker. The SBLIM project bug 
+tracking page can be found at:
+
+<screen><![CDATA[https://sourceforge.net/tracker/?group_id=128809&atid=712784]]></screen>
+</para>
+</refsect1>
+
+<refsect1>
+<title>Authors</title>
+<para>Please refer to the AUTHORS file distributed with sblim-gather.</para>
+</refsect1>
+
+<refsect1>
+<title>Copyright</title>
+<para>Copyright © 2003-2012 IBM Corp.</para>
+</refsect1>
+
+<refsect1>
+<title>License</title>
+<para><command>reposd</command> is distributed under the terms of the Eclipse
+Public License ("Agreement"). Any use, reproduction or distribution of this
+program constitutes recipeients acceptance of the agreement.</para>
+
+<para>You can obtain a current copy of the Eclipse Public License from
+http://www.opensource.org/licenses/eclipse-1.0.php</para>
+</refsect1>
+
+<refsect1>
+<title>See Also</title>
+<para>
+<citerefentry>
+<refentrytitle>reposctl</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>reposd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>gatherd</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>cimserver</refentrytitle>
+<manvolnum>1</manvolnum>
+</citerefentry>
+</para>
+</refsect1>
+
+</refentry>

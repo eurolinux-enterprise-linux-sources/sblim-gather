@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<refentry id="gatherctl">
+
+<refentryinfo>
+<productname>@PACKAGE_NAME@-@PACKAGE_VERSION@</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle>gatherctl</refentrytitle>
+<manvolnum>8</manvolnum>
+<refmiscinfo class="manual">Linux Programmer's Manual</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gatherctl</refname>
+<refpurpose>control utility for gatherd</refpurpose>
+<refclass>UNIX/Linux</refclass>
+</refnamediv>
+
+<refsynopsisdiv>
+<cmdsynopsis>
+<command>gatherctl</command>
+</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title>Description</title>
+<para>
+<command>gatherctl</command> is a simple shell program for controling the 
+<citerefentry>
+<refentrytitle>gatherd</refentrytitle><manvolnum>8</manvolnum>
+</citerefentry>
+metric collection daemon. It provides the ability to manipulate the state of 
+the daemon as well as online loading and unloading of metric collection plugins.
+</para>
+</refsect1>
+
+<refsect1>
+<title>Commands</title>
+<variablelist>
+<varlistentry>
+<term><option>h</option></term>
+<listitem><para>print help message</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>s</option></term>
+<listitem><para>print status of daemon</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>i</option></term>
+<listitem><para>initialize gathering service</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>t</option></term>
+<listitem><para>terminate gathering service</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>b</option></term>
+<listitem><para>start sampling plugins</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>e</option></term>
+<listitem><para>stop sampling plugins</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>l</option> <replaceable>pluginlib</replaceable></term>
+<listitem><para>load plugin library</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>u</option> <replaceable>pluginlib</replaceable></term>
+<listitem><para>unload plugin library</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>v</option> <replaceable>pluginlib</replaceable></term>
+<listitem><para>view/list metrics supported by plugin library</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>q</option></term>
+<listitem><para>quit/exit control utility</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>k</option></term>
+<listitem><para>kill gathering daemon</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><option>d</option></term>
+<listitem><para>start gathering daemon</para></listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Files</title>
+<variablelist>
+<varlistentry>
+<term><replaceable>@sysconfdir@/gatherd.conf</replaceable></term>
+<listitem>
+<para>This file contains the daemon configuration settings. See
+<citerefentry>
+<refentrytitle>gatherd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+</citerefentry> for more information.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Bugs</title>
+<para>The SBLIM project maintains a mailing list to which you should direct all
+questions regarding sfcb, sfcc, wbemcli, the metric data gatherer, or any of the 
+SBLIM providers. To subscribe to this list visit:
+
+<screen><![CDATA[https://lists.sourceforge.net/lists/listinfo/sblim-issues]]></screen>
+</para>
+
+<para>Please report bugs you discover to the bug tracker. The SBLIM project bug 
+tracking page can be found at:
+
+<screen><![CDATA[https://sourceforge.net/tracker/?group_id=128809&atid=712784]]></screen>
+</para>
+</refsect1>
+
+<refsect1>
+<title>Authors</title>
+<para>Please refer to the AUTHORS file distributed with sblim-gather.</para>
+</refsect1>
+
+<refsect1>
+<title>Copyright</title>
+<para>Copyright © 2003-2012 IBM Corp.</para>
+</refsect1>
+
+<refsect1>
+<title>License</title>
+<para><command>gatherctl</command> is distributed under the terms of the Eclipse
+Public License ("Agreement"). Any use, reproduction or distribution of this
+program constitutes recipeients acceptance of the agreement.</para>
+
+<para>You can obtain a current copy of the Eclipse Public License from
+http://www.opensource.org/licenses/eclipse-1.0.php</para>
+</refsect1>
+
+<refsect1>
+<title>See Also</title>
+<para>
+<citerefentry>
+<refentrytitle>gatherd</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>gatherd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+</citerefentry>,
+</para>
+</refsect1>
+
+</refentry>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CIM CIMVERSION="2.0" DTDVERSION="2.0">
+  <MESSAGE ID="4711" PROTOCOLVERSION="1.0">
+    <SIMPLEREQ>
+      <IMETHODCALL NAME="CreateInstance">
+        <LOCALNAMESPACEPATH>
+          <NAMESPACE NAME="root"/>
+          <NAMESPACE NAME="PG_InterOp"/>
+        </LOCALNAMESPACEPATH>
+        <IPARAMVALUE NAME="NewInstance">
+          <INSTANCE CLASSNAME="CIM_IndicationFilter">
+            <PROPERTY NAME="SystemCreationClassName" TYPE="string">
+              <VALUE>CIM_ComputerSystem</VALUE>
+            </PROPERTY>
+            <PROPERTY NAME="SystemName" TYPE="string">
+              <VALUE>dyn-9-152-141-49.boeblingen.de.ibm.com</VALUE>
+            </PROPERTY>
+            <PROPERTY NAME="CreationClassName" TYPE="string"> 
+              <VALUE>CIM_IndicationFilter</VALUE>
+            </PROPERTY>
+            <PROPERTY NAME="Name" TYPE="string"> 
+              <VALUE>MetricFilter0</VALUE>
+            </PROPERTY>
+            <PROPERTY NAME="Query" TYPE="string"> 
+              <VALUE> SELECT * FROM CIM_InstModification WHERE SourceInstance ISA CIM_BaseMetricValue AND
+	       SourceInstance.MetricDefinitionId = "TotalCPUTimePercentage.154" AND SourceInstance.MetricValue != "0"
+              </VALUE>
+            </PROPERTY>
+            <PROPERTY NAME="QueryLanguage" TYPE="string"> 
+              <VALUE>WQL</VALUE>
+            </PROPERTY>
+            <PROPERTY NAME="SourceNamespace" TYPE="string"> 
+              <VALUE>root/cimv2</VALUE>
+            </PROPERTY>
+          </INSTANCE>
+        </IPARAMVALUE>
+      </IMETHODCALL>
+    </SIMPLEREQ>
+  </MESSAGE>
+</CIM>

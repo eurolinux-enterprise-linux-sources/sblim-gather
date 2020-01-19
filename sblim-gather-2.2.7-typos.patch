@@ -1,0 +1,12 @@
+diff -up sblim-gather-2.2.7/provider/provider-register.sh.typos sblim-gather-2.2.7/provider/provider-register.sh
+--- sblim-gather-2.2.7/provider/provider-register.sh.typos	2013-02-28 14:47:57.480692224 +0100
++++ sblim-gather-2.2.7/provider/provider-register.sh	2013-02-28 14:48:08.350826141 +0100
+@@ -280,7 +280,7 @@ pegasus_uninstall()
+ 	  do
+ 	  if test -w $_TEMPDIR
+ 	      then
+-	      _DELETE_NAME=$TEMPDIR/delete-class.mof
++	      _DELETE_NAME=$_TEMPDIR/delete-class.mof
+ 	      break
+ 	  fi
+ 	done

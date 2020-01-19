@@ -1,0 +1,43 @@
+diff -up sblim-gather-2.2.7/provider/mof/Linux_Metric.mof.missing_providers sblim-gather-2.2.7/provider/mof/Linux_Metric.mof
+--- sblim-gather-2.2.7/provider/mof/Linux_Metric.mof.missing_providers	2013-02-27 13:59:55.590221724 +0100
++++ sblim-gather-2.2.7/provider/mof/Linux_Metric.mof	2013-02-27 14:03:28.630982849 +0100
+@@ -137,7 +137,8 @@ class Linux_MetricDefForME : CIM_MetricD
+   CIM_BaseMetricDefinition REF Dependent;
+ };
+ 
+-[  Description ("Plugin Control")
++[  Description ("Plugin Control"),
++   Provider("cmpi:OSBase_MetricPluginProvider")
+ ]
+ class Linux_MetricPlugin : CIM_Setting
+ {
+@@ -149,7 +150,8 @@ class Linux_MetricPlugin : CIM_Setting
+   boolean Enabled; 
+ };
+ 
+-[  Description ("Plugin Control for Repository")
++[  Description ("Plugin Control for Repository"),
++   Provider("cmpi:OSBase_RepositoryPluginProvider")
+ ]
+ class Linux_RepositoryPlugin : CIM_Setting
+ {
+@@ -163,7 +165,8 @@ class Linux_RepositoryPlugin : CIM_Setti
+   boolean Enabled; 
+ };
+ 
+-[  Description ("Definition to Value mapping")
++[  Description ("Definition to Value mapping"),
++   Provider("cmpi:OSBase_MetricValueDefinitionProvider")
+ ]
+ class Linux_MetricValueDefinition : CIM_Setting
+ {
+diff -up sblim-gather-2.2.7/provider/mof/Linux_Metric.registration.missing_providers sblim-gather-2.2.7/provider/mof/Linux_Metric.registration
+--- sblim-gather-2.2.7/provider/mof/Linux_Metric.registration.missing_providers	2013-02-27 13:59:35.288958848 +0100
++++ sblim-gather-2.2.7/provider/mof/Linux_Metric.registration	2013-02-27 13:59:39.822017667 +0100
+@@ -12,3 +12,6 @@ Linux_MetricRepositoryService root/cimv2
+ Linux_MetricIndication root/cimv2 OSBase_MetricIndicationProvider OSBase_MetricIndicationProvider indication
+ CIM_InstModification root/cimv2 OSBase_MetricLifeCycleProvider OSBase_MetricLifeCycleProvider indication
+ Linux_MetricElementConformsToProfile root/cimv2 OSBase_MetricElementConformsToProfileProvider OSBase_MetricElementConformsToProfileProvider instance association
++Linux_MetricPlugin root/cimv2 OSBase_MetricPluginProvider OSBase_MetricPluginProvider instance
++Linux_RepositoryPlugin root/cimv2 OSBase_RepositoryPluginProvider OSBase_RepositoryPluginProvider instance
++Linux_MetricValueDefinition root/cimv2 OSBase_MetricValueDefinitionProvider OSBase_MetricValueDefinitionProvider instance

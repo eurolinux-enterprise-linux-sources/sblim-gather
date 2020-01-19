@@ -1,0 +1,155 @@
+/*
+ * $Id: metricKvm.readme,v 1.5 2011/05/11 01:42:58 tyreld Exp $
+ *
+ * (C) Copyright IBM Corp. 2009
+ *
+ * THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+ * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+ * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+ *
+ * You can obtain a current copy of the Eclipse Public License from
+ * http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ * Author:       Tyrel Datwyler  <tyreld@us.ibm.com>
+ * Contributors: 
+ *
+ * Description:
+ * README to Gatherer Plugin for KVM Metrics
+ *
+ */
+
+/* ---------------------------------------------------------------------------*/
+
+The Plugin offers the following metrics :
+
+- TotalCPUTime
+- TenMinuteTotalCPUTime
+- ActiveVirtualProcessors
+- ExternalViewTotalCPUPercentage
+- TenMinuteExternalViewTotalCPUPercentage
+- PhysicalMemoryAllocatedToVirtualSystem
+- HostFreePhysicalMemory
+- PhysicalMemoryAllocatedToVirtualSystemPercentage
+- HostMemoryPercentage
+- VirtualSystemState
+- CPUUsedTimeCounter
+- CPUReadyTimeCounter
+
+plus the following metrics which are only intended for internal usage:
+- _Internal_CPUTime
+- _Internal_TotalCPUTime
+- _Internal_Memory
+- _Internal10m_CPUTime
+- _Internal10m_TotalCPUTime
+
+/* ---------------------------------------------------------------------------*/
+
+TotalCPUTime
+------------
+
+Metric Type     : Interval
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : MilliSeconds
+
+
+TenMinuteTotalCPUTime
+---------------------
+
+Metric Type     : Interval
+Sample Interval : 10 min
+CIM Data Type   : uint64
+Units           : MilliSeconds
+
+
+ActiveVirtualProcessors
+-----------------------
+
+Metric Type     : Interval
+Sample Interval : 60 sec
+CIM Data Type   : real32
+Units           : MilliSeconds
+
+
+ExternalViewTotalCPUPercentage
+------------------------------
+
+Metric Type     : Interval
+Sample Interval : 60 sec
+CIM Data Type   : real32
+Units           : Percent
+
+
+TenMinuteExternalViewTotalCPUPercentage
+---------------------------------------
+
+Metric Type     : Interval
+Sample Interval : 10 min
+CIM Data Type   : real32
+Units           : Percent
+
+
+/* ---------------------------------------------------------------------------*/
+
+PhysicalMemoryAllocatedToVirtualSystem
+----------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : KiloBytes                       
+
+
+HostFreePhysicalMemory
+----------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : KiloBytes
+
+
+PhysicalMemoryAllocatedToVirtualSystemPercentage
+----------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : KiloBytes
+
+
+HostMemoryPercentage
+--------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : real32
+Units           : Percent 
+
+
+VirtualSystemState
+------------------                  
+
+Metric Type     : Point   
+Sample Interval : 60 sec
+CIM Data Type   : unit32
+Units           : None
+
+
+CPUUsedTimeCounter
+------------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : MicroSeconds
+
+
+CPUReadyTimeCounter
+-------------------
+
+Metric Type     : Point
+Sample Interval : 60 sec
+CIM Data Type   : uint64
+Units           : MicroSeconds
+

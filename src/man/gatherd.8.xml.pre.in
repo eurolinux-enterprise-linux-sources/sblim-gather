@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<refentry id="gatherd">
+
+<refentryinfo>
+<productname>@PACKAGE_NAME@-@PACKAGE_VERSION@</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle>gatherd</refentrytitle>
+<manvolnum>8</manvolnum>
+<refmiscinfo class="manual">Linux Programmer's Manual</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gatherd</refname>
+<refpurpose>SBLIM metric collection daemon</refpurpose>
+<refclass>UNIX/Linux</refclass>
+</refnamediv>
+
+<refsynopsisdiv>
+<cmdsynopsis>
+<command>gatherd</command>
+<arg choice="opt"><replaceable>argument</replaceable></arg>
+</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title>Description</title>
+<para>
+The <command>gatherd</command> program is a system daemon that collects 
+performance metrics for various components via a set of metric plugins. 
+Raw metric data is forwarded to a seperate repository daemon 
+that is located either locally or remotely
+(see <citerefentry><refentrytitle>reposd</refentrytitle>
+<manvolnum>8</manvolnum></citerefentry>).
+The repository destination, location of plugin directory, and 
+other controllable configuration options are described in the configuration 
+file man page (see <citerefentry>
+<refentrytitle>gatherd.conf</refentrytitle>
+<manvolnum>5</manvolnum></citerefentry>).
+</para>
+<para>
+The <command>gatherd</command> daemon can be controlled at runtime by way of the
+<citerefentry><refentrytitle>gatherctl</refentrytitle><manvolnum>8</manvolnum>
+</citerefentry> command. This provides the ability to load and unload metric 
+plugins online without the need to restart <command>gatherd</command>.
+</para>
+<para>
+The primary goal of the the sblim-gather package is to implement the DMTF's Base 
+Metric Model (DSP1053). While, <command>gatherd</command>, 
+<citerefentry><refentrytitle>reposd</refentrytitle>
+<manvolnum>8</manvolnum></citerefentry>, and their plugins can be used standalone, 
+the greatest benefit comes from using their CIM provider layer in conjuction with 
+a CIM Object Manager (see <citerefentry><refentrytitle>cimserver</refentrytitle>
+<manvolnum>1</manvolnum></citerefentry>). For more information about CIM and the Base
+Metric Model refer to the Distrubuted Management Task Force (DMTF) at http://www.dmtf.org.
+</para>
+</refsect1>
+
+<refsect1>
+<title>Options</title>
+<variablelist>
+<varlistentry>
+<term><option><replaceable>argument</replaceable></option></term>
+<listitem>
+<para><command>gatherd</command> daemonizes by default. Passing any value on the
+command line will cause it to run in the terminal.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Files</title>
+<variablelist>
+<varlistentry>
+<term><replaceable>@sysconfdir@/gatherd.conf</replaceable></term>
+<listitem>
+<para>This file contains the daemon configuration settings. See
+<citerefentry>
+<refentrytitle>gatherd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+</citerefentry> for more information.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1>
+<title>Bugs</title>
+<para>The SBLIM project maintains a mailing list to which you should direct all
+questions regarding sfcb, sfcc, wbemcli, the metric data gatherer, or any of the 
+SBLIM providers. To subscribe to this list visit:
+
+<screen><![CDATA[https://lists.sourceforge.net/lists/listinfo/sblim-issues]]></screen>
+</para>
+
+<para>Please report bugs you discover to the bug tracker. The SBLIM project bug 
+tracking page can be found at:
+
+<screen><![CDATA[https://sourceforge.net/tracker/?group_id=128809&atid=712784]]></screen>
+</para>
+</refsect1>
+
+<refsect1>
+<title>Authors</title>
+<para>Please refer to the AUTHORS file distributed with sblim-gather.</para>
+</refsect1>
+
+<refsect1>
+<title>Copyright</title>
+<para>Copyright © 2003-2012 IBM Corp.</para>
+</refsect1>
+
+<refsect1>
+<title>License</title>
+<para><command>gatherd</command> is distributed under the terms of the Eclipse
+Public License ("Agreement"). Any use, reproduction or distribution of this
+program constitutes recipeients acceptance of the agreement.</para>
+
+<para>You can obtain a current copy of the Eclipse Public License from
+http://www.opensource.org/licenses/eclipse-1.0.php</para>
+</refsect1>
+
+<refsect1>
+<title>See Also</title>
+<para>
+<citerefentry>
+<refentrytitle>gatherctl</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>gatherd.conf</refentrytitle>
+<manvolnum>5</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>reposd</refentrytitle>
+<manvolnum>8</manvolnum>
+</citerefentry>,
+<citerefentry>
+<refentrytitle>cimserver</refentrytitle>
+<manvolnum>1</manvolnum>
+</citerefentry>
+</para>
+</refsect1>
+
+</refentry>
